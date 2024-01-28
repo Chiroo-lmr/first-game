@@ -421,13 +421,14 @@ radius = 14.0
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
+position = Vector2(1029, 510)
 collision_layer = 3
 script = ExtResource("1_xovnq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13, -2)
 sprite_frames = SubResource("SpriteFrames_wbgwg")
-animation = &"front_attack"
+animation = &"back_attack"
 offset = Vector2(2.08165e-12, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -446,7 +447,8 @@ shape = SubResource("CircleShape2D_nwsnt")
 wait_time = 0.5
 
 [node name="worldCamera" type="Camera2D" parent="."]
-position = Vector2(16, 43)
+position = Vector2(-11, 0)
+zoom = Vector2(1.25, 1.25)
 limit_left = 0
 limit_top = 0
 limit_right = 480
@@ -463,6 +465,7 @@ offset_right = 139.0
 offset_bottom = 6.0
 scale = Vector2(0.1, 0.1)
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 5.0

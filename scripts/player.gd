@@ -127,7 +127,7 @@ func attack():
 			$AnimatedSprite2D.play("front_attack")
 			$deal_attack_timer.start()
 		if dir == "up":
-			$AnimatedSprite2D.play("front_attack")
+			$AnimatedSprite2D.play("back_attack")
 			$deal_attack_timer.start()
 	
 func _on_deal_attack_timer_timeout():

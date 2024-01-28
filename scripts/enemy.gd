@@ -5,9 +5,13 @@ var player = null
 var health = 100
 var playerAttackZone = false
 var canTakeDamage = true
+static var enemyID = 0
+
 func _physics_process(delta):
 	deal_with_damage()
 	updateHealth()
+	var direction = Vector2.ZERO
+	
 	
 	if player_chase :
 		position += (player.position - position) / speed
@@ -19,6 +23,7 @@ func _physics_process(delta):
 			$AnimatedSprite2D.flip_h = false
 	else:
 		$AnimatedSprite2D.play("idle")
+
 func _on_detection_area_body_entered(body):
 	player = body
 	player_chase = true
@@ -46,11 +51,10 @@ func deal_with_damage():
 			canTakeDamage = false
 			print("slime health = " + str(health))
 			if health <=0 :
-				Global.enemyKilled += 1
-				print(Global.enemyKilled)
-				Global.add_killed_enemy(randf_range(0,10))
+				enemyID += 1
+				Global.addKilledEnemies(enemyID)
+				print(Global.killed_enemies)
 				queue_free()
-				
 				
 func _on_take_damage_cooldown_timeout():
 	canTakeDamage = true
@@ -71,3 +75,13 @@ func _on_regin_timer_timeout():
 			health = 100
 	if health <= 0 :
 		health = 0
+
+
+
+
+
+
+
+
+
+

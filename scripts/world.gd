@@ -7,6 +7,9 @@ func _ready():
 		$player.position = Global.playerCurrentPosition
 	else:
 		$player.position = Vector2(272,120)
+	spawnEnemies()
+	
+	
 	
 func _on_cliff_side_transition_point_body_entered(body):
 	if body.has_method("player"):
@@ -35,3 +38,41 @@ func _on_cliff_side_2_transition_point_body_entered(body):
 func _on_cliff_side_2_transition_point_body_exited(body):
 	if body.has_method("player"):
 		Global.transitionScene = false
+
+func spawnEnemies():
+	var enemyScene = preload("res://scenes/enemy.tscn")
+	if 1 not in Global.killed_enemies:
+		var enemy1 = enemyScene.instantiate()
+		enemy1.position = Vector2(randi_range(220, 250), randi_range(60, 90))
+		add_child(enemy1)
+		if 1 not in Global.howManyEnemies:
+			Global.addEnemy(1)
+	if 2 not in Global.killed_enemies:
+		var enemy2 = enemyScene.instantiate()
+		enemy2.position = Vector2(randi_range(430, 470), randi_range(90, 110))
+		add_child(enemy2)
+		if 2 not in Global.howManyEnemies:
+			Global.addEnemy(2)
+	if 3 not in Global.killed_enemies:
+		var enemy3 = enemyScene.instantiate()
+		enemy3.position = Vector2(randi_range(40, 70), randi_range(100, 140))
+		add_child(enemy3)
+		if 3 not in Global.howManyEnemies:
+			Global.addEnemy(3)
+	if 4 not in Global.killed_enemies:
+		var enemy4 = enemyScene.instantiate()
+		enemy4.position = Vector2(randi_range(140, 170), randi_range(180, 210))
+		add_child(enemy4)
+		if 4 not in Global.howManyEnemies:
+			Global.addEnemy(4)
+
+
+
+
+
+
+
+
+
+
+
