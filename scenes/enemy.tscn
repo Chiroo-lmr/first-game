@@ -133,6 +133,7 @@ radius = 47.0106
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_swng2"]
+radius = 16.4924
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_u7qum")
@@ -164,6 +165,7 @@ shape = SubResource("CircleShape2D_swng2")
 wait_time = 0.5
 
 [node name="healthBar" type="ProgressBar" parent="."]
+visible = false
 modulate = Color(0.156863, 0.784314, 0.360784, 1)
 offset_left = -6.0
 offset_top = -13.0
@@ -175,21 +177,6 @@ show_percentage = false
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
-
-[node name="bas" type="RayCast2D" parent="."]
-target_position = Vector2(0, 16)
-
-[node name="droite" type="RayCast2D" parent="."]
-position = Vector2(0, -3)
-target_position = Vector2(16, 2.08165e-12)
-
-[node name="haut" type="RayCast2D" parent="."]
-position = Vector2(0, -6)
-target_position = Vector2(2.08165e-12, -16)
-
-[node name="gauche" type="RayCast2D" parent="."]
-position = Vector2(0, -3)
-target_position = Vector2(-16, 2.08165e-12)
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

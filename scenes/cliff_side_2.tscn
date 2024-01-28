@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyopsjufypevx"]
+[gd_scene load_steps=7 format=3 uid="uid://cyopsjufypevx"]
 
 [ext_resource type="Script" path="res://scripts/cliff_side_2.gd" id="1_6cw0c"]
 [ext_resource type="TileSet" uid="uid://38so0sm516dp" path="res://tres/cliffSide2.tres" id="2_enqya"]
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/player.tscn" id="3_e153j"]
 [ext_resource type="PackedScene" uid="uid://cslvka7xb5qkp" path="res://scenes/npc.tscn" id="4_iuvuq"]
+[ext_resource type="PackedScene" uid="uid://fy3uh0pdeped" path="res://scenes/hud.tscn" id="5_q1nu7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hw8rn"]
 size = Vector2(20, 34)
@@ -41,6 +42,8 @@ shape = SubResource("RectangleShape2D_hw8rn")
 
 [node name="NPC" parent="." instance=ExtResource("4_iuvuq")]
 position = Vector2(309, 100)
+
+[node name="HUD" parent="." instance=ExtResource("5_q1nu7")]
 
 [connection signal="body_entered" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_entered"]
 [connection signal="body_exited" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_exited"]
