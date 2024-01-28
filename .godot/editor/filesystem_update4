@@ -1,1 +1,14 @@
+res://scenes/player.tscn
 res://tres/world.tres
+res://tres/ciff_side.tres
+res://tres/cliffSide2.tres
+res://scenes/cliff_side.tscn
+res://scenes/cliff_side_2.tscn
+res://scenes/npc.tscn
+res://scenes/enemy.tscn
+res://scenes/hud.tscn
+res://scripts/global.gd
+res://scripts/player.gd
+res://scripts/hud.gd
+res://scripts/enemy.gd
+res://scripts/ciff_side.gd
