@@ -46,6 +46,9 @@ func deal_with_damage():
 			canTakeDamage = false
 			print("slime health = " + str(health))
 			if health <=0 :
+				Global.enemyKilled += 1
+				print(Global.enemyKilled)
+				Global.add_killed_enemy(randf_range(0,10))
 				queue_free()
 				
 				
