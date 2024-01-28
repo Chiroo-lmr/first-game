@@ -7,6 +7,7 @@ func _on_collision_transition_scene_body_entered(body):
 		Global.currentScene = "world"
 		Global.playerCurrentPosition = Vector2(30, 26)
 		
+		
 func _on_collision_transition_scene_body_exited(body):
 	if body.has_method("player"):
 		Global.transitionScene = false

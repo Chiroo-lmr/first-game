@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjqalh2oec1aj"]
+[gd_scene load_steps=4 format=3 uid="uid://bjqalh2oec1aj"]
 
 [ext_resource type="Script" path="res://scripts/ciff_side.gd" id="1_twsyh"]
 [ext_resource type="TileSet" uid="uid://dhytv0qi17emc" path="res://tres/ciff_side.tres" id="2_drkjo"]
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/player.tscn" id="3_so32c"]
-[ext_resource type="PackedScene" uid="uid://fy3uh0pdeped" path="res://scenes/hud.tscn" id="4_rbh2d"]
 
 [node name="ciffSide" type="Node2D"]
 y_sort_enabled = true
@@ -37,8 +36,6 @@ polygon = PackedVector2Array(480, 272, 480, 240, 496, 240, 496, 288, 432, 288, 4
 
 [node name="player" parent="." instance=ExtResource("3_so32c")]
 position = Vector2(472, 264)
-
-[node name="HUD" parent="." instance=ExtResource("4_rbh2d")]
 
 [connection signal="body_entered" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_entered"]
 [connection signal="body_exited" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_exited"]

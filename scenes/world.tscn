@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://balxsjpwle5wq"]
+[gd_scene load_steps=4 format=3 uid="uid://balxsjpwle5wq"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_owmpw"]
 [ext_resource type="TileSet" uid="uid://gnmff0auk03a" path="res://tres/world.tres" id="2_s0g1d"]
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/player.tscn" id="4_k0gef"]
-[ext_resource type="PackedScene" uid="uid://fy3uh0pdeped" path="res://scenes/hud.tscn" id="4_powsm"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -38,8 +37,6 @@ polygon = PackedVector2Array(0, 48, 0, 0, 24, 0, 24, -16, -16, -16, -16, 48)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="cliffSide2TransitionPoint"]
 polygon = PackedVector2Array(480, 256, 480, 272, 400, 272, 400, 288, 496, 288, 496, 256)
-
-[node name="HUD" parent="." instance=ExtResource("4_powsm")]
 
 [connection signal="body_entered" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_exited"]

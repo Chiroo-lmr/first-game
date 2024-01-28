@@ -8,21 +8,21 @@ var canTakeDamage = true
 static var enemyID = 0
 
 func _physics_process(delta):
-	if Global.gameStart == true and Global.gameOver == false and Global.gamePause == false:
-		deal_with_damage()
-		updateHealth()
-		var direction = Vector2.ZERO
+	deal_with_damage()
+	updateHealth()
+	var direction = Vector2.ZERO
 	
-		if player_chase :
-			position += (player.position - position) / speed
-			
-			$AnimatedSprite2D.play("walk")
-			if (player.position.x - position.x) < 0 :
-				$AnimatedSprite2D.flip_h = true
-			else:
-				$AnimatedSprite2D.flip_h = false
+	
+	if player_chase :
+		position += (player.position - position) / speed
+		
+		$AnimatedSprite2D.play("walk")
+		if (player.position.x - position.x) < 0 :
+			$AnimatedSprite2D.flip_h = true
 		else:
-			$AnimatedSprite2D.play("idle")
+			$AnimatedSprite2D.flip_h = false
+	else:
+		$AnimatedSprite2D.play("idle")
 
 func _on_detection_area_body_entered(body):
 	player = body
@@ -53,7 +53,6 @@ func deal_with_damage():
 			if health <=0 :
 				enemyID += 1
 				Global.addKilledEnemies(enemyID)
-				Global.enemiesKilled = enemyID
 				print(Global.killed_enemies)
 				queue_free()
 				
