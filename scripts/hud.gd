@@ -32,4 +32,3 @@ func _on_escape_restart_button_pressed():
 	Global.enemiesKilled = 0
 	Global.playerHealth = 100
 	get_tree().reload_current_scene()
-	
