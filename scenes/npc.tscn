@@ -3,22 +3,22 @@
 [ext_resource type="Script" path="res://scripts/NPC.gd" id="1_u6sfw"]
 [ext_resource type="Texture2D" uid="uid://niehv7187pgi" path="res://art/spritesheet.png" id="2_38853"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b0std"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7crxb"]
 atlas = ExtResource("2_38853")
-region = Rect2(256, 320, 64, 64)
+region = Rect2(384, 320, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3h8ng"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi36p"]
 atlas = ExtResource("2_38853")
-region = Rect2(320, 320, 64, 64)
+region = Rect2(448, 320, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0ate"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b0std")
+"texture": SubResource("AtlasTexture_7crxb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3h8ng")
+"texture": SubResource("AtlasTexture_yi36p")
 }],
 "loop": true,
 "name": &"idle",
@@ -36,7 +36,7 @@ position = Vector2(-20, 17.5)
 scale = Vector2(0.375, 0.453125)
 sprite_frames = SubResource("SpriteFrames_s0ate")
 animation = &"idle"
-frame_progress = 0.0542264
+frame_progress = 0.664572
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-20, 18)

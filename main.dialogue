@@ -1,6 +1,32 @@
-~ this_is_a_node_title
+~ main
 
-if Global.given_slimes_item == false
-	pass
-
+if Global.saidAllSlimesGones == false
+	Slime: [[slt!|Wsh l'équipe!|åÛ»»Û|wsh je dis des trucs bizarre des fois|mY lIttLE PuSsYY, mY lIttLE PuSsYY...]]
+	if Global.allSlimesGone == true
+		Slime: Did you killed all the slime so I can pray ?
+		- Yes I did !
+			Slime: Ohh, thank you so much ! let's go to the tree ! 
+			set Global.saidAllSlimesGones = true
+			=> END 
+	Slime: Hum, sorry if I didn't talked to you well, what can I do for you ?
+	- goodbye => END 
+	- who are you ? 
+		Slime: [[I am a slime, I live here since i'm born|I am a slime, I live here|I am a slime, I like to pray the god Slime|I am a simple NPC from a video game|sometimes I say some weird things]]
+		- goodbye => END 
+		- why are you moving like that ? You're stressed ?
+			Slime: I'm really embarrased, I usually go to the other side of the path to pray the god of slime...
+			- I don't give a shit, bye. 
+				Slime: [[You son of a bitch !| Go fuck yourself !| It isn't very nice, but goodbye.]]  
+			- And ?
+				Slime: Well, a lot of little slimes appeared at the middle of the path, they're terryfing ! I don't know how I could avoid them...
+				- Just kill yourself, bye ! 
+					Slime: [[You son of a bitch !| Go fuck yourself !| It isn't very nice, but goodbye.]]
+				- I can kill them for you if you want !
+					Slime: Oh, really, if you can do that for me, I could suck your dick bro !
+					- i'll do that but don't suck my dick.
+						Slime: Oh, ok, thanks anyway ! 
+						set Global.label = 1
+else:
+	Slime: thank you so much for killing all the slimes ! PuSsYPusSY.. hum sorry I don't know what kind of disease I have.
+	set Global.label = 0
 => END

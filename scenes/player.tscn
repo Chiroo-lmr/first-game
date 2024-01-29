@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cci24oag33sfq"]
+[gd_scene load_steps=58 format=3 uid="uid://cci24oag33sfq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_xovnq"]
 [ext_resource type="Texture2D" uid="uid://dc3ca7sfhhb2u" path="res://art/characters/player.png" id="2_x7v6g"]
@@ -414,10 +414,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fuqn8"]
-radius = 4.0
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nwsnt"]
-radius = 14.0
+radius = 12.0416
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4yaau"]
+radius = 15.0
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -432,13 +435,13 @@ animation = &"back_attack"
 offset = Vector2(2.08165e-12, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-13, -3)
+position = Vector2(-11, -6)
 shape = SubResource("CircleShape2D_fuqn8")
 
 [node name="player_hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
-position = Vector2(-12, -9)
+[node name="playerhitbox" type="CollisionShape2D" parent="player_hitbox"]
+position = Vector2(-11, -6)
 shape = SubResource("CircleShape2D_nwsnt")
 
 [node name="attackCooldown" type="Timer" parent="."]
@@ -471,8 +474,16 @@ metadata/_edit_use_anchors_ = true
 wait_time = 5.0
 autostart = true
 
+[node name="detectionNPCs" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectionNPCs"]
+position = Vector2(-11, -6)
+shape = SubResource("CircleShape2D_4yaau")
+
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
 [connection signal="timeout" from="reginTimer" to="." method="_on_regin_timer_timeout"]
+[connection signal="body_entered" from="detectionNPCs" to="." method="_on_detection_np_cs_body_entered"]
+[connection signal="body_exited" from="detectionNPCs" to="." method="_on_detection_np_cs_body_exited"]

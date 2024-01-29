@@ -62,7 +62,7 @@ grow_horizontal = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_a7xon")
 theme_override_font_sizes/font_size = 20
-text = "Quitter le jeux"
+text = "leave the game"
 
 [node name="RestartButton" type="Button" parent="."]
 visible = false
@@ -82,6 +82,16 @@ theme_override_font_sizes/font_size = 20
 text = "restart
 "
 
+[node name="depauseButton" type="Button" parent="."]
+offset_left = 862.0
+offset_top = 979.0
+offset_right = 1054.0
+offset_bottom = 1016.0
+theme_override_fonts/font = ExtResource("1_a7xon")
+text = "back to the game
+"
+
 [connection signal="pressed" from="startButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="RestartButton" to="." method="_on_escape_restart_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="depauseButton" to="." method="_on_depause_button_pressed"]

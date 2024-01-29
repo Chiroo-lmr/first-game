@@ -7,6 +7,7 @@ var enemyAttackCooldown = true
 var health = Global.playerHealth
 var playerAlive = true
 var attackIp = false
+var NPCInRange = false
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -24,6 +25,10 @@ func _physics_process(delta):
 		Global.gameOver = true
 		Global.gameStart = false
 		self.queue_free()
+	if NPCInRange == true:
+		if Input.is_action_just_pressed("ui_accept"):
+			DialogueManager.show_example_dialogue_balloon(load("res://main.dialogue"), "main")
+			return
 		
 func player_movement(delta):
 	if Global.gameStart == true and Global.gamePause == false:
@@ -97,7 +102,7 @@ func _on_player_hitbox_body_exited(body):
 		enemyAttackRange = false
 
 func enemy_attack():
-	if enemyAttackRange and enemyAttackCooldown == true:
+	if enemyAttackRange and enemyAttackCooldown == true and Global.gamePause == false:
 		health -= 20
 		enemyAttackCooldown = false
 		$attackCooldown.start()
@@ -148,15 +153,11 @@ func _on_regin_timer_timeout():
 	if health <= 0 :
 		health = 0
 		
+func _on_detection_np_cs_body_entered(body):
+	if body.has_method("NPC"):
+		NPCInRange = true
 
 
-
-
-
-
-
-
-
-
-
-
+func _on_detection_np_cs_body_exited(body):
+	if body.has_method("NPC"):
+		NPCInRange = false

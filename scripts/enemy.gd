@@ -5,7 +5,6 @@ var player = null
 var health = 100
 var playerAttackZone = false
 var canTakeDamage = true
-static var enemyID = 0
 
 func _physics_process(delta):
 	if Global.gameStart == true and Global.gameOver == false and Global.gamePause == false:
@@ -51,10 +50,9 @@ func deal_with_damage():
 			canTakeDamage = false
 			print("slime health = " + str(health))
 			if health <=0 :
-				enemyID += 1
-				Global.addKilledEnemies(enemyID)
-				Global.enemiesKilled = enemyID
-				print(Global.killed_enemies)
+				var enemyID = 1
+				Global.enemiesKilled +=1
+				Global.addKilledEnemies(Global.enemiesKilled)
 				queue_free()
 				
 func _on_take_damage_cooldown_timeout():

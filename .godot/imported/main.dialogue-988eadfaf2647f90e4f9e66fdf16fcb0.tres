@@ -1,21 +1,276 @@
 [gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_w2ee8"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_tv23s"]
 
 [resource]
-script = ExtResource("1_w2ee8")
+script = ExtResource("1_tv23s")
 using_states = PackedStringArray()
 titles = {
-"this_is_a_node_title": "3"
+"main": "3"
 }
-character_names = PackedStringArray()
+character_names = PackedStringArray("Slime")
 first_title = "3"
 lines = {
 "1": {
 "id": "1",
 "next_id": "3",
-"text": "this_is_a_node_title",
+"text": "main",
 "type": "title"
+},
+"10": {
+"id": "10",
+"is_snippet": false,
+"next_id": "end",
+"parent_id": "7",
+"type": "goto"
+},
+"11": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "11",
+"next_id": "12",
+"parent_id": "3",
+"tags": PackedStringArray(),
+"text": "Hum, sorry if I didn't talked to you well, what can I do for you ?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Hum, sorry if I didn't talked to you well, what can I do for you ?",
+"type": "dialogue"
+},
+"12": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "12",
+"next_id": "end",
+"next_id_after": "32",
+"parent_id": "3",
+"responses": PackedStringArray("12", "13"),
+"tags": PackedStringArray(),
+"text": "goodbye",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "goodbye",
+"type": "response"
+},
+"13": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "13",
+"next_id": "14",
+"next_id_after": "32",
+"parent_id": "3",
+"tags": PackedStringArray(),
+"text": "who are you ?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "who are you ?",
+"type": "response"
+},
+"14": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "14",
+"next_id": "15",
+"parent_id": "13",
+"tags": PackedStringArray(),
+"text": "[[I am a slime, I live here since i'm born|I am a slime, I live here|I am a slime, I like to pray the god Slime|I am a simple NPC from a video game|sometimes I say some weird things]]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "[[I am a slime, I live here since i'm born|I am a slime, I live here|I am a slime, I like to pray the god Slime|I am a simple NPC from a video game|sometimes I say some weird things]]",
+"type": "dialogue"
+},
+"15": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "15",
+"next_id": "end",
+"next_id_after": "32",
+"parent_id": "13",
+"responses": PackedStringArray("15", "16"),
+"tags": PackedStringArray(),
+"text": "goodbye",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "goodbye",
+"type": "response"
+},
+"16": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "16",
+"next_id": "17",
+"next_id_after": "32",
+"parent_id": "13",
+"tags": PackedStringArray(),
+"text": "why are you moving like that ? You're stressed ?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "why are you moving like that ? You're stressed ?",
+"type": "response"
+},
+"17": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "17",
+"next_id": "18",
+"parent_id": "16",
+"tags": PackedStringArray(),
+"text": "I'm really embarrased, I usually go to the other side of the path to pray the god of slime...",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I'm really embarrased, I usually go to the other side of the path to pray the god of slime...",
+"type": "dialogue"
+},
+"18": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "18",
+"next_id": "19",
+"next_id_after": "32",
+"parent_id": "16",
+"responses": PackedStringArray("18", "20"),
+"tags": PackedStringArray(),
+"text": "I don't give a shit, bye.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I don't give a shit, bye.",
+"type": "response"
+},
+"19": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "19",
+"next_id": "32",
+"parent_id": "18",
+"tags": PackedStringArray(),
+"text": "[[You son of a bitch !| Go fuck yourself !| It isn't very nice, but goodbye.]]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "[[You son of a bitch !| Go fuck yourself !| It isn't very nice, but goodbye.]]",
+"type": "dialogue"
+},
+"20": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "20",
+"next_id": "21",
+"next_id_after": "32",
+"parent_id": "16",
+"tags": PackedStringArray(),
+"text": "And ?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "And ?",
+"type": "response"
+},
+"21": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "21",
+"next_id": "22",
+"parent_id": "20",
+"tags": PackedStringArray(),
+"text": "Well, a lot of little slimes appeared at the middle of the path, they're terryfing ! I don't know how I could avoid them...",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Well, a lot of little slimes appeared at the middle of the path, they're terryfing ! I don't know how I could avoid them...",
+"type": "dialogue"
+},
+"22": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "22",
+"next_id": "23",
+"next_id_after": "32",
+"parent_id": "20",
+"responses": PackedStringArray("22", "24"),
+"tags": PackedStringArray(),
+"text": "Just kill yourself, bye !",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Just kill yourself, bye !",
+"type": "response"
+},
+"23": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "23",
+"next_id": "32",
+"parent_id": "22",
+"tags": PackedStringArray(),
+"text": "[[You son of a bitch !| Go fuck yourself !| It isn't very nice, but goodbye.]]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "[[You son of a bitch !| Go fuck yourself !| It isn't very nice, but goodbye.]]",
+"type": "dialogue"
+},
+"24": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "24",
+"next_id": "25",
+"next_id_after": "32",
+"parent_id": "20",
+"tags": PackedStringArray(),
+"text": "I can kill them for you if you want !",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I can kill them for you if you want !",
+"type": "response"
+},
+"25": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "25",
+"next_id": "26",
+"parent_id": "24",
+"tags": PackedStringArray(),
+"text": "Oh, really, if you can do that for me, I could suck your dick bro !",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Oh, really, if you can do that for me, I could suck your dick bro !",
+"type": "dialogue"
+},
+"26": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "26",
+"next_id": "27",
+"next_id_after": "32",
+"parent_id": "24",
+"responses": PackedStringArray("26"),
+"tags": PackedStringArray(),
+"text": "i'll do that but don't suck my dick.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "i'll do that but don't suck my dick.",
+"type": "response"
+},
+"27": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "27",
+"next_id": "28",
+"parent_id": "26",
+"tags": PackedStringArray(),
+"text": "Oh, ok, thanks anyway !",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Oh, ok, thanks anyway !",
+"type": "dialogue"
+},
+"28": {
+"id": "28",
+"mutation": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "Global"
+}, {
+"type": "dot"
+}, {
+"type": "variable",
+"value": "label"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "number",
+"value": 1
+}])
+},
+"next_id": "32",
+"parent_id": "26",
+"type": "mutation"
+},
+"29": {
+"id": "29",
+"next_conditional_id": "32",
+"next_id": "30",
+"next_id_after": "32",
+"type": "condition"
 },
 "3": {
 "condition": {
@@ -26,7 +281,7 @@ lines = {
 "type": "dot"
 }, {
 "type": "variable",
-"value": "given_slimes_item"
+"value": "saidAllSlimesGones"
 }, {
 "type": "comparison",
 "value": "=="
@@ -36,28 +291,149 @@ lines = {
 }])
 },
 "id": "3",
-"next_conditional_id": "6",
+"next_conditional_id": "29",
 "next_id": "4",
-"next_id_after": "6",
+"next_id_after": "32",
 "type": "condition"
 },
-"4": {
-"character": "",
+"30": {
+"character": "Slime",
 "character_replacements": Array[Dictionary]([]),
-"id": "4",
-"next_id": "6",
-"parent_id": "3",
+"id": "30",
+"next_id": "31",
+"parent_id": "29",
 "tags": PackedStringArray(),
-"text": "pass",
+"text": "thank you so much for killing all the slimes ! PuSsYPusSY.. hum sorry I don't know what kind of disease I have.",
 "text_replacements": Array[Dictionary]([]),
-"translation_key": "pass",
+"translation_key": "thank you so much for killing all the slimes ! PuSsYPusSY.. hum sorry I don't know what kind of disease I have.",
 "type": "dialogue"
 },
-"6": {
-"id": "6",
+"31": {
+"id": "31",
+"mutation": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "Global"
+}, {
+"type": "dot"
+}, {
+"type": "variable",
+"value": "label"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "number",
+"value": 0
+}])
+},
+"next_id": "32",
+"parent_id": "29",
+"type": "mutation"
+},
+"32": {
+"id": "32",
 "is_snippet": false,
 "next_id": "end",
 "type": "goto"
+},
+"4": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "4",
+"next_id": "5",
+"parent_id": "3",
+"tags": PackedStringArray(),
+"text": "[[slt!|Wsh l'équipe!|åÛ»»Û|wsh je dis des trucs bizarre des fois|mY lIttLE PuSsYY, mY lIttLE PuSsYY...]]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "[[slt!|Wsh l'équipe!|åÛ»»Û|wsh je dis des trucs bizarre des fois|mY lIttLE PuSsYY, mY lIttLE PuSsYY...]]",
+"type": "dialogue"
+},
+"5": {
+"condition": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "Global"
+}, {
+"type": "dot"
+}, {
+"type": "variable",
+"value": "allSlimesGone"
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "variable",
+"value": "true"
+}])
+},
+"id": "5",
+"next_conditional_id": "11",
+"next_id": "6",
+"next_id_after": "11",
+"parent_id": "3",
+"type": "condition"
+},
+"6": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "6",
+"next_id": "7",
+"parent_id": "5",
+"tags": PackedStringArray(),
+"text": "Did you killed all the slime so I can pray ?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Did you killed all the slime so I can pray ?",
+"type": "dialogue"
+},
+"7": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "7",
+"next_id": "8",
+"next_id_after": "11",
+"parent_id": "5",
+"responses": PackedStringArray("7"),
+"tags": PackedStringArray(),
+"text": "Yes I did !",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Yes I did !",
+"type": "response"
+},
+"8": {
+"character": "Slime",
+"character_replacements": Array[Dictionary]([]),
+"id": "8",
+"next_id": "9",
+"parent_id": "7",
+"tags": PackedStringArray(),
+"text": "Ohh, thank you so much ! let's go to the tree !",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Ohh, thank you so much ! let's go to the tree !",
+"type": "dialogue"
+},
+"9": {
+"id": "9",
+"mutation": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "Global"
+}, {
+"type": "dot"
+}, {
+"type": "variable",
+"value": "saidAllSlimesGones"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "variable",
+"value": "true"
+}])
+},
+"next_id": "10",
+"parent_id": "7",
+"type": "mutation"
 }
 }
 metadata/dialogue_manager_version = "2.32.3"
