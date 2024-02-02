@@ -1,6 +1,6 @@
 3acdcc5cb6df755358dde907981ccea8
-::res://::1706569068
-export_presets.cfg::TextFile::-1::1706436485::0::1::::<><>::
+::res://::1706900414
+export_presets.cfg::TextFile::-1::1706899658::0::1::::<><>::
 main.dialogue::Resource::746386134705635868::1706488906::1706488906::1::::<><>::res://addons/dialogue_manager/dialogue_resource.gd
 README.md::TextFile::-1::1706353285::0::1::::<><>::
 ::res://addons/::1706473814
@@ -100,14 +100,14 @@ wooden.png::CompressedTexture2D::6455752789905474587::1669946100::1706353484::1:
 walls.png::CompressedTexture2D::857913083290179990::1669946100::1706353484::1::::<><>::
 wooden_door.png::CompressedTexture2D::7770399673552679315::1669946100::1706353484::1::::<><>::
 wooden_door_b.png::CompressedTexture2D::3939656322374406773::1669946100::1706353484::1::::<><>::
-::res://scenes/::1706557189
-cliff_side.tscn::PackedScene::3051170374248022977::1706557189::0::1::::<><>::res://scripts/ciff_side.gd<>uid://dhytv0qi17emc::::res://tres/ciff_side.tres<>uid://cci24oag33sfq::::res://scenes/player.tscn<>uid://c4vjquan70cis::::res://scenes/hud.tscn
-cliff_side_2.tscn::PackedScene::6487218306303685001::1706557189::0::1::::<><>::res://scripts/cliff_side_2.gd<>uid://38so0sm516dp::::res://tres/cliffSide2.tres<>uid://cci24oag33sfq::::res://scenes/player.tscn<>uid://cslvka7xb5qkp::::res://scenes/npc.tscn<>uid://c4vjquan70cis::::res://scenes/hud.tscn
-enemy.tscn::PackedScene::5958124535276912281::1706557189::0::1::::<><>::uid://dj1g41scwq7bv::::res://art/characters/slime.png<>res://scripts/enemy.gd
-hud.tscn::PackedScene::6852245842463184402::1706557189::0::1::::<><>::uid://diiyvroyq1pc3::::res://art/Lemon font/Lemon-Regular.ttf<>res://scripts/hud.gd
-npc.tscn::PackedScene::6060241673433877635::1706557189::0::1::::<><>::res://scripts/NPC.gd<>uid://niehv7187pgi::::res://art/spritesheet.png
-player.tscn::PackedScene::4931425959160735074::1706557189::0::1::::<><>::res://scripts/player.gd<>uid://dc3ca7sfhhb2u::::res://art/characters/player.png
-world.tscn::PackedScene::2410557971008364612::1706557189::0::1::::<><>::res://scripts/world.gd<>uid://gnmff0auk03a::::res://tres/world.tres<>uid://cci24oag33sfq::::res://scenes/player.tscn<>uid://c4vjquan70cis::::res://scenes/hud.tscn
+::res://scenes/::1706899605
+cliff_side.tscn::PackedScene::3051170374248022977::1706899605::0::1::::<><>::res://scripts/ciff_side.gd<>uid://dhytv0qi17emc::::res://tres/ciff_side.tres<>uid://cci24oag33sfq::::res://scenes/player.tscn<>uid://c4vjquan70cis::::res://scenes/hud.tscn
+cliff_side_2.tscn::PackedScene::6487218306303685001::1706899605::0::1::::<><>::res://scripts/cliff_side_2.gd<>uid://38so0sm516dp::::res://tres/cliffSide2.tres<>uid://cci24oag33sfq::::res://scenes/player.tscn<>uid://cslvka7xb5qkp::::res://scenes/npc.tscn<>uid://c4vjquan70cis::::res://scenes/hud.tscn
+enemy.tscn::PackedScene::5958124535276912281::1706899605::0::1::::<><>::uid://dj1g41scwq7bv::::res://art/characters/slime.png<>res://scripts/enemy.gd
+hud.tscn::PackedScene::6852245842463184402::1706899605::0::1::::<><>::uid://diiyvroyq1pc3::::res://art/Lemon font/Lemon-Regular.ttf<>res://scripts/hud.gd
+npc.tscn::PackedScene::6060241673433877635::1706899605::0::1::::<><>::res://scripts/NPC.gd<>uid://niehv7187pgi::::res://art/spritesheet.png
+player.tscn::PackedScene::4931425959160735074::1706899605::0::1::::<><>::res://scripts/player.gd<>uid://dc3ca7sfhhb2u::::res://art/characters/player.png
+World.tscn::PackedScene::2410557971008364612::1706899605::0::1::::<><>::res://scripts/world.gd<>uid://gnmff0auk03a::::res://tres/world.tres<>uid://cci24oag33sfq::::res://scenes/player.tscn<>uid://c4vjquan70cis::::res://scenes/hud.tscn
 ::res://scripts/::1706488822
 ciff_side.gd::GDScript::-1::1706468468::0::1::::<>Node2D<>::
 cliff_side_2.gd::GDScript::-1::1706429580::0::1::::<>Node2D<>::
@@ -117,7 +117,7 @@ hud.gd::GDScript::-1::1706488822::0::1::::<>CanvasLayer<>::
 NPC.gd::GDScript::-1::1706487952::0::1::::<>CharacterBody2D<>::
 player.gd::GDScript::-1::1706488482::0::1::::<>CharacterBody2D<>::
 world.gd::GDScript::-1::1706485323::0::1::::<>Node2D<>::
-::res://tres/::1706473907
-ciff_side.tres::TileSet::7701321485377645258::1706473907::0::1::::<><>::uid://ca2xtg3sumjcu::::res://art/objects/objects.png<>uid://biqb6rme2g4f6::::res://art/tilesets/plains.png<>uid://dfc1pw51vhp2j::::res://art/tilesets/grass.png
-cliffSide2.tres::TileSet::2034531336209950369::1706473907::0::1::::<><>::uid://ca2xtg3sumjcu::::res://art/objects/objects.png<>uid://biqb6rme2g4f6::::res://art/tilesets/plains.png<>uid://dfc1pw51vhp2j::::res://art/tilesets/grass.png
-world.tres::TileSet::448707806777704172::1706473907::0::1::::<><>::uid://dfc1pw51vhp2j::::res://art/tilesets/grass.png<>uid://biqb6rme2g4f6::::res://art/tilesets/plains.png<>uid://ca2xtg3sumjcu::::res://art/objects/objects.png
+::res://tres/::1706899605
+ciff_side.tres::TileSet::7701321485377645258::1706899605::0::1::::<><>::uid://ca2xtg3sumjcu::::res://art/objects/objects.png<>uid://biqb6rme2g4f6::::res://art/tilesets/plains.png<>uid://dfc1pw51vhp2j::::res://art/tilesets/grass.png
+cliffSide2.tres::TileSet::2034531336209950369::1706899605::0::1::::<><>::uid://ca2xtg3sumjcu::::res://art/objects/objects.png<>uid://biqb6rme2g4f6::::res://art/tilesets/plains.png<>uid://dfc1pw51vhp2j::::res://art/tilesets/grass.png
+world.tres::TileSet::448707806777704172::1706899605::0::1::::<><>::uid://dfc1pw51vhp2j::::res://art/tilesets/grass.png<>uid://biqb6rme2g4f6::::res://art/tilesets/plains.png<>uid://ca2xtg3sumjcu::::res://art/objects/objects.png
