@@ -38,7 +38,7 @@ func _physics_process(delta):
 		playerCurrentAttack = false
 	if enemiesKilled == 4:
 		allSlimesGone = true
-	print(allSlimesGone)
+	# print(allSlimesGone)
 	if label == 1:
 		labelScore.visible = true
 

@@ -9,6 +9,8 @@ var playerAlive = true
 var attackIp = false
 var NPCInRange = false
 
+var not_red_at = 0
+
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 
@@ -17,6 +19,9 @@ func _physics_process(delta):
 	enemy_attack()
 	attack()
 	updateHealth()
+	if Time.get_unix_time_from_system ( ) < not_red_at:
+		$AnimatedSprite2D.play("damage")
+		
 	if health <= 0:
 		playerAlive = false # respawn screen
 		health = 0
@@ -32,32 +37,33 @@ func _physics_process(delta):
 		
 func player_movement(delta):
 	if Global.gameStart == true and Global.gamePause == false:
-		if Input.is_action_pressed("ui_right"):
-			currentDirection = "right"
-			play_anim(1)
-			velocity.x = speed
-			velocity.y = 0
-		elif Input.is_action_pressed("ui_left"):
-			play_anim(1)
-			currentDirection = "left"
-			velocity.x = -speed
-			velocity.y = 0
-		elif Input.is_action_pressed("ui_down"):		
-			currentDirection = "down"
-			play_anim(1)
-			velocity.x = 0
-			velocity.y = +speed
-		elif Input.is_action_pressed("ui_up"):
-			currentDirection = "up"
-			play_anim(1)		
-			velocity.x = 0
-			velocity.y = -speed
-		else:
-			play_anim(0)
-			velocity.x = 0
-			velocity.y = 0
-		
-		move_and_slide()
+		if Time.get_unix_time_from_system() > not_red_at:
+			if Input.is_action_pressed("ui_right"):
+				currentDirection = "right"
+				play_anim(1)
+				velocity.x = speed
+				velocity.y = 0
+			elif Input.is_action_pressed("ui_left"):
+				play_anim(1)
+				currentDirection = "left"
+				velocity.x = -speed
+				velocity.y = 0
+			elif Input.is_action_pressed("ui_down"):		
+				currentDirection = "down"
+				play_anim(1)
+				velocity.x = 0
+				velocity.y = +speed
+			elif Input.is_action_pressed("ui_up"):
+				currentDirection = "up"
+				play_anim(1)		
+				velocity.x = 0
+				velocity.y = -speed
+			else:
+				play_anim(0)
+				velocity.x = 0
+				velocity.y = 0
+			
+			move_and_slide()
 	
 func play_anim(movement):
 	var dir = currentDirection
@@ -107,6 +113,8 @@ func enemy_attack():
 		enemyAttackCooldown = false
 		$attackCooldown.start()
 		print(health)
+		print("debug --> player get hit")
+		not_red_at = Time.get_unix_time_from_system() + 0.5
 		
 func _on_attack_cooldown_timeout():
 	enemyAttackCooldown = true
