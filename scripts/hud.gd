@@ -24,6 +24,11 @@ func _on_restart_button_pressed():
 	Global.allSlimesGone = false
 	Global.playerHealth = 100
 	Global.playerCurrentPosition = Vector2(272, 120)
+	Global.allSlimesGone = false
+	Global.saidAllSlimesGones = false
+	Global.interacted_once = false
+	Global.labelScore = 0
+	Global.label = 0
 	get_tree().reload_current_scene()
 @onready var depauseButton = $depauseButton
 func _on_depause_button_pressed():
@@ -34,7 +39,6 @@ func _on_depause_button_pressed():
 	restartButton.visible = false
 
 func _ready():
-	labelScore.visible = false
 	Global.labelScore = labelScore
 	
 func _physics_process(delta):
@@ -60,6 +64,7 @@ func _physics_process(delta):
 		QuitButton.visible = true
 		restartButton.visible = true
 		depauseButton.visible = true
-
+	if Global.label == 0:
+		labelScore.visible = false
 
 

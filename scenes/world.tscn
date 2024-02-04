@@ -43,7 +43,7 @@ polygon = PackedVector2Array(480, 256, 480, 272, 400, 272, 400, 288, 496, 288, 4
 [node name="HUD" parent="." instance=ExtResource("4_powsm")]
 
 [node name="WorldCamera" type="Camera2D" parent="."]
-position = Vector2(256, 120)
+position = Vector2(272, 120)
 limit_left = 0
 limit_top = 0
 limit_right = 480

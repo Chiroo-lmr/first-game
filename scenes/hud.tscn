@@ -7,6 +7,7 @@
 script = ExtResource("1_sp60r")
 
 [node name="Score" type="Label" parent="."]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

@@ -47,6 +47,7 @@ position = Vector2(309, 100)
 [node name="HUD" parent="." instance=ExtResource("5_q1nu7")]
 
 [node name="CS2Camera" type="Camera2D" parent="."]
+position = Vector2(200, 128)
 limit_left = 0
 limit_top = 0
 limit_right = 480

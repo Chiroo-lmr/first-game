@@ -37,11 +37,12 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 polygon = PackedVector2Array(480, 272, 480, 240, 496, 240, 496, 288, 432, 288, 432, 272)
 
 [node name="player" parent="." instance=ExtResource("3_so32c")]
-position = Vector2(472, 264)
+position = Vector2(472, 256)
 
 [node name="HUD" parent="." instance=ExtResource("4_rbh2d")]
 
 [node name="CSCamera" type="Camera2D" parent="."]
+position = Vector2(400, 184)
 limit_left = 0
 limit_top = 0
 limit_right = 480

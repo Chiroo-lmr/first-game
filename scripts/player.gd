@@ -8,7 +8,7 @@ var health = Global.playerHealth
 var playerAlive = true
 var attackIp = false
 var NPCInRange = false
-
+var movement = 0
 var not_red_at = 0
 
 func _ready():
@@ -40,26 +40,31 @@ func player_movement(delta):
 		if Time.get_unix_time_from_system() > not_red_at:
 			if Input.is_action_pressed("ui_right"):
 				currentDirection = "right"
+				movement = 1
 				play_anim(1)
 				velocity.x = speed
 				velocity.y = 0
 			elif Input.is_action_pressed("ui_left"):
-				play_anim(1)
 				currentDirection = "left"
+				play_anim(1)
+				movement = 1
 				velocity.x = -speed
 				velocity.y = 0
 			elif Input.is_action_pressed("ui_down"):		
 				currentDirection = "down"
 				play_anim(1)
+				movement = 1
 				velocity.x = 0
 				velocity.y = +speed
 			elif Input.is_action_pressed("ui_up"):
 				currentDirection = "up"
 				play_anim(1)		
+				movement = 1
 				velocity.x = 0
 				velocity.y = -speed
 			else:
 				play_anim(0)
+				movement = 0
 				velocity.x = 0
 				velocity.y = 0
 			
@@ -120,25 +125,26 @@ func _on_attack_cooldown_timeout():
 	enemyAttackCooldown = true
 
 func attack():
-	if Global.gamePause == false and Global.gameStart == true:
+	if Global.gamePause == false and Global.gameStart == true and Global.gameLaunch == false:
 		var dir = currentDirection
-		if Input.is_action_just_pressed("attack"):
-			Global.playerCurrentAttack = true
-			attackIp = true
-			if dir == "right":
-				$AnimatedSprite2D.flip_h = false
-				$AnimatedSprite2D.play("side_attack")
-				$deal_attack_timer.start()
-			if dir == "left":
-				$AnimatedSprite2D.flip_h = true
-				$AnimatedSprite2D.play("side_attack")
-				$deal_attack_timer.start()
-			if dir == "down":
-				$AnimatedSprite2D.play("front_attack")
-				$deal_attack_timer.start()
-			if dir == "up":
-				$AnimatedSprite2D.play("back_attack")
-				$deal_attack_timer.start()
+		if movement == 0:
+			if Input.is_action_just_pressed("attack"):
+				Global.playerCurrentAttack = true
+				attackIp = true
+				if dir == "right":
+					$AnimatedSprite2D.flip_h = false
+					$AnimatedSprite2D.play("side_attack")
+					$deal_attack_timer.start()
+				if dir == "left":
+					$AnimatedSprite2D.flip_h = true
+					$AnimatedSprite2D.play("side_attack")
+					$deal_attack_timer.start()
+				if dir == "down":
+					$AnimatedSprite2D.play("front_attack")
+					$deal_attack_timer.start()
+				if dir == "up":
+					$AnimatedSprite2D.play("back_attack")
+					$deal_attack_timer.start()
 	
 func _on_deal_attack_timer_timeout():
 	$deal_attack_timer.stop()

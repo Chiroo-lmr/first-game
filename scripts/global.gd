@@ -9,9 +9,11 @@ var howManyEnemies = [randf(), randf(), randf(), randf()]
 var enemiesKilled = 0
 var allSlimesGone = false
 var saidAllSlimesGones = false
+var interacted_once = false
 var labelScore = 0
 var label = 0
 var playerCurrentPosition = Vector2(0, 0)
+
 
 var gameLaunch = true
 var gameOver = false
