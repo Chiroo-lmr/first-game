@@ -13,7 +13,7 @@ var not_red_at = 0
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
-
+	
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
@@ -114,7 +114,7 @@ func enemy_attack():
 		$attackCooldown.start()
 		print(health)
 		print("debug --> player get hit")
-		not_red_at = Time.get_unix_time_from_system() + 0.5
+		#not_red_at = Time.get_unix_time_from_system() + 0.5
 		
 func _on_attack_cooldown_timeout():
 	enemyAttackCooldown = true

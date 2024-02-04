@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjqalh2oec1aj"]
+[gd_scene load_steps=6 format=3 uid="uid://bjqalh2oec1aj"]
 
-[ext_resource type="Script" path="res://scripts/ciff_side.gd" id="1_twsyh"]
+[ext_resource type="Script" path="res://scripts/cliff_side.gd" id="1_twsyh"]
 [ext_resource type="TileSet" uid="uid://dhytv0qi17emc" path="res://tres/ciff_side.tres" id="2_drkjo"]
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/player.tscn" id="3_so32c"]
 [ext_resource type="PackedScene" uid="uid://c4vjquan70cis" path="res://scenes/hud.tscn" id="4_rbh2d"]
+[ext_resource type="Script" path="res://scripts/cameraFollow.gd" id="5_poi4f"]
 
 [node name="ciffSide" type="Node2D"]
 y_sort_enabled = true
@@ -39,6 +40,13 @@ polygon = PackedVector2Array(480, 272, 480, 240, 496, 240, 496, 288, 432, 288, 4
 position = Vector2(472, 264)
 
 [node name="HUD" parent="." instance=ExtResource("4_rbh2d")]
+
+[node name="CSCamera" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 480
+limit_bottom = 272
+script = ExtResource("5_poi4f")
 
 [connection signal="body_entered" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_entered"]
 [connection signal="body_exited" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_exited"]

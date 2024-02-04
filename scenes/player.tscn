@@ -497,17 +497,6 @@ shape = SubResource("CircleShape2D_nwsnt")
 [node name="deal_attack_timer" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="worldCamera" type="Camera2D" parent="."]
-position = Vector2(-11, 0)
-zoom = Vector2(1.25, 1.25)
-limit_left = 0
-limit_top = 0
-limit_right = 480
-limit_bottom = 272
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-
 [node name="healthBar" type="ProgressBar" parent="."]
 modulate = Color(0.156863, 0.784314, 0.360784, 1)
 offset_left = -21.0

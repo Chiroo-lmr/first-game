@@ -4,7 +4,6 @@ var playerCurrentAttack = false
 var currentScene = "world" #cliffSide #cliffSide2
 var transitionScene = false
 var playerHealth = 100
-
 var killed_enemies = [] 
 var howManyEnemies = [randf(), randf(), randf(), randf()]
 var enemiesKilled = 0
@@ -14,6 +13,7 @@ var labelScore = 0
 var label = 0
 var playerCurrentPosition = Vector2(0, 0)
 
+var gameLaunch = true
 var gameOver = false
 var gameStart = false
 var gamePause = false
@@ -41,5 +41,7 @@ func _physics_process(delta):
 	# print(allSlimesGone)
 	if label == 1:
 		labelScore.visible = true
+		
+	
 
 
