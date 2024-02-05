@@ -4,7 +4,6 @@ const speed = 150
 var currentDirection = "none"
 var enemyAttackRange = false
 var enemyAttackCooldown = true
-var health = Global.playerHealth
 var playerAlive = true
 var attackIp = false
 var NPCInRange = false
@@ -22,9 +21,9 @@ func _physics_process(delta):
 	if Time.get_unix_time_from_system ( ) < not_red_at:
 		$AnimatedSprite2D.play("damage")
 		
-	if health <= 0:
+	if Global.playerHealth <= 0:
 		playerAlive = false # respawn screen
-		health = 0
+		Global.playerHealth = 0
 		print("player has been killed")
 		$AnimatedSprite2D.play("death")
 		Global.gameOver = true
@@ -113,10 +112,10 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemyAttackRange and enemyAttackCooldown == true and Global.gamePause == false:
-		health -= 20
+		Global.playerHealth -= 20
 		enemyAttackCooldown = false
 		$attackCooldown.start()
-		print(health)
+		print(Global.playerHealth)
 		print("debug --> player get hit")
 		not_red_at = Time.get_unix_time_from_system() + 0.5
 		
@@ -152,19 +151,19 @@ func _on_deal_attack_timer_timeout():
 	
 func updateHealth():
 	var healthBar = $healthBar
-	healthBar.value = health
-	if health >= 100:
+	healthBar.value = Global.playerHealth
+	if Global.playerHealth >= 100:
 		healthBar.visible = false
 	else:
 		healthBar.visible = true
 
 func _on_regin_timer_timeout():
-	if health < 100:
-		health +=20
-		if health > 100:
-			health = 100
-	if health <= 0 :
-		health = 0
+	if Global.playerHealth < 100:
+		Global.playerHealth +=20
+		if Global.playerHealth > 100:
+			Global.playerHealth = 100
+	if Global.playerHealth <= 0 :
+		Global.playerHealth = 0
 		
 func _on_detection_np_cs_body_entered(body):
 	if body.has_method("NPC"):
