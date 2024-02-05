@@ -67,7 +67,6 @@ func player_movement(delta):
 				movement = 0
 				velocity.x = 0
 				velocity.y = 0
-			
 			move_and_slide()
 	
 func play_anim(movement):
@@ -119,7 +118,7 @@ func enemy_attack():
 		$attackCooldown.start()
 		print(health)
 		print("debug --> player get hit")
-		#not_red_at = Time.get_unix_time_from_system() + 0.5
+		not_red_at = Time.get_unix_time_from_system() + 0.5
 		
 func _on_attack_cooldown_timeout():
 	enemyAttackCooldown = true
