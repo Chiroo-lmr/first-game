@@ -126,16 +126,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_65rwg"]
-radius = 47.0106
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7cqb"]
 radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_65rwg"]
+radius = 47.0106
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_swng2"]
 radius = 16.4924
 
 [node name="enemy" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_u7qum")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -144,16 +145,16 @@ animation = &"idle"
 frame_progress = 0.608185
 offset = Vector2(2.08165e-12, -6)
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_i7cqb")
+
 [node name="detection_area" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 shape = SubResource("CircleShape2D_65rwg")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_i7cqb")
 
 [node name="enemy_hitbox" type="Area2D" parent="."]
 
