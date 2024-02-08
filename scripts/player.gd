@@ -11,6 +11,18 @@ var NPCInRange = false
 var movement = 0
 var not_red_at = 0
 
+func get_pos_knockback(pos_slime, pos_player, distance=10):
+	"""This function help to get the position after getting knockback"""
+	
+	var adj1 = pos_slime.y - pos_player.y
+	var opp1 = pos_slime.x - pos_player.x
+	var angle = atan(opp1/adj1)
+	print("ANGLE")
+	print(angle)
+	var out_adj = cos(angle)*distance
+	var out_opp = sin(angle)*distance
+	return Vector2(out_adj, out_opp)
+
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 	
@@ -107,6 +119,13 @@ func player():
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		enemyAttackRange = true
+		
+		# ************************* code for testing ***************************************
+		var pos_slime = body.position
+		var pos_player = self.position
+		
+		self.position += get_pos_knockback(pos_slime, pos_player)
+		
 
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
@@ -119,7 +138,7 @@ func enemy_attack():
 		$attackCooldown.start()
 		print(health)
 		print("debug --> player get hit")
-		#not_red_at = Time.get_unix_time_from_system() + 0.5
+		not_red_at = Time.get_unix_time_from_system() + 0.5
 		
 func _on_attack_cooldown_timeout():
 	enemyAttackCooldown = true
@@ -170,6 +189,7 @@ func _on_regin_timer_timeout():
 func _on_detection_np_cs_body_entered(body):
 	if body.has_method("NPC"):
 		NPCInRange = true
+		
 
 
 func _on_detection_np_cs_body_exited(body):
