@@ -498,16 +498,6 @@ shape = SubResource("CircleShape2D_nwsnt")
 [node name="deal_attack_timer" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="healthBar" type="ProgressBar" parent="."]
-modulate = Color(0.156863, 0.784314, 0.360784, 1)
-offset_left = -21.0
-offset_top = -21.0
-offset_right = 139.0
-offset_bottom = 6.0
-scale = Vector2(0.1, 0.1)
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true

@@ -83,6 +83,22 @@ theme_override_font_sizes/font_size = 20
 text = "restart
 "
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(0.141176, 0.67451, 0, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -15.0
+offset_right = 54.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+show_percentage = false
+
 [connection signal="pressed" from="startButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

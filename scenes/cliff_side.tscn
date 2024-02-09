@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bjqalh2oec1aj"]
 
 [ext_resource type="Script" path="res://scripts/cliff_side.gd" id="1_twsyh"]
-[ext_resource type="TileSet" uid="uid://btmh3j33umdg7" path="res://tres/cliff_side.tres" id="2_a01bk"]
+[ext_resource type="TileSet" uid="uid://mm2hxd11xseu" path="res://tres/cliff_side.tres" id="2_a01bk"]
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/player.tscn" id="3_so32c"]
 [ext_resource type="PackedScene" uid="uid://c4vjquan70cis" path="res://scenes/hud.tscn" id="4_rbh2d"]
 [ext_resource type="Script" path="res://scripts/cameraFollow.gd" id="5_poi4f"]

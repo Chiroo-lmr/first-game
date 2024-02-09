@@ -11,20 +11,21 @@ var movement = 0
 var not_red_at = 0
 
 func _ready():
+	Global.reginTimerPlayer = $reginTimer
 	$AnimatedSprite2D.play("front_idle")
 	
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
 	attack()
-	updateHealth()
+	ajustmentsHealth()
 	if Time.get_unix_time_from_system ( ) < not_red_at:
 		$AnimatedSprite2D.play("damage")
 		
 	if Global.playerHealth <= 0:
 		playerAlive = false # respawn screen
 		Global.playerHealth = 0
-		print("player has been killed")
+		print("Le joueur est mort")
 		$AnimatedSprite2D.play("death")
 		Global.gameOver = true
 		Global.gameStart = false
@@ -112,11 +113,10 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemyAttackRange and enemyAttackCooldown == true and Global.gamePause == false:
-		Global.playerHealth -= 20
+		Global.playerHealth -= randi_range(15, 20)
 		enemyAttackCooldown = false
 		$attackCooldown.start()
-		print(Global.playerHealth)
-		print("debug --> player get hit")
+		print("le joueur a été touché, sa vie : " + str(Global.playerHealth))
 		not_red_at = Time.get_unix_time_from_system() + 0.5
 		
 func _on_attack_cooldown_timeout():
@@ -148,22 +148,19 @@ func _on_deal_attack_timer_timeout():
 	$deal_attack_timer.stop()
 	Global.playerCurrentAttack = false
 	attackIp = false
-	
-func updateHealth():
-	var healthBar = $healthBar
-	healthBar.value = Global.playerHealth
-	if Global.playerHealth >= 100:
-		healthBar.visible = false
-	else:
-		healthBar.visible = true
+
+func ajustmentsHealth():
+	if Global.playerHealth > 100:
+		Global.playerHealth = 100
+		print("Sa vie à té réajusté à 100")
+	if Global.playerHealth <= 0 :
+		Global.playerHealth = 0
+		print("Sa vie à té réajusté à 0")
 
 func _on_regin_timer_timeout():
 	if Global.playerHealth < 100:
 		Global.playerHealth +=20
-		if Global.playerHealth > 100:
-			Global.playerHealth = 100
-	if Global.playerHealth <= 0 :
-		Global.playerHealth = 0
+		print("Le joueur s'est régénéré, sa vie : " + str(Global.playerHealth))
 		
 func _on_detection_np_cs_body_entered(body):
 	if body.has_method("NPC"):
