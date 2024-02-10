@@ -44,6 +44,5 @@ func _physics_process(delta):
 		allSlimesGone = true
 	if label == 1:
 		labelScore.visible = true
-	print(cameraPosition)
 	
 
