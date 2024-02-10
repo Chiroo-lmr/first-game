@@ -41,8 +41,6 @@ polygon = PackedVector2Array(0, 48, 0, 0, 24, 0, 24, -16, -16, -16, -16, 48)
 polygon = PackedVector2Array(480, 256, 480, 272, 400, 272, 400, 288, 496, 288, 496, 256)
 
 [node name="HUD" parent="." instance=ExtResource("4_powsm")]
-scale = Vector2(0.25, 0.25)
-transform = Transform2D(0.25, 0, 0, 0.25, 0, 0)
 
 [node name="WorldCamera" type="Camera2D" parent="."]
 position = Vector2(272, 120)
