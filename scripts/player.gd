@@ -11,8 +11,9 @@ var NPCInRange = false
 var movement = 0
 var not_red_at = 0
 
-func get_pos_knockback(pos_slime, pos_player, distance=10):
-	"""This function help to get the position after getting knockback"""
+func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
+	"""This function do the job for getting knockback after getting hit"""
+
 	
 	var xb = pos_player.x - pos_slime.x
 	var yb = pos_player.y - pos_slime.y
@@ -20,8 +21,15 @@ func get_pos_knockback(pos_slime, pos_player, distance=10):
 	var X = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * xb
 	var Y = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * yb
 	
-	var coordinates = Vector2(X, Y)
-	return pos_player + coordinates
+	var new_coordinates = pos_player+Vector2(X, Y)
+	
+	var tween = create_tween()
+	var target_pos = new_coordinates
+	tween.tween_property(self,"position",target_pos,time)
+	tween.tween_callback(
+		func end_movement():
+			self.position = target_pos
+	)
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -122,8 +130,7 @@ func _on_player_hitbox_body_entered(body):
 		
 		var pos_slime = body.position
 		var pos_player = self.position
-		
-		self.position = get_pos_knockback(pos_slime, pos_player)
+		apply_knockback(pos_slime, pos_player)
 		
 
 func _on_player_hitbox_body_exited(body):
