@@ -12,6 +12,10 @@ func _ready():
 	else:
 		$player.position = Vector2(272,120)
 	spawnEnemies()
+	$WorldCamera.position = Vector2(272, 120)
+	$WorldCamera.zoom = Vector2(1.25, 1.25)
+	if Global.cameraPosition == Vector2(0, 0): $WorldCamera.position = Global.cameraPosition
+	if Global.cameraPosition == Vector2(480, 272): $WorldCamera.position = Global.cameraPosition
 	
 func _process(delta):
 	if enemy1 == null:
@@ -29,6 +33,7 @@ func _process(delta):
 	
 func _on_cliff_side_transition_point_body_entered(body):
 	if body.has_method("player"):
+		$WorldCamera.position = Vector2(0, 0)
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/cliff_side.tscn")
 		Global.currentScene = "cliffSide"
@@ -40,6 +45,7 @@ func _on_cliff_side_transition_point_body_exited(body):
 
 func _on_cliff_side_2_transition_point_body_entered(body):
 	if body.has_method("player"):
+		$WorldCamera.position = Vector2(480, 272)
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/cliff_side_2.tscn")
 		Global.currentScene = "cliffSide2"

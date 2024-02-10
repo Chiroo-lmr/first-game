@@ -15,7 +15,7 @@ var label = 0
 var playerCurrentPosition = Vector2(0, 0)
 var reginTimerPlayer
 var reginTimerEnemy
-var cameraPosition : Vector2
+var cameraPosition
 var gameLaunch = true
 var gameOver = false
 var gameStart = false
@@ -44,5 +44,6 @@ func _physics_process(delta):
 		allSlimesGone = true
 	if label == 1:
 		labelScore.visible = true
+	print(cameraPosition)
 	
 

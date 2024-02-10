@@ -84,6 +84,7 @@ text = "restart
 "
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 modulate = Color(0.141176, 0.67451, 0, 1)
 anchors_preset = 7
 anchor_left = 0.5

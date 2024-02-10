@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const speed = 150
+@export var speed = 150
 var currentDirection = "none"
 var enemyAttackRange = false
 var enemyAttackCooldown = true
