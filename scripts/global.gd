@@ -15,11 +15,12 @@ var label = 0
 var playerCurrentPosition = Vector2(0, 0)
 var reginTimerPlayer
 var reginTimerEnemy
-
+var cameraPosition : Vector2
 var gameLaunch = true
 var gameOver = false
 var gameStart = false
 var gamePause = false
+var gameTab = false
 @onready var QuitButton
 @onready var restartButton
 @onready var depauseButton
