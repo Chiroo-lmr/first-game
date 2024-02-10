@@ -36,37 +36,48 @@ func _physics_process(delta):
 			return
 		
 func player_movement(delta):
-	if Global.gameStart == true and Global.gamePause == false:
+	if Global.gameStart == true:
 		if Time.get_unix_time_from_system() > not_red_at:
-			if Input.is_action_pressed("ui_right"):
-				currentDirection = "right"
+			var dirx = Input.get_axis("ui_left", "ui_right")
+			var diry = Input.get_axis("ui_up", "ui_down")
+			print("horizontalement : " + str(dirx))
+			print("verticalement : " + str(diry))
+			print(currentDirection)
+			if !dirx == 0 and !diry == 0:
 				movement = 1
 				play_anim(1)
-				velocity.x = speed
-				velocity.y = 0
-			elif Input.is_action_pressed("ui_left"):
-				currentDirection = "left"
-				play_anim(1)
-				movement = 1
-				velocity.x = -speed
-				velocity.y = 0
-			elif Input.is_action_pressed("ui_down"):		
-				currentDirection = "down"
-				play_anim(1)
-				movement = 1
-				velocity.x = 0
-				velocity.y = +speed
-			elif Input.is_action_pressed("ui_up"):
-				currentDirection = "up"
-				play_anim(1)		
-				movement = 1
-				velocity.x = 0
-				velocity.y = -speed
+				velocity = Vector2(dirx * speed / 1.25, diry * speed / 1.25)
 			else:
-				play_anim(0)
+				if diry == -1:
+					currentDirection = "up"
+					movement = 1
+					play_anim(1)
+					velocity.y = diry * speed
+					velocity.x = 0
+				if diry == 1:
+					currentDirection = "down"
+					movement = 1
+					play_anim(1)
+					velocity.y = diry * speed
+					velocity.x = 0
+				if dirx == -1:
+					currentDirection = "left"
+					movement = 1
+					play_anim(1)
+					velocity.x = dirx * speed
+					velocity.y = 0
+				if dirx == 1:
+					currentDirection = "right"
+					movement = 1
+					play_anim(1)
+					velocity.x = dirx * speed
+					velocity.y = 0
+			if dirx == 0 and diry == 0:
 				movement = 0
+				play_anim(0)
 				velocity.x = 0
 				velocity.y = 0
+			print(velocity)
 			move_and_slide()
 	
 func play_anim(movement):

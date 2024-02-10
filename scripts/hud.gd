@@ -55,7 +55,7 @@ func _physics_process(delta):
 		startButton.visible = true
 	if Input.is_action_just_pressed("ui_cancel"):
 		game_pause()
-	if Input.is_action_pressed("information"):
+	if Input.is_action_pressed("information") and Global.gameStart == true:
 		game_tab()
 	else:
 		Global.gameTab = false
