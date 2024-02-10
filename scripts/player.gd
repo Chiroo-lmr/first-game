@@ -14,14 +14,14 @@ var not_red_at = 0
 func get_pos_knockback(pos_slime, pos_player, distance=10):
 	"""This function help to get the position after getting knockback"""
 	
-	var adj1 = pos_slime.y - pos_player.y
-	var opp1 = pos_slime.x - pos_player.x
-	var angle = atan(opp1/adj1)
-	print("ANGLE")
-	print(angle)
-	var out_adj = cos(angle)*distance
-	var out_opp = sin(angle)*distance
-	return Vector2(out_adj, out_opp)
+	var xb = pos_player.x - pos_slime.x
+	var yb = pos_player.y - pos_slime.y
+	
+	var X = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * xb
+	var Y = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * yb
+	
+	var coordinates = Vector2(X, Y)
+	return pos_player + coordinates
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -120,11 +120,10 @@ func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		enemyAttackRange = true
 		
-		# ************************* code for testing ***************************************
 		var pos_slime = body.position
 		var pos_player = self.position
 		
-		self.position += get_pos_knockback(pos_slime, pos_player)
+		self.position = get_pos_knockback(pos_slime, pos_player)
 		
 
 func _on_player_hitbox_body_exited(body):
