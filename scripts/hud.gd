@@ -21,7 +21,7 @@ func _on_restart_button_pressed():
 	Global.gameOver = false
 	Global.killed_enemies = [] 
 	Global.enemiesKilled = 0
-	Global.SlimeID = [[], [], [], []]
+	Global.SlimeID = [[0, Vector2(randi_range(200, 220), randi_range(40, 60))], [0, Vector2(randi_range(430, 470), randi_range(90, 110))], [0, Vector2(randi_range(40, 70), randi_range(100, 140))], [0, Vector2(randi_range(140, 170), randi_range(180, 210))]]
 	Global.allSlimesGone = false
 	Global.playerHealth = 100
 	Global.playerCurrentPosition = Vector2(272, 120)
