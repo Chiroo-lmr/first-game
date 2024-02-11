@@ -8,8 +8,9 @@ var canTakeDamage = true
 
 func _ready():
 	pass
-
+	
 func _physics_process(delta):
+	
 	if Global.gamePause == true:
 		$reginTimer.paused = true
 	else:

@@ -80,7 +80,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_a7xon")
 theme_override_font_sizes/font_size = 20
-text = "restart
+text = "recommencer
 "
 
 [node name="HealthBar" type="ProgressBar" parent="."]

@@ -21,6 +21,7 @@ func _on_restart_button_pressed():
 	Global.gameOver = false
 	Global.killed_enemies = [] 
 	Global.enemiesKilled = 0
+	Global.SlimeID = [[], [], [], []]
 	Global.allSlimesGone = false
 	Global.playerHealth = 100
 	Global.playerCurrentPosition = Vector2(272, 120)
@@ -29,6 +30,7 @@ func _on_restart_button_pressed():
 	Global.interacted_once = false
 	Global.labelScore = 0
 	Global.label = 0
+	Global.cameraPosition = Vector2(272, 120)
 	get_tree().reload_current_scene()
 
 func _ready():

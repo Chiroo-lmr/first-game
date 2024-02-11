@@ -47,7 +47,7 @@ func player_movement(delta):
 			if !dirx == 0 and !diry == 0:
 				movement = 1
 				play_anim(1)
-				velocity = Vector2(dirx * speed / 1.25, diry * speed / 1.25)
+				velocity = Vector2(dirx * speed / 1.4, diry * speed / 1.4)
 			else:
 				if diry == -1:
 					currentDirection = "up"
