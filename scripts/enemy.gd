@@ -7,9 +7,13 @@ var playerAttackZone = false
 var canTakeDamage = true
 
 func _ready():
-	Global.reginTimerEnemy = $reginTimer
+	pass
 
 func _physics_process(delta):
+	if Global.gamePause == true:
+		$reginTimer.paused = true
+	else:
+		$reginTimer.paused = false
 	if Global.gameStart == true and Global.gameOver == false and Global.gamePause == false:
 		deal_with_damage()
 		updateHealth()

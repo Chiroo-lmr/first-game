@@ -71,14 +71,12 @@ func game_pause():
 			QuitButton.visible = true
 			restartButton.visible = true
 			Global.reginTimerPlayer.paused = true
-			
 		else:
 			Global.gameStart = true
 			Global.gamePause = false
 			QuitButton.visible = false
 			restartButton.visible = false
 			Global.reginTimerPlayer.paused = false
-			Global.reginTimerEnemy.paused = false
 
 func game_tab():
 	Global.gameStart = true
