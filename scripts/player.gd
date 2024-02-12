@@ -60,13 +60,14 @@ func player_movement(delta):
 		if Time.get_unix_time_from_system() > not_red_at:
 			var dirx = Input.get_axis("ui_left", "ui_right")
 			var diry = Input.get_axis("ui_up", "ui_down")
-			print("horizontalement : " + str(dirx))
-			print("verticalement : " + str(diry))
-			print(currentDirection)
+			#print("horizontalement : " + str(dirx))
+			#print("verticalement : " + str(diry))
+			#print(currentDirection)
+			#print(velocity)
 			if !dirx == 0 and !diry == 0:
 				movement = 1
 				play_anim(1)
-				velocity = Vector2(dirx * speed / 1.25, diry * speed / 1.25)
+				velocity = Vector2(dirx * speed / 1.4, diry * speed / 1.4)
 			else:
 				if diry == -1:
 					currentDirection = "up"
@@ -97,7 +98,6 @@ func player_movement(delta):
 				play_anim(0)
 				velocity.x = 0
 				velocity.y = 0
-			print(velocity)
 			move_and_slide()
 	
 func play_anim(movement):
@@ -152,7 +152,7 @@ func enemy_attack():
 		Global.playerHealth -= randi_range(15, 20)
 		enemyAttackCooldown = false
 		$attackCooldown.start()
-		print("le joueur a été touché, sa vie : " + str(Global.playerHealth))
+		#print("le joueur a été touché, sa vie : " + str(Global.playerHealth))
 		not_red_at = Time.get_unix_time_from_system() + 0.5
 		
 func _on_attack_cooldown_timeout():
@@ -188,15 +188,15 @@ func _on_deal_attack_timer_timeout():
 func ajustmentsHealth():
 	if Global.playerHealth > 100:
 		Global.playerHealth = 100
-		print("Sa vie à té réajusté à 100")
+		#print("Sa vie à té réajusté à 100")
 	if Global.playerHealth <= 0 :
 		Global.playerHealth = 0
-		print("Sa vie à té réajusté à 0")
+		#print("Sa vie à té réajusté à 0")
 
 func _on_regin_timer_timeout():
 	if Global.playerHealth < 100:
 		Global.playerHealth +=20
-		print("Le joueur s'est régénéré, sa vie : " + str(Global.playerHealth))
+		#print("Le joueur s'est régénéré, sa vie : " + str(Global.playerHealth))
 		
 func _on_detection_np_cs_body_entered(body):
 	if body.has_method("NPC"):

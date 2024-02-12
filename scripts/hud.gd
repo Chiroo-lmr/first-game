@@ -21,6 +21,7 @@ func _on_restart_button_pressed():
 	Global.gameOver = false
 	Global.killed_enemies = [] 
 	Global.enemiesKilled = 0
+	Global.SlimeID = [[0, Vector2(randi_range(200, 220), randi_range(40, 60))], [0, Vector2(randi_range(430, 470), randi_range(90, 110))], [0, Vector2(randi_range(40, 70), randi_range(100, 140))], [0, Vector2(randi_range(140, 170), randi_range(180, 210))]]
 	Global.allSlimesGone = false
 	Global.playerHealth = 100
 	Global.playerCurrentPosition = Vector2(272, 120)
@@ -29,6 +30,7 @@ func _on_restart_button_pressed():
 	Global.interacted_once = false
 	Global.labelScore = 0
 	Global.label = 0
+	Global.cameraPosition = Vector2(272, 120)
 	get_tree().reload_current_scene()
 
 func _ready():
@@ -71,14 +73,12 @@ func game_pause():
 			QuitButton.visible = true
 			restartButton.visible = true
 			Global.reginTimerPlayer.paused = true
-			
 		else:
 			Global.gameStart = true
 			Global.gamePause = false
 			QuitButton.visible = false
 			restartButton.visible = false
 			Global.reginTimerPlayer.paused = false
-			Global.reginTimerEnemy.paused = false
 
 func game_tab():
 	Global.gameStart = true

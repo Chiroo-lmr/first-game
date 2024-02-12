@@ -25,17 +25,20 @@ layer_2/tile_data = PackedInt32Array(983042, 524291, 6, 917514, 524291, 6, 98305
 [node name="player" parent="." instance=ExtResource("4_k0gef")]
 position = Vector2(272, 120)
 
-[node name="collisions" type="StaticBody2D" parent="."]
+[node name="bord" type="StaticBody2D" parent="."]
+collision_mask = 14
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bord"]
 polygon = PackedVector2Array(0, 48, 0, 272, 400, 272, 400, 288, 496, 288, 496, 256, 480, 256, 480, 0, 24, 0, 24, -16, -16, -16, -16, 40, -28, 58, -24, -40, 88, -64, 208, -72, 368, -64, 520, -32, 536, 0, 536, 96, 528, 160, 528, 240, 536, 296, 472, 328, 296, 312, 152, 304, 16, 312, -48, 304, -48, 224, -48, 168, -48, 96, -32, 64, -16, 40, -16, 48)
 
 [node name="cliffSideTransitionPoint" type="Area2D" parent="."]
+collision_mask = 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="cliffSideTransitionPoint"]
 polygon = PackedVector2Array(0, 48, 0, 0, 24, 0, 24, -16, -16, -16, -16, 48)
 
 [node name="cliffSide2TransitionPoint" type="Area2D" parent="."]
+collision_mask = 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="cliffSide2TransitionPoint"]
 polygon = PackedVector2Array(480, 256, 480, 272, 400, 272, 400, 288, 496, 288, 496, 256)

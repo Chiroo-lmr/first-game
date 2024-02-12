@@ -14,6 +14,7 @@ script = ExtResource("1_twsyh")
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(1.00254, 0.999862)
 tile_set = ExtResource("2_a01bk")
 format = 2
 layer_0/name = "floor"
@@ -24,14 +25,16 @@ layer_2/name = "objects"
 layer_2/y_sort_enabled = true
 layer_2/tile_data = PackedInt32Array(393218, 0, 1, 393231, 0, 5, 524317, 655360, 7, 262168, 655360, 7, 262164, 655360, 7, 917516, 655360, 7, 851989, 655360, 7, 589827, 655360, 7, 851969, 655360, 7, 983045, 655360, 7, 196616, 655360, 7, 131074, 655360, 7, 65543, 655360, 7, 720916, 0, 1, 720912, 0, 1, 524299, 0, 1, 262157, 0, 1, 196630, 0, 1, 327708, 0, 1, 786460, 0, 0, 327699, 0, 0, 786439, 655360, 7, 458760, 655360, 7, 327685, 655360, 7, 13, 655360, 7, 65555, 655360, 7, 27, 655360, 7, 917521, 655360, 7, 720914, 655360, 7)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="bord" type="StaticBody2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
+collision_mask = 14
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bord"]
 polygon = PackedVector2Array(432, 272, 0, 272, 0, 0, 480, 0, 480, 240, 496, 240, 496, 288, 432, 288, 432, 304, 512, 304, 512, 224, 496, 224, 496, -16, -16, -16, -16, 288, 432, 288)
 
 [node name="collisionTransitionScene" type="Area2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
+collision_mask = 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisionTransitionScene"]
 polygon = PackedVector2Array(480, 272, 480, 240, 496, 240, 496, 288, 432, 288, 432, 272)

@@ -30,12 +30,14 @@ layer_2/tile_data = PackedInt32Array(589840, 655360, 0, 327696, 327680, 0, 32769
 [node name="player" parent="." instance=ExtResource("3_e153j")]
 position = Vector2(200, 128)
 
-[node name="collisions" type="Area2D" parent="."]
+[node name="bord" type="Area2D" parent="."]
+collision_mask = 14
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bord"]
 polygon = PackedVector2Array(176, 40, 376, 40, 376, 200, 168, 200, 168, 40, 160, 40, 160, 208, 384, 208, 384, 32, 168, 32, 168, 40)
 
 [node name="collisionTransitionScene" type="Area2D" parent="."]
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisionTransitionScene"]
 position = Vector2(168, 120)
