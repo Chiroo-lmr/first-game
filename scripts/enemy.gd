@@ -28,9 +28,9 @@ func _physics_process(delta):
 				$AnimatedSprite2D.flip_h = true
 			else:
 				$AnimatedSprite2D.flip_h = false
+			move_and_collide(Vector2(0,0))
 		else:
 			$AnimatedSprite2D.play("idle")
-			
 
 func _on_detection_area_body_entered(body):
 	if body.has_method("player"):
