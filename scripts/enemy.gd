@@ -8,7 +8,9 @@ var canTakeDamage = true
 
 func apply_knockback(distance=20, time=0.1):
 	var pos = self.position
-	var player_pos = $/player.position
+	var player_pos = get_parent().get_node("player").position
+	
+	print("PLAYER POS --->" + str(player_pos))
 	
 	var xb = pos.x - player_pos.x
 	var yb = pos.y - player_pos.y
@@ -19,7 +21,16 @@ func apply_knockback(distance=20, time=0.1):
 	var relative_new_coordinates = Vector2(X, Y)
 	var new_coordinates = pos+relative_new_coordinates
 	
-	self.position = new_coordinates
+	var collision = move_and_collide(relative_new_coordinates) # is null when nothing hit, else it is KinematicCollision2D
+	if collision: # check if there is no collision
+		new_coordinates = self.position # get the stop position		
+	self.position = pos # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
+	var tween = create_tween()
+	tween.tween_property(self,"position",new_coordinates,time)
+	tween.tween_callback(
+		func end_movement():
+			self.position = new_coordinates
+	)
 	
 	
 
@@ -66,6 +77,7 @@ func deal_with_damage():
 			$takeDamageCooldown.start()
 			canTakeDamage = false
 			print("slime health = " + str(health))
+			apply_knockback()
 			if health <=0 :
 				var enemyID = 1
 				Global.enemiesKilled +=1
