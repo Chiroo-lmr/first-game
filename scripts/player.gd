@@ -47,12 +47,9 @@ func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
 			func end_movement():
 				self.position = hit_position
 		)
-	
-
 
 func _ready():
 	Global.reginTimerPlayer = $reginTimer
-	$AnimatedSprite2D.play("front_idle")
 	
 func _physics_process(delta):
 	player_movement(delta)
