@@ -6,6 +6,23 @@ var health = 100
 var playerAttackZone = false
 var canTakeDamage = true
 
+func apply_knockback(distance=20, time=0.1):
+	var pos = self.position
+	var player_pos = $/player.position
+	
+	var xb = pos.x - player_pos.x
+	var yb = pos.y - player_pos.y
+	
+	var X = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * xb
+	var Y = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * yb
+	
+	var relative_new_coordinates = Vector2(X, Y)
+	var new_coordinates = pos+relative_new_coordinates
+	
+	self.position = new_coordinates
+	
+	
+
 func _physics_process(delta):
 	if Global.gameStart == true and Global.gameOver == false and Global.gamePause == false:
 		deal_with_damage()
