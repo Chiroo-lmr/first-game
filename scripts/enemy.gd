@@ -35,6 +35,11 @@ func apply_knockback(distance=20, time=0.1):
 	
 
 func _physics_process(delta):
+	
+	if Global.gamePause == true:
+		$reginTimer.paused = true
+	else:
+		$reginTimer.paused = false
 	if Global.gameStart == true and Global.gameOver == false and Global.gamePause == false:
 		deal_with_damage()
 		updateHealth()
@@ -48,16 +53,19 @@ func _physics_process(delta):
 				$AnimatedSprite2D.flip_h = true
 			else:
 				$AnimatedSprite2D.flip_h = false
+			move_and_collide(Vector2(0,0))
 		else:
 			$AnimatedSprite2D.play("idle")
 
 func _on_detection_area_body_entered(body):
-	player = body
-	player_chase = true
+	if body.has_method("player"):
+		player = body
+		player_chase = true
 	 
 func _on_detection_area_body_exited(body):
-	player = null
-	player_chase = false
+	if body.has_method("player"):
+		player = null
+		player_chase = false
 	
 func enemy():
 	pass
@@ -73,16 +81,14 @@ func _on_enemy_hitbox_body_exited(body):
 func deal_with_damage():
 	if playerAttackZone and Global.playerCurrentAttack == true:
 		if canTakeDamage == true:
-			health -= 20
+			health -= randi_range(15, 20)
 			$takeDamageCooldown.start()
 			canTakeDamage = false
 			print("slime health = " + str(health))
 			apply_knockback()
 			if health <=0 :
-				var enemyID = 1
-				Global.enemiesKilled +=1
-				Global.addKilledEnemies(Global.enemiesKilled)
 				queue_free()
+			$reginTimer.start()
 				
 func _on_take_damage_cooldown_timeout():
 	canTakeDamage = true

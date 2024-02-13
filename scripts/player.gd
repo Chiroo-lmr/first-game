@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
-const speed = 150
+@export var speed = 150
 var currentDirection = "none"
 var enemyAttackRange = false
 var enemyAttackCooldown = true
-var health = Global.playerHealth
 var playerAlive = true
 var attackIp = false
 var NPCInRange = false
@@ -40,20 +39,21 @@ func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
 
 
 func _ready():
+	Global.reginTimerPlayer = $reginTimer
 	$AnimatedSprite2D.play("front_idle")
 	
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
 	attack()
-	updateHealth()
+	ajustmentsHealth()
 	if Time.get_unix_time_from_system ( ) < not_red_at:
 		$AnimatedSprite2D.play("damage")
 		
-	if health <= 0:
+	if Global.playerHealth <= 0:
 		playerAlive = false # respawn screen
-		health = 0
-		print("player has been killed")
+		Global.playerHealth = 0
+		print("Le joueur est mort")
 		$AnimatedSprite2D.play("death")
 		Global.gameOver = true
 		Global.gameStart = false
@@ -64,38 +64,48 @@ func _physics_process(delta):
 			return
 		
 func player_movement(delta):
-	if Global.gameStart == true and Global.gamePause == false:
+	if Global.gameStart == true:
 		if Time.get_unix_time_from_system() > not_red_at:
-			if Input.is_action_pressed("ui_right"):
-				currentDirection = "right"
+			var dirx = Input.get_axis("ui_left", "ui_right")
+			var diry = Input.get_axis("ui_up", "ui_down")
+			#print("horizontalement : " + str(dirx))
+			#print("verticalement : " + str(diry))
+			#print(currentDirection)
+			#print(velocity)
+			if !dirx == 0 and !diry == 0:
 				movement = 1
 				play_anim(1)
-				velocity.x = speed
-				velocity.y = 0
-			elif Input.is_action_pressed("ui_left"):
-				currentDirection = "left"
-				play_anim(1)
-				movement = 1
-				velocity.x = -speed
-				velocity.y = 0
-			elif Input.is_action_pressed("ui_down"):		
-				currentDirection = "down"
-				play_anim(1)
-				movement = 1
-				velocity.x = 0
-				velocity.y = +speed
-			elif Input.is_action_pressed("ui_up"):
-				currentDirection = "up"
-				play_anim(1)		
-				movement = 1
-				velocity.x = 0
-				velocity.y = -speed
+				velocity = Vector2(dirx * speed / 1.4, diry * speed / 1.4)
 			else:
-				play_anim(0)
+				if diry == -1:
+					currentDirection = "up"
+					movement = 1
+					play_anim(1)
+					velocity.y = diry * speed
+					velocity.x = 0
+				if diry == 1:
+					currentDirection = "down"
+					movement = 1
+					play_anim(1)
+					velocity.y = diry * speed
+					velocity.x = 0
+				if dirx == -1:
+					currentDirection = "left"
+					movement = 1
+					play_anim(1)
+					velocity.x = dirx * speed
+					velocity.y = 0
+				if dirx == 1:
+					currentDirection = "right"
+					movement = 1
+					play_anim(1)
+					velocity.x = dirx * speed
+					velocity.y = 0
+			if dirx == 0 and diry == 0:
 				movement = 0
+				play_anim(0)
 				velocity.x = 0
 				velocity.y = 0
-			
 			move_and_slide()
 	
 func play_anim(movement):
@@ -147,11 +157,10 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemyAttackRange and enemyAttackCooldown == true and Global.gamePause == false:
-		health -= 20
+		Global.playerHealth -= randi_range(15, 20)
 		enemyAttackCooldown = false
 		$attackCooldown.start()
-		print(health)
-		print("debug --> player get hit")
+		#print("le joueur a été touché, sa vie : " + str(Global.playerHealth))
 		not_red_at = Time.get_unix_time_from_system() + 0.5
 		
 func _on_attack_cooldown_timeout():
@@ -183,22 +192,19 @@ func _on_deal_attack_timer_timeout():
 	$deal_attack_timer.stop()
 	Global.playerCurrentAttack = false
 	attackIp = false
-	
-func updateHealth():
-	var healthBar = $healthBar
-	healthBar.value = health
-	if health >= 100:
-		healthBar.visible = false
-	else:
-		healthBar.visible = true
+
+func ajustmentsHealth():
+	if Global.playerHealth > 100:
+		Global.playerHealth = 100
+		#print("Sa vie à té réajusté à 100")
+	if Global.playerHealth <= 0 :
+		Global.playerHealth = 0
+		#print("Sa vie à té réajusté à 0")
 
 func _on_regin_timer_timeout():
-	if health < 100:
-		health +=20
-		if health > 100:
-			health = 100
-	if health <= 0 :
-		health = 0
+	if Global.playerHealth < 100:
+		Global.playerHealth +=20
+		#print("Le joueur s'est régénéré, sa vie : " + str(Global.playerHealth))
 		
 func _on_detection_np_cs_body_entered(body):
 	if body.has_method("NPC"):

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dhytv0qi17emc"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://mm2hxd11xseu"]
 
 [ext_resource type="Texture2D" uid="uid://ca2xtg3sumjcu" path="res://art/objects/objects.png" id="1_gqfcx"]
 [ext_resource type="Texture2D" uid="uid://biqb6rme2g4f6" path="res://art/tilesets/plains.png" id="2_n4pq8"]
@@ -206,6 +206,7 @@ texture = ExtResource("3_v3c67")
 
 [resource]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 14
 sources/0 = SubResource("TileSetAtlasSource_e053s")
 sources/1 = SubResource("TileSetAtlasSource_kcvts")
 sources/2 = SubResource("TileSetAtlasSource_pq6xa")
