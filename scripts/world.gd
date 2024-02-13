@@ -41,6 +41,7 @@ func _on_cliff_side_transition_point_body_entered(body):
 			Global.SlimeID[2][1] = enemy3.position
 		if enemy4  != null:
 			Global.SlimeID[3][1] = enemy4.position
+		print(Global.SlimeID)
 		$WorldCamera.position = Vector2(0, 0)
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/cliff_side.tscn")
@@ -61,6 +62,7 @@ func _on_cliff_side_2_transition_point_body_entered(body):
 			Global.SlimeID[2][1] = enemy3.position
 		if enemy4  != null:
 			Global.SlimeID[3][1] = enemy4.position
+		print(Global.SlimeID)
 		$WorldCamera.position = Vector2(480, 272)
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/cliff_side_2.tscn")
@@ -97,6 +99,7 @@ func spawnEnemies():
 		add_child(enemy4)
 		if 4 not in Global.SlimeID[3]:
 			Global.SlimeID[3][0] = 4
+	print(Global.SlimeID)
 
 
 
