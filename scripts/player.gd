@@ -10,7 +10,7 @@ var NPCInRange = false
 var movement = 0
 var not_red_at = 0
 
-func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
+func apply_knockback(pos_slime, pos_player, distance=5, time=0.2):
 	"""This function do the job for getting knockback after getting hit"""
 
 	
@@ -25,27 +25,27 @@ func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
 	
 	var collision = move_and_collide(relative_new_coordinates) # is null when nothing hit, else it is KinematicCollision2D
 
-	if !collision: # check if there is no collision
-		print("No collision")
-		self.position = pos_player # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
-		# then, we use a tween for creating smooth movement
-		var tween = create_tween()
-		tween.tween_property(self,"position",new_coordinates,time)
-		tween.tween_callback(
-			func end_movement():
-				self.position = new_coordinates
-		)
-	else:
+	if collision: # check if there is no collision
 		# this code is called if the player it something
-		var hit_position = self.position # get the stop position
-		self.position = pos_player # we reset for the safe movement
+		var hit_position = position # get the stop position
+		position = pos_player # we reset for the safe movement
 		
 		# then, we use a tween for make smooth movement
 		var tween = create_tween()
 		tween.tween_property(self,"position",hit_position,time)
 		tween.tween_callback(
 			func end_movement():
-				self.position = hit_position
+				position = hit_position
+		)
+		print("No collision")
+	else:
+		position = pos_player # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
+		# then, we use a tween for creating smooth movement
+		var tween = create_tween()
+		tween.tween_property(self,"position",new_coordinates,time)
+		tween.tween_callback(
+			func end_movement():
+				position = new_coordinates
 		)
 	
 
