@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://balxsjpwle5wq"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_owmpw"]
-[ext_resource type="TileSet" path="res://tres/World.tres" id="2_s0g1d"]
+[ext_resource type="TileSet" uid="uid://cw1s7lkh7vc32" path="res://tres/World.tres" id="2_s0g1d"]
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/player.tscn" id="4_k0gef"]
 [ext_resource type="PackedScene" uid="uid://c4vjquan70cis" path="res://scenes/hud.tscn" id="4_powsm"]
 [ext_resource type="Script" path="res://scripts/cameraFollow.gd" id="5_o3vnr"]

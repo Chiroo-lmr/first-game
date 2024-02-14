@@ -6,6 +6,8 @@ var health = 100
 var playerAttackZone = false
 var canTakeDamage = true
 
+var not_red_at = 0
+
 func apply_knockback(distance=20, time=0.1):
 	var pos = self.position
 	var player_pos = get_parent().get_node("player").position
@@ -42,21 +44,25 @@ func _physics_process(delta):
 	else:
 		$reginTimer.paused = false
 	if Global.gameStart == true and Global.gameOver == false and Global.gamePause == false:
-		deal_with_damage()
-		updateHealth()
-		var direction = Vector2.ZERO
-	
-		if player_chase :
-			position += (player.position - position) / speed
-			
-			$AnimatedSprite2D.play("walk")
-			if (player.position.x - position.x) < 0 :
-				$AnimatedSprite2D.flip_h = true
+		
+		if Time.get_unix_time_from_system ( ) > not_red_at:
+			deal_with_damage()
+			updateHealth()
+			var direction = Vector2.ZERO
+		
+			if player_chase :
+				position += (player.position - position) / speed
+				
+				$AnimatedSprite2D.play("walk")
+				if (player.position.x - position.x) < 0 :
+					$AnimatedSprite2D.flip_h = true
+				else:
+					$AnimatedSprite2D.flip_h = false
+				move_and_collide(Vector2(0,0))
 			else:
-				$AnimatedSprite2D.flip_h = false
-			move_and_collide(Vector2(0,0))
+				$AnimatedSprite2D.play("idle")
 		else:
-			$AnimatedSprite2D.play("idle")
+			$AnimatedSprite2D.play("dammage")
 
 func _on_detection_area_body_entered(body):
 	if body.has_method("player"):
@@ -86,7 +92,8 @@ func deal_with_damage():
 			$takeDamageCooldown.start()
 			canTakeDamage = false
 			print("slime health = " + str(health))
-			apply_knockback()
+			apply_knockback() # ---------------------------------------------------------------------------------------------
+			not_red_at = Time.get_unix_time_from_system ( ) + 0.3
 			if health <=0 :
 				queue_free()
 			$reginTimer.start()
