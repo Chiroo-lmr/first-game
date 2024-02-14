@@ -38,6 +38,19 @@ func apply_knockback(distance=20, time=0.1):
 	
 
 func _physics_process(delta):
+func _ready():
+	pass
+	
+func _physics_process(delta):
+	
+	if Global.gamePause == true:
+		$reginTimer.paused = true
+	else:
+		$reginTimer.paused = false
+	if Global.gameStart == true and Global.gameOver == false and Global.gamePause == false:
+		deal_with_damage()
+		updateHealth()
+		var direction = Vector2.ZERO
 	
 	if Global.gamePause == true:
 		$reginTimer.paused = true
@@ -61,6 +74,7 @@ func _physics_process(delta):
 				move_and_collide(Vector2(0,0))
 			else:
 				$AnimatedSprite2D.play("idle")
+
 		else:
 			$AnimatedSprite2D.play("dammage")
 

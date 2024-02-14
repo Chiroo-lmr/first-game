@@ -23,6 +23,9 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("2_kd7ka")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7cqb"]
+radius = 5.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xx8gy"]
 atlas = ExtResource("1_ri4nt")
 region = Rect2(0, 128, 32, 32)
