@@ -2,29 +2,26 @@
 
 [ext_resource type="Texture2D" uid="uid://dj1g41scwq7bv" path="res://art/characters/slime.png" id="1_ri4nt"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_u7qum"]
-[ext_resource type="Texture2D" uid="uid://cky6r6f0uah76" path="res://art/characters/slime-red.png" id="2_kd7ka"]
+[ext_resource type="Texture2D" path="res://art/characters/slime-red.png" id="2_4itfc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7cqb"]
 radius = 5.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c4hpw"]
-atlas = ExtResource("2_kd7ka")
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3o4h"]
+atlas = ExtResource("2_4itfc")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_joet2"]
-atlas = ExtResource("2_kd7ka")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hic3r"]
+atlas = ExtResource("2_4itfc")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_seqwg"]
-atlas = ExtResource("2_kd7ka")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud12p"]
+atlas = ExtResource("2_4itfc")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y61iw"]
-atlas = ExtResource("2_kd7ka")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlpuj"]
+atlas = ExtResource("2_4itfc")
 region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_i7cqb"]
-radius = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xx8gy"]
 atlas = ExtResource("1_ri4nt")
@@ -90,16 +87,16 @@ region = Rect2(160, 32, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c4hpw")
+"texture": SubResource("AtlasTexture_l3o4h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_joet2")
+"texture": SubResource("AtlasTexture_hic3r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_seqwg")
+"texture": SubResource("AtlasTexture_ud12p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y61iw")
+"texture": SubResource("AtlasTexture_hlpuj")
 }],
 "loop": true,
 "name": &"dammage",
@@ -183,7 +180,7 @@ shape = SubResource("CircleShape2D_i7cqb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wwls0")
-animation = &"walk"
+animation = &"idle"
 offset = Vector2(2.08165e-12, -6)
 
 [node name="detectionofPlayer_area" type="Area2D" parent="."]
