@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://jle8vp6khpyf"]
+[gd_scene load_steps=8 format=3 uid="uid://jle8vp6khpyf"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_owmpw"]
-[ext_resource type="TileSet" uid="uid://cetdbn0e3eqft" path="res://tres/World.tres" id="2_s0g1d"]
-[ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/player.tscn" id="4_k0gef"]
-[ext_resource type="PackedScene" uid="uid://c4vjquan70cis" path="res://scenes/hud.tscn" id="4_powsm"]
-[ext_resource type="Script" path="res://scripts/cameraFollow.gd" id="5_o3vnr"]
+[ext_resource type="Script" path="res://scenes/Maps/beginningScene/Beginning.gd" id="1_owmpw"]
+[ext_resource type="TileSet" uid="uid://cetdbn0e3eqft" path="res://tres/Beginning.tres" id="2_s0g1d"]
+[ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/character/player/player.tscn" id="4_k0gef"]
+[ext_resource type="PackedScene" uid="uid://7hcurh5irjb1" path="res://scenes/menu/Pause_menu/pause_menu.tscn" id="5_6g2dw"]
+[ext_resource type="Script" path="res://scripts/Camera/cameraFollow.gd" id="5_o3vnr"]
+[ext_resource type="PackedScene" uid="uid://bqujmg635fbuw" path="res://scenes/menu/GameOver_menu/game_over_menu.tscn" id="5_wc8f1"]
+[ext_resource type="PackedScene" uid="uid://7ew5ehj0byw4" path="res://scenes/menu/UI/UI.tscn" id="6_7g7d1"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(4, 4)
 script = ExtResource("1_owmpw")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -43,14 +47,19 @@ collision_mask = 10
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="cliffSide2TransitionPoint"]
 polygon = PackedVector2Array(480, 256, 480, 272, 400, 272, 400, 288, 496, 288, 496, 256)
 
-[node name="HUD" parent="." instance=ExtResource("4_powsm")]
+[node name="Pause_menu" parent="." instance=ExtResource("5_6g2dw")]
+
+[node name="gameOver_menu" parent="." instance=ExtResource("5_wc8f1")]
+
+[node name="UI" parent="." instance=ExtResource("6_7g7d1")]
 
 [node name="WorldCamera" type="Camera2D" parent="."]
 position = Vector2(272, 120)
+zoom = Vector2(1.25, 1.25)
 limit_left = 0
 limit_top = 0
-limit_right = 480
-limit_bottom = 272
+limit_right = 1920
+limit_bottom = 1080
 script = ExtResource("5_o3vnr")
 
 [connection signal="body_entered" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_entered"]

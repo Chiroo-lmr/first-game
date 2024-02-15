@@ -1,5 +1,5 @@
 extends CharacterBody2D
-var speed = 35
+var speed = 60
 var player_chase = false
 var player = null
 var health = 100
@@ -36,22 +36,16 @@ func _on_detection_area_body_entered(body):
 	if body.has_method("player"):
 		player = body
 		player_chase = true
-	 
+		playerAttackZone = true 
+	
 func _on_detection_area_body_exited(body):
 	if body.has_method("player"):
 		player = null
 		player_chase = false
+		playerAttackZone = false
 	
 func enemy():
 	pass
-	
-func _on_enemy_hitbox_body_entered(body):
-	if body.has_method("player"):
-		playerAttackZone = true
-		
-func _on_enemy_hitbox_body_exited(body):
-	if body.has_method("player"):
-		playerAttackZone = false
 		
 func deal_with_damage():
 	if playerAttackZone and Global.playerCurrentAttack == true:

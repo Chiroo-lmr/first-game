@@ -6,3 +6,4 @@ func _process(delta):
 	if playerLivePosition:
 		position = playerLivePosition.position
 		position_smoothing_enabled = true
+

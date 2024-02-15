@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cslvka7xb5qkp"]
 
-[ext_resource type="Script" path="res://scripts/NPC.gd" id="1_u6sfw"]
+[ext_resource type="Script" path="res://scenes/character/npcs/NPC.gd" id="1_u6sfw"]
 [ext_resource type="Texture2D" uid="uid://niehv7187pgi" path="res://art/spritesheet.png" id="2_38853"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7crxb"]

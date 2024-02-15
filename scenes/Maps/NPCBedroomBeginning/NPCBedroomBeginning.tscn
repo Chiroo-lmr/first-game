@@ -1,17 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyopsjufypevx"]
+[gd_scene load_steps=10 format=3 uid="uid://cyopsjufypevx"]
 
-[ext_resource type="Script" path="res://scripts/cliff_side_2.gd" id="1_6cw0c"]
-[ext_resource type="TileSet" uid="uid://38so0sm516dp" path="res://tres/cliffSide2.tres" id="2_enqya"]
-[ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/player.tscn" id="3_e153j"]
-[ext_resource type="PackedScene" uid="uid://cslvka7xb5qkp" path="res://scenes/npc.tscn" id="4_iuvuq"]
-[ext_resource type="PackedScene" uid="uid://c4vjquan70cis" path="res://scenes/hud.tscn" id="5_q1nu7"]
-[ext_resource type="Script" path="res://scripts/cameraFollow.gd" id="6_7ykrs"]
+[ext_resource type="Script" path="res://scenes/Maps/NPCBedroomBeginning/NPCBedroomBeginning.gd" id="1_6cw0c"]
+[ext_resource type="TileSet" uid="uid://38so0sm516dp" path="res://tres/NPCBedroomBeginning.tres" id="2_enqya"]
+[ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/character/player/player.tscn" id="3_e153j"]
+[ext_resource type="PackedScene" uid="uid://cslvka7xb5qkp" path="res://scenes/character/npcs/SlimeThatPray.tscn" id="4_iuvuq"]
+[ext_resource type="PackedScene" uid="uid://7hcurh5irjb1" path="res://scenes/menu/Pause_menu/pause_menu.tscn" id="5_opu80"]
+[ext_resource type="PackedScene" uid="uid://bqujmg635fbuw" path="res://scenes/menu/GameOver_menu/game_over_menu.tscn" id="6_2uomu"]
+[ext_resource type="Script" path="res://scripts/Camera/cameraFollow.gd" id="6_7ykrs"]
+[ext_resource type="PackedScene" uid="uid://7ew5ehj0byw4" path="res://scenes/menu/UI/UI.tscn" id="7_m2dds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hw8rn"]
 size = Vector2(20, 34)
 
 [node name="cliffSide2" type="Node2D"]
 y_sort_enabled = true
+scale = Vector2(4, 4)
 script = ExtResource("1_6cw0c")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -46,15 +49,19 @@ shape = SubResource("RectangleShape2D_hw8rn")
 [node name="NPC" parent="." instance=ExtResource("4_iuvuq")]
 position = Vector2(309, 100)
 
-[node name="HUD" parent="." instance=ExtResource("5_q1nu7")]
+[node name="pause_menu" parent="." instance=ExtResource("5_opu80")]
+
+[node name="gameOver_menu" parent="." instance=ExtResource("6_2uomu")]
+
+[node name="UI" parent="." instance=ExtResource("7_m2dds")]
 
 [node name="CS2Camera" type="Camera2D" parent="."]
 position = Vector2(200, 128)
 zoom = Vector2(1.25, 1.25)
 limit_left = 0
 limit_top = 0
-limit_right = 480
-limit_bottom = 272
+limit_right = 1920
+limit_bottom = 1080
 script = ExtResource("6_7ykrs")
 
 [connection signal="body_entered" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_entered"]

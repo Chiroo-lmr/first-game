@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://byktsq2qxjv53"]
+
+[ext_resource type="Script" path="res://scenes/menu/Main_menu/main_menu.gd" id="1_7u6y8"]
+[ext_resource type="Texture2D" uid="uid://dfc1pw51vhp2j" path="res://art/tilesets/grass.png" id="2_8xqwf"]
+[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="3_1cccy"]
+
+[node name="Main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7u6y8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8xqwf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="GameTitle" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Seperator" type="Control" parent="MarginContainer/GameTitle"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="MarginContainer/GameTitle"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 25
+theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_font_sizes/font_size = 150
+text = "GAME TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Credits" type="Label" parent="MarginContainer/Credits"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_font_sizes/font_size = 50
+text = "Thanks to the creators 
+of the Game :
+Eloi ( LebeauFort ), 
+Nolan ( SQUASH ),
+Tao ( Chiroo__ )
+"
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Seperator" type="Control" parent="MarginContainer/Buttons"]
+layout_mode = 2
+
+[node name="Seperator2" type="Control" parent="MarginContainer/Buttons"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_font_sizes/font_size = 50
+text = "start"
+
+[node name="Options" type="Button" parent="MarginContainer/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_font_sizes/font_size = 50
+text = "Options"
+
+[node name="Quit" type="Button" parent="MarginContainer/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_font_sizes/font_size = 50
+text = "leave the game"
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+
+[connection signal="pressed" from="MarginContainer/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
