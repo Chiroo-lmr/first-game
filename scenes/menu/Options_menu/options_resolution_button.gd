@@ -27,17 +27,14 @@ func _process(delta):
 			option_button.select(5)
 			oneTime0+=1
 		option_button.set_item_text(5, targetResolution)
-		print(RESOLUTION_DICTIONARY.values()[5])
 	else:
 		option_button.remove_item(5)
-		print("ca y est")
 	var resolutionDictionary = RESOLUTION_DICTIONARY
 	var index = -1  # Initialisation à -1 pour indiquer que la condition n'a pas été vérifiée
 	# Parcourez le dictionnaire pour trouver l'indice de la condition vérifiée		
 	for resolution_size_text in resolutionDictionary:
 		index += 1
 		if resolution_size_text == targetResolution:
-			print("La condition a été vérifiée à l'index :" + str(index) + " : " + str(resolutionDictionary.values()[index]))
 			option_button.select(index)
 			break  # Sortez de la boucle une fois que la condition est vérifiée
 

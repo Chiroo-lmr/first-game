@@ -8,7 +8,6 @@ var playerAlive = true
 var attackIp = false
 var movement = 0
 var not_red_at = 0
-
 func apply_knockback(pos_slime, pos_player, distance=5, time=0.1):
 	"""This function do the job for getting knockback after getting hit"""
 
@@ -34,7 +33,7 @@ func apply_knockback(pos_slime, pos_player, distance=5, time=0.1):
 				self.position = new_coordinates
 		)
 	else:
-		# this code is called if the player it something
+		# this code is called if the player hit something
 		var hit_position = self.position # get the stop position
 		self.position = pos_player # we reset for the safe movement
 		
@@ -48,10 +47,11 @@ func apply_knockback(pos_slime, pos_player, distance=5, time=0.1):
 
 func _ready():
 	Global.reginTimerPlayer = $reginTimer
-	$AnimatedSprite2D.play("front_idle")
 	Global.player = self
 	
 func _physics_process(delta):
+	print("mov" + str(movement))
+	print(currentDirection)
 	Global.playerLivePosition = position
 	player_movement(delta)
 	enemy_attack()
@@ -77,11 +77,25 @@ func player_movement(delta):
 			#print("horizontalement : " + str(dirx))
 			#print("verticalement : " + str(diry))
 			#print(currentDirection)
-			#print(velocity)
+			print(velocity)
 			if !dirx == 0 and !diry == 0:
 				movement = 1
 				play_anim(1)
 				velocity = Vector2(dirx * speed / 1.4, diry * speed / 1.4)
+				if velocity.x > 0:
+					if velocity.y == 0:
+						currentDirection = "right"
+				if velocity.x < 0:
+					if velocity.y == 0:
+						currentDirection = "left"
+				if velocity.y < 0:
+					currentDirection = "up"
+				if velocity.y > 0:
+					if velocity.x > 0:
+						currentDirection = "down"
+					if velocity.x < 0:
+						currentDirection = "down"
+					currentDirection = "down"
 			else:
 				if diry == -1:
 					currentDirection = "up"
@@ -144,6 +158,9 @@ func play_anim(movement):
 		elif movement == 0:
 			if attackIp == false:
 				anim.play("back_idle")
+	if dir == "none":
+		if movement == 0:
+			anim.play("front_idle")
 	
 func player():
 	pass
