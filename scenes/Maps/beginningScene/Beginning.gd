@@ -40,6 +40,7 @@ func _on_cliff_side_transition_point_body_entered(body):
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/Maps/PrayingTree/PrayingTree.tscn")
 		Global.currentScene = "PrayingTree"
+		Global.cameraPosition = Vector2(0, 0)
 
 
 func _on_cliff_side_transition_point_body_exited(body):
@@ -60,6 +61,7 @@ func _on_cliff_side_2_transition_point_body_entered(body):
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/Maps/NPCBedroomBeginning/NPCBedroomBeginning.tscn")
 		Global.currentScene = "NPCBedroomBeginning"
+		Global.cameraPosition = Vector2(480, 272)
 		
 	
 func _on_cliff_side_2_transition_point_body_exited(body):

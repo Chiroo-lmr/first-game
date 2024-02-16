@@ -14,7 +14,7 @@ var interacted_once = false
 var label = 0
 var playerLivePosition = Vector2(272,120)
 var reginTimerPlayer
-var cameraPosition
+var cameraPosition = Vector2(272, 120)
 var gameLaunch = true
 var gameOver = false
 var gameStart = false

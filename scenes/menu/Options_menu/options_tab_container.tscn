@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcaf8hv1o60b5"]
+[gd_scene load_steps=7 format=3 uid="uid://bcaf8hv1o60b5"]
 
 [ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_x7ml6"]
+[ext_resource type="PackedScene" uid="uid://dskxpjxp04yry" path="res://scenes/menu/Options_menu/window_mode_button.tscn" id="2_mek3l"]
 [ext_resource type="PackedScene" uid="uid://b6xhnmrquqspn" path="res://scenes/menu/Options_menu/hot_key_rebind_button.tscn" id="2_mk4vc"]
+[ext_resource type="PackedScene" uid="uid://bj81dhyh704t6" path="res://scenes/menu/Options_menu/options_resolution_button.tscn" id="3_yhipb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s0swf"]
 
@@ -20,16 +22,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 100.0
 offset_top = 100.0
-offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_x7ml6")
 theme_override_font_sizes/font_size = 30
 tab_alignment = 1
-current_tab = 2
+current_tab = 1
 
 [node name="General" type="TabBar" parent="TabContainer"]
 visible = false
@@ -97,7 +97,6 @@ text = "general
 "
 
 [node name="graphics" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/graphics"]
@@ -107,54 +106,39 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 24
+theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/graphics/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/graphics/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/graphics/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_constants/separation = 64
+size_flags_vertical = 0
+theme_override_constants/separation = 150
 alignment = 1
 
-[node name="Label8" type="Label" parent="TabContainer/graphics/MarginContainer/VBoxContainer"]
+[node name="HSeparatorhaut" type="HSeparator" parent="TabContainer/graphics/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "graphics
-"
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s0swf")
 
-[node name="Label9" type="Label" parent="TabContainer/graphics/MarginContainer/VBoxContainer"]
+[node name="Window_mode_Button" parent="TabContainer/graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_mek3l")]
 layout_mode = 2
-text = "graphics
-"
 
-[node name="Label10" type="Label" parent="TabContainer/graphics/MarginContainer/VBoxContainer"]
+[node name="Options_Resolution_Button" parent="TabContainer/graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_yhipb")]
 layout_mode = 2
-text = "graphics
-"
 
-[node name="Label11" type="Label" parent="TabContainer/graphics/MarginContainer/VBoxContainer"]
+[node name="HSeparatorbas" type="HSeparator" parent="TabContainer/graphics/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "graphics
-"
-
-[node name="Label12" type="Label" parent="TabContainer/graphics/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "graphics
-"
-
-[node name="Label13" type="Label" parent="TabContainer/graphics/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "graphics
-"
-
-[node name="Label14" type="Label" parent="TabContainer/graphics/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "graphics
-"
+theme_override_constants/separation = 12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pmnld")
 
 [node name="controls" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/controls"]

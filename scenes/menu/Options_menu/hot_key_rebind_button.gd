@@ -37,7 +37,6 @@ func set_text_for_key():
 	print(action_name + action_keycode)
 	button.text = action_keycode
 
-
 func _on_button_toggled(toggled_on):
 	if toggled_on:
 		button.text = "Press Any Key..."
@@ -59,20 +58,23 @@ func _unhandled_key_input(event):
 	button.button_pressed = false
 
 func rebind_action_key(event):
-	InputMap.action_erase_events(action_name)
-	InputMap.action_add_event(action_name, event)
-	set_process_unhandled_key_input(false)
-	set_text_for_key()
-	set_action_name()
+	var is_duplicate=false
+	var action_event=event
+	var action_keycode=OS.get_keycode_string(action_event.physical_keycode)
+	for i in get_tree().get_nodes_in_group("hotkey_button"):
+			if i.action_name!=self.action_name:
+				if i.button.text=="%s" %action_keycode:
+					is_duplicate=true
+					$HBoxContainer/alread_assigned.visible = true
+					$Timer.start()
+					break
+	if not is_duplicate:
+		InputMap.action_erase_events(action_name)
+		InputMap.action_add_event(action_name,event)
+		set_process_unhandled_key_input(false)
+		set_text_for_key()
+		set_action_name()
+		$HBoxContainer/alread_assigned.visible = false
 
-
-
-
-
-
-
-
-
-
-
-
+func _on_timer_timeout():
+	$HBoxContainer/alread_assigned.visible = false

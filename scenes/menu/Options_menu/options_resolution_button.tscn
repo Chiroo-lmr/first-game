@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj81dhyh704t6"]
+
+[ext_resource type="PackedScene" uid="uid://fccp5nbjriki" path="res://scenes/menu/Options_menu/options_display_button.tscn" id="1_qkcv3"]
+[ext_resource type="Script" path="res://scenes/menu/Options_menu/options_resolution_button.gd" id="2_v75cq"]
+
+[node name="Options_Resolution_Button" instance=ExtResource("1_qkcv3")]
+script = ExtResource("2_v75cq")
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "RESOLUTION"
+
+[node name="OptionButton" parent="HBoxContainer" index="2"]
+item_count = 0
