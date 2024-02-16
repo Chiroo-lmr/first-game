@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://byktsq2qxjv53"]
+[gd_scene load_steps=5 format=3 uid="uid://byktsq2qxjv53"]
 
 [ext_resource type="Script" path="res://scenes/menu/Main_menu/main_menu.gd" id="1_7u6y8"]
 [ext_resource type="Texture2D" uid="uid://dfc1pw51vhp2j" path="res://art/tilesets/grass.png" id="2_8xqwf"]
 [ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="3_1cccy"]
+[ext_resource type="PackedScene" uid="uid://c8e6a6xcxrm46" path="res://scenes/menu/Options_menu/options_menu.tscn" id="4_0bolk"]
 
 [node name="Main_menu" type="Control"]
 layout_mode = 3
@@ -110,6 +111,8 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1cccy")
 theme_override_font_sizes/font_size = 30
 text = "Credits"
+
+[node name="Options_menu" parent="." instance=ExtResource("4_0bolk")]
 
 [connection signal="pressed" from="MarginContainer/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Options" to="." method="_on_options_pressed"]

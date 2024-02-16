@@ -5,12 +5,7 @@ var Slime3
 var Slime4
 
 func _ready():
-	if Global.playerCurrentPosition == Vector2(471, 265):
-		$player.position = Global.playerCurrentPosition
-	elif Global.playerCurrentPosition == Vector2(30, 26):
-		$player.position = Global.playerCurrentPosition
-	else:
-		$player.position = Vector2(272,120)
+	$player.position = Global.playerLivePosition
 	spawnEnemies()
 	$WorldCamera.position = Vector2(272, 120)
 	$WorldCamera.zoom = Vector2(1.25, 1.25)

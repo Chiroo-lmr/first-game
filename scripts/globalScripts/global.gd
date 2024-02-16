@@ -12,7 +12,7 @@ var allSlimesGone = false
 var saidAllSlimesGones = false
 var interacted_once = false
 var label = 0
-var playerCurrentPosition = Vector2(0, 0)
+var playerLivePosition = Vector2(272,120)
 var reginTimerPlayer
 var cameraPosition
 var gameLaunch = true
@@ -21,6 +21,7 @@ var gameStart = false
 var gamePause = false
 var gameTab = false
 var checkIfRestartFinish = false
+var player : Node2D
 @onready var QuitButton
 @onready var restartButton
 @onready var depauseButton
@@ -54,7 +55,17 @@ func _physics_process(delta):
 		gameOver = false
 		gamePause = false
 		gameLaunch = false
-
+	#print("launch :" + str(gameLaunch))
+	#print("start :" + str(gameStart))
+	#print("pause :" + str(gamePause))
+	#print("over :" + str(gameOver))
+	#print(playerLivePosition)
+	#print(player)
+	#print("allSlimesGone " + str(allSlimesGone))
+	#print("saidAllSlimesGones " + str(saidAllSlimesGones))
+	#print("canAttackPlayer" + str(canAttackPlayer))
+	#print("canMovePlayer" + str(canMovePlayer))
+	
 func restartGame():
 	gameStart = true
 	gamePause = false
@@ -64,7 +75,7 @@ func restartGame():
 	SlimeID = [[0, Vector2(randi_range(200, 220), randi_range(40, 60))], [0, Vector2(randi_range(430, 470), randi_range(90, 110))], [0, Vector2(randi_range(40, 70), randi_range(100, 140))], [0, Vector2(randi_range(140, 170), randi_range(180, 210))]]
 	allSlimesGone = false
 	playerHealth = 100
-	playerCurrentPosition = Vector2(272, 120)
+	playerLivePosition = Vector2(272, 120)
 	allSlimesGone = false
 	saidAllSlimesGones = false
 	interacted_once = false
@@ -77,3 +88,5 @@ func menuButton():
 	restartGame()
 	if checkIfRestartFinish == true:
 		get_tree().change_scene_to_file("res://scenes/menu/Main_menu/main_menu.tscn")
+	Global.gameLaunch = true
+	Global.gameStart = false

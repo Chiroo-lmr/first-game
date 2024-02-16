@@ -14,13 +14,14 @@ func _on_depause_pressed():
 	Global.reginTimerPlayer.paused = false
 
 func _on_options_pressed():
-	pass # Replace with function body.
+	get_node("../Options_menu").visible = true
+	
 
 func _on_restart_pressed():
 	Global.restartGame()
 
 func _on_menu_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu/Main_menu/main_menu.tscn")
+	Global.menuButton()
 
 func gamePause():
 	if Global.gameOver == false and Global.gameLaunch == false:

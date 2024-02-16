@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjqalh2oec1aj"]
+[gd_scene load_steps=9 format=3 uid="uid://bjqalh2oec1aj"]
 
 [ext_resource type="Script" path="res://scenes/Maps/PrayingTree/PrayingTree.gd" id="1_twsyh"]
 [ext_resource type="TileSet" uid="uid://mm2hxd11xseu" path="res://tres/PrayingTree.tres" id="2_a01bk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bqujmg635fbuw" path="res://scenes/menu/GameOver_menu/game_over_menu.tscn" id="5_gi6u6"]
 [ext_resource type="Script" path="res://scripts/Camera/cameraFollow.gd" id="5_poi4f"]
 [ext_resource type="PackedScene" uid="uid://7ew5ehj0byw4" path="res://scenes/menu/UI/UI.tscn" id="6_ydvd5"]
+[ext_resource type="PackedScene" uid="uid://c8e6a6xcxrm46" path="res://scenes/menu/Options_menu/options_menu.tscn" id="7_auivv"]
 
 [node name="cliffSide" type="Node2D"]
 y_sort_enabled = true
@@ -50,6 +51,8 @@ position = Vector2(472, 256)
 [node name="gameOver_menu" parent="." instance=ExtResource("5_gi6u6")]
 
 [node name="UI" parent="." instance=ExtResource("6_ydvd5")]
+
+[node name="Options_menu" parent="." instance=ExtResource("7_auivv")]
 
 [node name="CSCamera" type="Camera2D" parent="."]
 position = Vector2(400, 184)

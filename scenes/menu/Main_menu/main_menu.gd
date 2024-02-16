@@ -11,8 +11,7 @@ func _on_play_pressed():
 	Global.gameLaunch = false
 
 func _on_options_pressed():
-	#needs somethings in here
-	pass
+	$Options_menu.visible = true
 
 func _on_quit_pressed():
 	get_tree().quit()

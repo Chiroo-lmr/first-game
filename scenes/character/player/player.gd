@@ -50,8 +50,10 @@ func apply_knockback(pos_slime, pos_player, distance=5, time=0.1):
 func _ready():
 	Global.reginTimerPlayer = $reginTimer
 	$AnimatedSprite2D.play("front_idle")
+	Global.player = self
 	
 func _physics_process(delta):
+	Global.playerLivePosition = position
 	player_movement(delta)
 	enemy_attack()
 	attack()
@@ -70,10 +72,11 @@ func _physics_process(delta):
 	if NPCInRange == true:
 		if Input.is_action_just_pressed("ui_accept"):
 			DialogueManager.show_example_dialogue_balloon(load("res://dialogue/main.dialogue"), "main")
-			return
+			Global.canMovePlayer = false
+			Global.canAttackPlayer = false
 		
 func player_movement(delta):
-	if Global.gameStart == true:
+	if Global.gameStart == true and Global.canMovePlayer == true:
 		if Time.get_unix_time_from_system() > not_red_at:
 			var dirx = Input.get_axis("ui_left", "ui_right")
 			var diry = Input.get_axis("ui_up", "ui_down")
@@ -176,7 +179,7 @@ func _on_attack_cooldown_timeout():
 	enemyAttackCooldown = true
 
 func attack():
-	if Global.gamePause == false and Global.gameStart == true and Global.gameLaunch == false:
+	if Global.gameStart == true and Global.canAttackPlayer == true:
 		var dir = currentDirection
 		if movement == 0:
 			if Input.is_action_just_pressed("attack"):
@@ -218,9 +221,10 @@ func _on_regin_timer_timeout():
 func _on_detection_np_cs_body_entered(body):
 	if body.has_method("NPC"):
 		NPCInRange = true
-		
-
 
 func _on_detection_np_cs_body_exited(body):
 	if body.has_method("NPC"):
 		NPCInRange = false
+
+func _on_timer_timeout():
+	Global.canAttackPlayer = true
