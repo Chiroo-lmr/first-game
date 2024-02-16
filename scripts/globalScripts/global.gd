@@ -1,30 +1,37 @@
 extends Node2D
 
 var playerCurrentAttack = false
-var currentScene = "Beginning"
-var transitionScene = false
 var playerHealth = 100
+var playerLivePosition = Vector2(272,120)
+var reginTimerPlayer
+var player : Node2D
+
 var killed_enemies = [] 
 var enemiesKilled = 0
 var SlimeID = [[0, Vector2(randi_range(200, 220), randi_range(40, 60))], [0, Vector2(randi_range(430, 470), randi_range(90, 110))], [0, Vector2(randi_range(40, 70), randi_range(100, 140))], [0, Vector2(randi_range(140, 170), randi_range(180, 210))]]
 var SlimePosition = []
+
+var currentScene = "Beginning"
+var transitionScene = false
+
 var allSlimesGone = false
 var saidAllSlimesGones = false
 var interacted_once = false
-var label = 0
-var playerLivePosition = Vector2(272,120)
-var reginTimerPlayer
+var TalkingWithNPC = false
+
 var cameraPosition = Vector2(272, 120)
+
+var label = 0
+@onready var QuitButton
+@onready var restartButton
+@onready var depauseButton
+
 var gameLaunch = true
 var gameOver = false
 var gameStart = false
 var gamePause = false
 var gameTab = false
 var checkIfRestartFinish = false
-var player : Node2D
-@onready var QuitButton
-@onready var restartButton
-@onready var depauseButton
 
 func _ready():
 	pass

@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj81dhyh704t6"]
+[gd_scene load_steps=4 format=3 uid="uid://bj81dhyh704t6"]
 
 [ext_resource type="PackedScene" uid="uid://fccp5nbjriki" path="res://scenes/menu/Options_menu/options_display_button.tscn" id="1_qkcv3"]
 [ext_resource type="Script" path="res://scenes/menu/Options_menu/options_resolution_button.gd" id="2_v75cq"]
+[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="3_1mk8l"]
 
 [node name="Options_Resolution_Button" instance=ExtResource("1_qkcv3")]
 script = ExtResource("2_v75cq")
 
 [node name="Label" parent="HBoxContainer" index="0"]
+theme_override_fonts/font = ExtResource("3_1mk8l")
 text = "RESOLUTION"
 
 [node name="OptionButton" parent="HBoxContainer" index="2"]
+theme_override_fonts/font = ExtResource("3_1mk8l")
+theme_override_font_sizes/font_size = 30
 item_count = 0
+
+[connection signal="item_selected" from="HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]

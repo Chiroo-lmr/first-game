@@ -65,8 +65,9 @@ visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1cccy")
 theme_override_font_sizes/font_size = 50
-text = "Thanks to the creators 
-of the Game :
+text = "Thanks to the 
+creators of 
+the Game :
 Eloi ( LebeauFort ), 
 Nolan ( SQUASH ),
 Tao ( Chiroo__ )

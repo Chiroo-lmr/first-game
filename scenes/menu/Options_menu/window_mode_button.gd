@@ -15,8 +15,15 @@ func _ready():
 func add_window_mode_items():
 	for window_mode in WINDOW_MODE_ARRAY: 
 		option_button.add_item(window_mode)
-	
-	
+
+func _process(delta):
+	if DisplayServer.window_get_mode() == 3:
+		$"../Options_Resolution_Button".visible = false
+	else:
+		$"../Options_Resolution_Button".visible = true
+
+
+
 func on_window_mode_selected(index):
 	match index:
 		0: # fullscreen

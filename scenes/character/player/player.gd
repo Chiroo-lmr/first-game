@@ -6,7 +6,6 @@ var enemyAttackRange = false
 var enemyAttackCooldown = true
 var playerAlive = true
 var attackIp = false
-var NPCInRange = false
 var movement = 0
 var not_red_at = 0
 
@@ -69,12 +68,9 @@ func _physics_process(delta):
 		Global.gameOver = true
 		Global.gameStart = false
 		self.queue_free()
-	if NPCInRange == true:
-		if Input.is_action_just_pressed("ui_accept"):
-			DialogueManager.show_example_dialogue_balloon(load("res://dialogue/main.dialogue"), "main")
 		
 func player_movement(delta):
-	if Global.gameStart == true:
+	if Global.gameStart == true and Global.TalkingWithNPC == false:
 		if Time.get_unix_time_from_system() > not_red_at:
 			var dirx = Input.get_axis("ui_left", "ui_right")
 			var diry = Input.get_axis("ui_up", "ui_down")
@@ -177,7 +173,7 @@ func _on_attack_cooldown_timeout():
 	enemyAttackCooldown = true
 
 func attack():
-	if Global.gameStart == true:
+	if Global.gameStart == true and Global.TalkingWithNPC == false:
 		var dir = currentDirection
 		if movement == 0:
 			if Input.is_action_just_pressed("attack"):
@@ -215,14 +211,6 @@ func _on_regin_timer_timeout():
 	if Global.playerHealth < 100:
 		Global.playerHealth +=20
 		#print("Le joueur s'est régénéré, sa vie : " + str(Global.playerHealth))
-		
-func _on_detection_np_cs_body_entered(body):
-	if body.has_method("NPC"):
-		NPCInRange = true
-
-func _on_detection_np_cs_body_exited(body):
-	if body.has_method("NPC"):
-		NPCInRange = false
 
 func _on_timer_timeout():
 	Global.canAttackPlayer = true

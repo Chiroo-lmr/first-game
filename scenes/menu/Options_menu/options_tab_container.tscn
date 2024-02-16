@@ -27,8 +27,7 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_x7ml6")
-theme_override_font_sizes/font_size = 30
-tab_alignment = 1
+theme_override_font_sizes/font_size = 40
 current_tab = 1
 
 [node name="General" type="TabBar" parent="TabContainer"]

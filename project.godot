@@ -13,9 +13,10 @@ config_version=5
 config/name="rpgTutoFrom:DevWorm"
 run/main_scene="res://scenes/menu/Main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://art/Graphy.png"
+boot_splash/bg_color=Color(0.286275, 0.729412, 0.521569, 1)
+boot_splash/image="res://art/Capture d'écran Feb 16 from remove.bg.png"
 boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [audio]
