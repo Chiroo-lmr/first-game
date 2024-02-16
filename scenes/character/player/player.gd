@@ -72,11 +72,9 @@ func _physics_process(delta):
 	if NPCInRange == true:
 		if Input.is_action_just_pressed("ui_accept"):
 			DialogueManager.show_example_dialogue_balloon(load("res://dialogue/main.dialogue"), "main")
-			Global.canMovePlayer = false
-			Global.canAttackPlayer = false
 		
 func player_movement(delta):
-	if Global.gameStart == true and Global.canMovePlayer == true:
+	if Global.gameStart == true:
 		if Time.get_unix_time_from_system() > not_red_at:
 			var dirx = Input.get_axis("ui_left", "ui_right")
 			var diry = Input.get_axis("ui_up", "ui_down")
@@ -179,7 +177,7 @@ func _on_attack_cooldown_timeout():
 	enemyAttackCooldown = true
 
 func attack():
-	if Global.gameStart == true and Global.canAttackPlayer == true:
+	if Global.gameStart == true:
 		var dir = currentDirection
 		if movement == 0:
 			if Input.is_action_just_pressed("attack"):

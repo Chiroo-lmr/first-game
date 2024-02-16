@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8e6a6xcxrm46"]
+[gd_scene load_steps=5 format=3 uid="uid://c8e6a6xcxrm46"]
 
 [ext_resource type="Script" path="res://scenes/menu/Options_menu/options_menu.gd" id="1_2ksxu"]
 [ext_resource type="Texture2D" uid="uid://dfc1pw51vhp2j" path="res://art/tilesets/grass.png" id="2_q3vvf"]
 [ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="3_4g860"]
+[ext_resource type="PackedScene" uid="uid://bcaf8hv1o60b5" path="res://scenes/menu/Options_menu/options_tab_container.tscn" id="4_xy8ns"]
 
 [node name="Options_menu" type="CanvasLayer"]
 visible = false
@@ -28,44 +29,41 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(250, 2.08165e-12)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Main_menuButton" type="Button" parent="MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_4g860")
-theme_override_font_sizes/font_size = 30
-text = "Back to the main menu"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_4g860")
 theme_override_font_sizes/font_size = 42
 text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer"]
+[node name="Options_tab_container" parent="MarginContainer" instance=ExtResource("4_xy8ns")]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
 
-[node name="backToGameButton" type="Button" parent="MarginContainer/VBoxContainer3"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Main_menuButton" type="Button" parent="MarginContainer/HBoxContainer2"]
 unique_name_in_owner = true
-visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4g860")
+theme_override_font_sizes/font_size = 30
+text = "Back to the main menu"
+
+[node name="backToGameButton" type="Button" parent="MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_4g860")
 theme_override_font_sizes/font_size = 30
 text = "Back to the Game"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Main_menuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer3/backToGameButton" to="." method="_on_back_to_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer2/Main_menuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer2/backToGameButton" to="." method="_on_back_to_game_button_pressed"]

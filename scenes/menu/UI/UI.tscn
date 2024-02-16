@@ -17,6 +17,7 @@ grow_vertical = 0
 
 [node name="EnemyKilled" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_a7xon")
 theme_override_font_sizes/font_size = 40
