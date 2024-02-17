@@ -21,6 +21,8 @@ func _process(delta):
 		$"../Options_Resolution_Button".visible = false
 	else:
 		$"../Options_Resolution_Button".visible = true
+	if DisplayServer.window_get_mode() == 0:
+		option_button.select(1)
 
 
 

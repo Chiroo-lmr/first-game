@@ -181,7 +181,7 @@ texture = ExtResource("3_7jbdt")
 0:1/0/y_sort_origin = 2
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.5625, 0.125, 6.15625, 5.6875, -0.28125, 8, -5.46875, 4.6875, -8, 0.4375, -4.21875, -2.25, 6.28125, -2.3125)
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(5.375, -2, 4.875, 4.5, 1, 5.875, -5, 5.125, -5.625, 0.25, -3.5, -3)
 0:5/size_in_atlas = Vector2i(3, 4)
 0:5/0 = 0
 0:5/0/y_sort_origin = 7
@@ -204,7 +204,7 @@ texture = ExtResource("3_7jbdt")
 10:7/0 = 0
 10:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:7/0/physics_layer_0/angular_velocity = 0.0
-10:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.34375, -8, 4.21875, -8, 8, -2.8125, 12.2188, 2.5, 9.96875, 9.6875, -6.09375, 9.5625, -11.5938, 5.875, -12.4062, -1.4375)
+10:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.625, -6.125, -4.375, 6, -4.375, 8, -3, 9.875, 0.25, 9.875, 4.75, 6.5, 6.25, 1.375, 5.375, -5, 5.125, -8, 2.25)
 
 [resource]
 physics_layer_0/collision_layer = 1

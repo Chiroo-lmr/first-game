@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cci24oag33sfq"]
+[gd_scene load_steps=60 format=3 uid="uid://cci24oag33sfq"]
 
 [ext_resource type="Script" path="res://scenes/character/player/player.gd" id="1_xovnq"]
 [ext_resource type="Texture2D" uid="uid://dc3ca7sfhhb2u" path="res://art/characters/player.png" id="2_x7v6g"]
@@ -74,22 +74,6 @@ region = Rect2(240, 240, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6nqw"]
 atlas = ExtResource("3_4cfer")
 region = Rect2(0, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_287g4"]
-atlas = ExtResource("3_4cfer")
-region = Rect2(48, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m4khq"]
-atlas = ExtResource("3_4cfer")
-region = Rect2(96, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hrhdn"]
-atlas = ExtResource("3_4cfer")
-region = Rect2(144, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lubk2"]
-atlas = ExtResource("3_4cfer")
-region = Rect2(192, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j708l"]
 atlas = ExtResource("3_4cfer")
@@ -305,18 +289,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_p6nqw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_287g4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m4khq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hrhdn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lubk2")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_j708l")
 }],
 "loop": true,
@@ -475,15 +447,14 @@ collision_mask = 13
 safe_margin = 0.001
 script = ExtResource("1_xovnq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="hitboxWithElement" type="CollisionShape2D" parent="."]
 position = Vector2(-11, -6)
 shape = SubResource("CircleShape2D_fuqn8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13, -2)
 sprite_frames = SubResource("SpriteFrames_wbgwg")
-animation = &"side_walk"
-frame_progress = 0.290693
+animation = &"damage"
 offset = Vector2(2.08165e-12, -15)
 
 [node name="attack_hitbox" type="Area2D" parent="."]
@@ -494,10 +465,7 @@ collision_mask = 13
 position = Vector2(-11, -6)
 shape = SubResource("CircleShape2D_nwsnt")
 
-[node name="attackCooldown" type="Timer" parent="."]
-
-[node name="deal_attack_timer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="canAttackCooldown" type="Timer" parent="."]
 
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -505,6 +473,5 @@ autostart = true
 
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="attack_hitbox" to="." method="_on_player_hitbox_body_exited"]
-[connection signal="timeout" from="attackCooldown" to="." method="_on_attack_cooldown_timeout"]
-[connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
+[connection signal="timeout" from="canAttackCooldown" to="." method="_on_can_attack_cooldown_timeout"]
 [connection signal="timeout" from="reginTimer" to="." method="_on_regin_timer_timeout"]

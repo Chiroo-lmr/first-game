@@ -7,9 +7,6 @@ func _ready():
 func NPC():
 	pass
 
-func _process(delta):
-	print(Global.TalkingWithNPC)
-
 func _on_detection_player_body_entered(body):
 	if body.has_method("player"):
 		DialogueManager.show_example_dialogue_balloon(dialogue, "main")

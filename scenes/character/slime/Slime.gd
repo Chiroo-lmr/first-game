@@ -1,5 +1,5 @@
 extends CharacterBody2D
-var speed = 60
+var speed = 30
 var player_chase = false
 var player = null
 var health = 100
@@ -10,27 +10,11 @@ func _ready():
 	pass
 	
 func _physics_process(delta):
-	
-	if Global.gamePause == true:
-		$reginTimer.paused = true
-	else:
-		$reginTimer.paused = false
-	if Global.gameStart == true and Global.gameOver == false and Global.gamePause == false:
+	reginTimerPaused()
+	if Global.gameStart == true:
 		deal_with_damage()
 		updateHealth()
-		var direction = Vector2.ZERO
-	
-		if player_chase :
-			position += (player.position - position) / speed
-			
-			$AnimatedSprite2D.play("walk")
-			if (player.position.x - position.x) < 0 :
-				$AnimatedSprite2D.flip_h = true
-			else:
-				$AnimatedSprite2D.flip_h = false
-			move_and_collide(Vector2(0,0))
-		else:
-			$AnimatedSprite2D.play("idle")
+		playerChase()
 
 func _on_detection_area_body_entered(body):
 	if body.has_method("player"):
@@ -43,10 +27,10 @@ func _on_detection_area_body_exited(body):
 		player = null
 		player_chase = false
 		playerAttackZone = false
-	
+
 func enemy():
 	pass
-		
+
 func deal_with_damage():
 	if playerAttackZone and Global.playerCurrentAttack == true:
 		if canTakeDamage == true:
@@ -78,10 +62,25 @@ func _on_regin_timer_timeout():
 	if health <= 0 :
 		health = 0
 
+func reginTimerPaused():
+	if Global.gamePause == true:
+		$reginTimer.paused = true
+	else:
+		$reginTimer.paused = false
 
-
-
-
+func playerChase():
+	var direction = Vector2.ZERO	
+	if player_chase :
+		position += (player.position - position) / speed
+		
+		$AnimatedSprite2D.play("walk")
+		if (player.position.x - position.x) < 0 :
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
+		move_and_collide(Vector2(0,0))
+	else:
+		$AnimatedSprite2D.play("idle")
 
 
 

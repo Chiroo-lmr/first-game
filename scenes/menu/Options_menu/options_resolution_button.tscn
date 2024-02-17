@@ -9,7 +9,7 @@ script = ExtResource("2_v75cq")
 
 [node name="Label" parent="HBoxContainer" index="0"]
 theme_override_fonts/font = ExtResource("3_1mk8l")
-text = "RESOLUTION"
+text = "Resolution"
 
 [node name="OptionButton" parent="HBoxContainer" index="2"]
 theme_override_fonts/font = ExtResource("3_1mk8l")
