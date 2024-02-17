@@ -86,6 +86,7 @@ func restartGame():
 	allSlimesGone = false
 	saidAllSlimesGones = false
 	interacted_once = false
+	TalkingWithNPC = false
 	label = 0
 	cameraPosition = Vector2(272, 120)
 	get_tree().reload_current_scene()

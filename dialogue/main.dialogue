@@ -9,6 +9,7 @@ if Global.allSlimesGone == true and Global.interacted_once == false
 			Slime: And with these slimes, I couldn't pray ! But now, and thanks to you, you killed them, let's go to the tree !
 			set Global.saidAllSlimesGones = true
 			set Global.interacted_once = true
+			set Global.TalkingWithNPC = false
 			=> END
 if Global.saidAllSlimesGones == false
 	Slime: [[slt!|Wsh l'équipe!|åÛ»»Û|wsh je dis des trucs bizarre des fois|mY lIttLE PuSsYY, mY lIttLE PuSsYY...]]
@@ -19,17 +20,20 @@ if Global.saidAllSlimesGones == false
 				Slime: Ohh, thank you so much ! let's go to the tree ! 
 				set Global.label = 0
 				set Global.saidAllSlimesGones = true
+				set Global.TalkingWithNPC = false
 				=> END 
 		elif Global.allSlimesGone == false:
 			Slime: Please tell me yes.
 			- No, I didn't yet...
 				Slime: Okay, then come back later, I am waiting for you !
+				set Global.TalkingWithNPC = false
 				=> END
 	else:
-		- goodbye => END 
 		- who are you ? 
 			Slime: [[I am a slime, I live here since i'm born|I am a slime, I live here|I am a slime, I like to pray the god Slime|I am a simple NPC from a video game|sometimes I say some weird things]]
-			- goodbye => END 
+			- goodbye 
+			set Global.TalkingWithNPC = false
+			=> END 
 			- why are you moving like that ? You're stressed ?
 				Slime: I'm really embarrased, I usually go to the other side of the path to pray the god of slime...
 				- I don't give a shit, bye. 
@@ -44,7 +48,9 @@ if Global.saidAllSlimesGones == false
 							Slime: Oh, ok, thanks anyway ! 
 							set Global.label = 1
 							set Global.interacted_once = true
+							set Global.TalkingWithNPC = false
 else:
 	Slime: thank you so much for killing all the slimes ! PuSsYPusSY.. hum sorry I don't know what kind of disease I have.
 	set Global.label = 0
+	set Global.TalkingWithNPC = false
 => END
