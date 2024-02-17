@@ -57,6 +57,7 @@ func _physics_process(delta):
 	enemy_attack()
 	attack()
 	ajustmentsHealth()
+	play_anim(movement)
 	if Time.get_unix_time_from_system ( ) < not_red_at:
 		$AnimatedSprite2D.play("damage")
 		
@@ -118,33 +119,40 @@ func play_anim(movement):
 	var dir = currentDirection
 	var anim = $AnimatedSprite2D
 	
-	if dir == "right":
+	if dir == "right" and Global.TalkingWithNPC == false:
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("side_walk")
 		elif movement == 0:
 			if attackIp == false:
 				anim.play("side_idle")
-	if dir == "left":
+	if dir == "left" and Global.TalkingWithNPC == false:
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("side_walk")
 		elif movement == 0:
 			if attackIp == false:
 				anim.play("side_idle")
-	if dir == "down":
+	if dir == "down" and Global.TalkingWithNPC == false:
 		if movement == 1:
 			anim.play("front_walk")
 		elif movement == 0:
 			if attackIp == false:
 				anim.play("front_idle")
-	if dir == "up":
+	if dir == "up" and Global.TalkingWithNPC == false:
 		if movement == 1:
 			anim.play("back_walk")
 		elif movement == 0:
 			if attackIp == false:
 				anim.play("back_idle")
-	
+	if Global.TalkingWithNPC == true:
+		if dir == "right": anim.play("side_idle")
+		elif dir == "left": 
+			anim.flip_h = true
+			anim.play("side_idle")
+		elif dir == "up": anim.play("back_idle")
+		elif dir == "down": anim.play("front_idle")
+		print("bonjouur")
 func player():
 	pass
 

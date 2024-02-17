@@ -4,7 +4,7 @@ extends CanvasLayer
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") and Global.TalkingWithNPC == false:
 		gamePause()
 
 func _on_depause_pressed():
