@@ -30,9 +30,7 @@ func gamePause():
 			Global.gamePause = true
 			Global.gameTab = false
 			allButtons.visible = true
-			Global.reginTimerPlayer.paused = true
 		else:
 			Global.gameStart = true
 			Global.gamePause = false
 			allButtons.visible = false
-			Global.reginTimerPlayer.paused = false

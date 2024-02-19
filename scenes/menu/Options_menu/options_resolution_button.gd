@@ -26,7 +26,6 @@ func _process(delta):
 		option_button.set_item_disabled(4, false)
 		option_button.select(4)
 		$"../Options_labelActualResolution".visible = true
-		print("e")
 	else:
 		option_button.set_item_disabled(4, true)
 		$"../Options_labelActualResolution".visible = false

@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dc3ca7sfhhb2u" path="res://art/characters/player.png" id="2_x7v6g"]
 [ext_resource type="Texture2D" uid="uid://dd13jekp2gmx8" path="res://art/characters/player-red.png" id="3_4cfer"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fuqn8"]
-radius = 6.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxwe7"]
 atlas = ExtResource("2_x7v6g")
 region = Rect2(0, 384, 48, 48)
@@ -236,7 +233,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"back_attack",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -324,7 +321,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"front_attack",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -373,7 +370,7 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_mri2h")
 }, {
 "duration": 1.0,
@@ -387,7 +384,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"side_attack",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -436,8 +433,11 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fuqn8"]
+radius = 6.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_nwsnt"]
-radius = 12.0416
+radius = 18.0
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -447,31 +447,37 @@ collision_mask = 13
 safe_margin = 0.001
 script = ExtResource("1_xovnq")
 
-[node name="hitboxWithElement" type="CollisionShape2D" parent="."]
-position = Vector2(-11, -6)
-shape = SubResource("CircleShape2D_fuqn8")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13, -2)
 sprite_frames = SubResource("SpriteFrames_wbgwg")
-animation = &"damage"
+animation = &"front_idle"
 offset = Vector2(2.08165e-12, -15)
 
+[node name="hitboxWithElement" type="CollisionShape2D" parent="."]
+position = Vector2(-12, -5)
+shape = SubResource("CircleShape2D_fuqn8")
+
 [node name="attack_hitbox" type="Area2D" parent="."]
+position = Vector2(12, 5)
 collision_layer = 2
 collision_mask = 13
 
 [node name="playerhitbox" type="CollisionShape2D" parent="attack_hitbox"]
-position = Vector2(-11, -6)
+position = Vector2(-24, -10)
 shape = SubResource("CircleShape2D_nwsnt")
 
 [node name="canAttackCooldown" type="Timer" parent="."]
+wait_time = 0.75
 
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
+[node name="isAttacking" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="attack_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="canAttackCooldown" to="." method="_on_can_attack_cooldown_timeout"]
 [connection signal="timeout" from="reginTimer" to="." method="_on_regin_timer_timeout"]
+[connection signal="timeout" from="isAttacking" to="." method="_on_is_attacking_timeout"]

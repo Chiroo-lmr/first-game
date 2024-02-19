@@ -1,15 +1,17 @@
 extends Node2D
 
 var playerCurrentAttack = false
-var playerHealth = 100
+var playerHealth = 1000
 var playerLivePosition = Vector2(272,120)
-var reginTimerPlayer
 var player : Node2D
+var playerCanAttack = true
+var currentDirection = "none" # utilisé pour les animations 
 
 var killed_enemies = [] 
 var enemiesKilled = 0
 var SlimeID = [[0, Vector2(randi_range(200, 220), randi_range(40, 60))], [0, Vector2(randi_range(430, 470), randi_range(90, 110))], [0, Vector2(randi_range(40, 70), randi_range(100, 140))], [0, Vector2(randi_range(140, 170), randi_range(180, 210))]]
 var SlimePosition = []
+var enemyIsAttacking = false
 
 var currentScene = "Beginning"
 var transitionScene = false
@@ -62,16 +64,7 @@ func _physics_process(delta):
 		gameOver = false
 		gamePause = false
 		gameLaunch = false
-	#print("launch :" + str(gameLaunch))
-	#print("start :" + str(gameStart))
-	#print("pause :" + str(gamePause))
-	#print("over :" + str(gameOver))
-	#print(playerLivePosition)
-	#print(player)
-	#print("allSlimesGone " + str(allSlimesGone))
-	#print("saidAllSlimesGones " + str(saidAllSlimesGones))
-	#print("canAttackPlayer" + str(canAttackPlayer))
-	#print("canMovePlayer" + str(canMovePlayer))
+	
 	
 func restartGame():
 	gameStart = true
@@ -98,3 +91,4 @@ func menuButton():
 		get_tree().change_scene_to_file("res://scenes/menu/Main_menu/main_menu.tscn")
 	Global.gameLaunch = true
 	Global.gameStart = false
+	

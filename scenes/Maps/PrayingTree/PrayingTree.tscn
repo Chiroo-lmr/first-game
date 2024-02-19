@@ -46,11 +46,11 @@ polygon = PackedVector2Array(480, 272, 480, 240, 496, 240, 496, 288, 432, 288, 4
 [node name="player" parent="." instance=ExtResource("3_so32c")]
 position = Vector2(472, 256)
 
+[node name="UI" parent="." instance=ExtResource("6_ydvd5")]
+
 [node name="pause_menu" parent="." instance=ExtResource("5_3n2xu")]
 
 [node name="gameOver_menu" parent="." instance=ExtResource("5_gi6u6")]
-
-[node name="UI" parent="." instance=ExtResource("6_ydvd5")]
 
 [node name="Options_menu" parent="." instance=ExtResource("7_auivv")]
 

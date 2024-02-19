@@ -50,11 +50,11 @@ collision_mask = 10
 position = Vector2(168, 120)
 shape = SubResource("RectangleShape2D_hw8rn")
 
+[node name="UI" parent="." instance=ExtResource("7_m2dds")]
+
 [node name="pause_menu" parent="." instance=ExtResource("5_opu80")]
 
 [node name="gameOver_menu" parent="." instance=ExtResource("6_2uomu")]
-
-[node name="UI" parent="." instance=ExtResource("7_m2dds")]
 
 [node name="Options_menu" parent="." instance=ExtResource("8_piv4f")]
 
