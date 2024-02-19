@@ -107,36 +107,31 @@ func play_anim(movement):
 		if isAttacking == false:
 			anim.play("front_idle")
 
-func apply_knockback(pos_slime, pos_player, distance=5, time=0.1):
+func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
 	"""This function do the job for getting knockback after getting hit"""
+
+	
 	var xb = pos_player.x - pos_slime.x
 	var yb = pos_player.y - pos_slime.y
+	
 	var X = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * xb
 	var Y = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * yb
+	
 	var relative_new_coordinates = Vector2(X, Y)
 	var new_coordinates = pos_player+relative_new_coordinates
+	
 	var collision = move_and_collide(relative_new_coordinates) # is null when nothing hit, else it is KinematicCollision2D
-	if !collision: # check if there is no collision
-		self.position = pos_player # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
-		# then, we use a tween for creating smooth movement
-		var tween = create_tween()
-		tween.tween_property(self,"position",new_coordinates,time)
-		tween.tween_callback(
-			func end_movement():
-				self.position = new_coordinates
-		)
-	else:
-		# this code is called if the player it something
-		var hit_position = self.position # get the stop position
-		self.position = pos_player # we reset for the safe movement
-		
-		# then, we use a tween for make smooth movement
-		var tween = create_tween()
-		tween.tween_property(self,"position",hit_position,time)
-		tween.tween_callback(
-			func end_movement():
-				self.position = hit_position
-		)
+
+	if collision: # check if there is no collision
+		new_coordinates = self.position # get the stop position
+			
+	self.position = pos_player # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
+	var tween = create_tween()
+	tween.tween_property(self,"position",new_coordinates,time)
+	tween.tween_callback(
+		func end_movement():
+			self.position = new_coordinates
+	)
 
 func playerRed():
 	if Time.get_unix_time_from_system ( ) < not_red_at:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyopsjufypevx"]
+[gd_scene load_steps=12 format=3 uid="uid://cyopsjufypevx"]
 
 [ext_resource type="Script" path="res://scenes/Maps/NPCBedroomBeginning/NPCBedroomBeginning.gd" id="1_6cw0c"]
 [ext_resource type="TileSet" uid="uid://38so0sm516dp" path="res://tres/NPCBedroomBeginning.tres" id="2_enqya"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/Camera/cameraFollow.gd" id="6_7ykrs"]
 [ext_resource type="PackedScene" uid="uid://7ew5ehj0byw4" path="res://scenes/menu/UI/UI.tscn" id="7_m2dds"]
 [ext_resource type="PackedScene" uid="uid://c8e6a6xcxrm46" path="res://scenes/menu/Options_menu/options_menu.tscn" id="8_piv4f"]
+[ext_resource type="PackedScene" uid="uid://dp7hqrdo5nwij" path="res://scenes/items/heart/health_coins.tscn" id="10_pltoa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hw8rn"]
 size = Vector2(20, 34)
@@ -66,6 +67,9 @@ limit_top = 0
 limit_right = 1920
 limit_bottom = 1080
 script = ExtResource("6_7ykrs")
+
+[node name="HealthCoins" parent="." instance=ExtResource("10_pltoa")]
+position = Vector2(346.75, 69.5)
 
 [connection signal="body_entered" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_entered"]
 [connection signal="body_exited" from="collisionTransitionScene" to="." method="_on_collision_transition_scene_body_exited"]

@@ -92,9 +92,11 @@ func enemy():
 	pass
 		
 
-func apply_knockback(distance=5, time=0.1):
+func apply_knockback(distance=20, time=0.1):
 	var pos = self.position
 	var player_pos = get_parent().get_node("player").position
+	
+	print("PLAYER POS --->" + str(player_pos))
 	
 	var xb = pos.x - player_pos.x
 	var yb = pos.y - player_pos.y
@@ -115,6 +117,7 @@ func apply_knockback(distance=5, time=0.1):
 		func end_movement():
 			self.position = new_coordinates
 	)
+	
 
 
 func _physics_process(delta):
