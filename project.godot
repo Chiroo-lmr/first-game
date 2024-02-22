@@ -19,10 +19,6 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
-[audio]
-
-buses/default_bus_layout=""
-
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"

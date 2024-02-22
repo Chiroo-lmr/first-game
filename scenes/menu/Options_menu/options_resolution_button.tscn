@@ -8,6 +8,7 @@
 script = ExtResource("2_v75cq")
 
 [node name="Label" parent="HBoxContainer" index="0"]
+custom_minimum_size = Vector2(600, 30)
 theme_override_fonts/font = ExtResource("3_1mk8l")
 text = "Resolution"
 

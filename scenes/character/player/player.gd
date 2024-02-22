@@ -11,6 +11,7 @@ var isAttacking = false
 var pos_player = position
 var pos_slime
 var canKnockback = false
+var countForSound = 0 # j'ai trouvé que cette solution un peu bullshit jsp comment faire autrement
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -70,7 +71,7 @@ func player_movement(delta):
 				velocity.y = 0
 			move_and_slide()
 	
-func play_anim(movement):
+func play_anim(mov):
 	var dir = Global.currentDirection
 	var anim = $AnimatedSprite2D
 	
@@ -106,11 +107,18 @@ func play_anim(movement):
 	if dir == "none":
 		if isAttacking == false:
 			anim.play("front_idle")
-
-func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
+	if movement == 1 and countForSound == 0:
+		$walks.play()
+		countForSound += 1
+	if movement == 0 and countForSound == 1:
+		$walks.stop()
+		countForSound-= 1
+	if Global.TalkingWithNPC == true:
+		$walks.stop()
+	
+func apply_knockback(slime_pos, player_pos, distance=20, time=0.1):
 	"""This function do the job for getting knockback after getting hit"""
 
-	
 	var xb = pos_player.x - pos_slime.x
 	var yb = pos_player.y - pos_slime.y
 	
@@ -163,6 +171,8 @@ func attackPressedAnim():
 			isAttacking = true
 			Global.playerCurrentAttack = true
 			Global.playerCanAttack = false
+			$timeBeforeSoundAttack.start()
+			$attack.play()
 			if dir == "right" and canAttack == true:
 				$AnimatedSprite2D.flip_h = false
 				$AnimatedSprite2D.play("side_attack", 1, true)
@@ -218,5 +228,8 @@ func reginTimerPaused():
 		$reginTimer.paused = true
 	else:
 		$reginTimer.paused = false
+
+	
+
 
 
