@@ -30,6 +30,10 @@ func _physics_process(delta):
 			if Global.enemyIsAttacking == true:
 				apply_knockback(pos_player, pos_slime)
 				print("hello again")
+				
+	if Global.gamePause:
+		$AnimatedSprite2D.stop()
+			
 func player_movement(delta):
 	if Global.TalkingWithNPC == false:
 		if Time.get_unix_time_from_system() > not_red_at:
