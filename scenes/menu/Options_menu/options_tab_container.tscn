@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcaf8hv1o60b5"]
+[gd_scene load_steps=13 format=3 uid="uid://bcaf8hv1o60b5"]
 
 [ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_x7ml6"]
 [ext_resource type="PackedScene" uid="uid://dilb4qjuje64c" path="res://scenes/menu/Options_menu/smooth_camera_options.tscn" id="2_67al7"]
 [ext_resource type="PackedScene" uid="uid://dskxpjxp04yry" path="res://scenes/menu/Options_menu/window_mode_button.tscn" id="2_mek3l"]
 [ext_resource type="PackedScene" uid="uid://b6xhnmrquqspn" path="res://scenes/menu/Options_menu/hot_key_rebind_button.tscn" id="2_mk4vc"]
+[ext_resource type="PackedScene" uid="uid://dmes2pcoud72a" path="res://scenes/menu/Options_menu/zoom_camera_options.tscn" id="3_tg1ia"]
 [ext_resource type="PackedScene" uid="uid://bj81dhyh704t6" path="res://scenes/menu/Options_menu/options_resolution_button.tscn" id="3_yhipb"]
 [ext_resource type="PackedScene" uid="uid://1f0iqtw6atmy" path="res://scenes/menu/Options_menu/options_label_actual_resolution.tscn" id="4_w066t"]
 [ext_resource type="PackedScene" uid="uid://bsc22ah1vdmkk" path="res://scenes/menu/Options_menu/slider_sound.tscn" id="6_fwbia"]
@@ -71,7 +72,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_seomb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 100
 
 [node name="Label" type="Label" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -80,6 +81,9 @@ theme_override_font_sizes/font_size = 75
 text = "Camera"
 
 [node name="Smooth_camera_options" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_67al7")]
+layout_mode = 2
+
+[node name="zoom_camera_options" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_tg1ia")]
 layout_mode = 2
 
 [node name="graphics" type="TabBar" parent="TabContainer"]
