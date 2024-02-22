@@ -4,5 +4,8 @@ extends Camera2D
 func _process(delta):
 	if Global.player:
 		position = Global.playerLivePosition
-		position_smoothing_enabled = true
+		if Global.cameraSmoothing == true:
+			position_smoothing_enabled = true
+		else:
+			position_smoothing_enabled = false
 

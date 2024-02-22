@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcaf8hv1o60b5"]
+[gd_scene load_steps=12 format=3 uid="uid://bcaf8hv1o60b5"]
 
 [ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_x7ml6"]
+[ext_resource type="PackedScene" uid="uid://dilb4qjuje64c" path="res://scenes/menu/Options_menu/smooth_camera_options.tscn" id="2_67al7"]
 [ext_resource type="PackedScene" uid="uid://dskxpjxp04yry" path="res://scenes/menu/Options_menu/window_mode_button.tscn" id="2_mek3l"]
 [ext_resource type="PackedScene" uid="uid://b6xhnmrquqspn" path="res://scenes/menu/Options_menu/hot_key_rebind_button.tscn" id="2_mk4vc"]
 [ext_resource type="PackedScene" uid="uid://bj81dhyh704t6" path="res://scenes/menu/Options_menu/options_resolution_button.tscn" id="3_yhipb"]
 [ext_resource type="PackedScene" uid="uid://1f0iqtw6atmy" path="res://scenes/menu/Options_menu/options_label_actual_resolution.tscn" id="4_w066t"]
 [ext_resource type="PackedScene" uid="uid://bsc22ah1vdmkk" path="res://scenes/menu/Options_menu/slider_sound.tscn" id="6_fwbia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_seomb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s0swf"]
 
@@ -30,12 +33,11 @@ offset_top = 100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/side_margin = 40
 theme_override_fonts/font = ExtResource("1_x7ml6")
 theme_override_font_sizes/font_size = 40
-current_tab = 3
 
 [node name="General" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_x7ml6")
 theme_override_font_sizes/font_size = 30
@@ -47,57 +49,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 24
+theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/General/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_constants/separation = 64
+theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "general
-"
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_seomb")
 
-[node name="Label2" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "general
-"
+theme_override_constants/separation = 50
 
-[node name="Label3" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "general
-"
+theme_override_fonts/font = ExtResource("1_x7ml6")
+theme_override_font_sizes/font_size = 75
+text = "Camera"
 
-[node name="Label4" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer"]
+[node name="Smooth_camera_options" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_67al7")]
 layout_mode = 2
-text = "general
-"
-
-[node name="Label5" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "general
-"
-
-[node name="Label6" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "general
-"
-
-[node name="Label7" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "general
-"
-
-[node name="Label8" type="Label" parent="TabContainer/General/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "general
-"
 
 [node name="graphics" type="TabBar" parent="TabContainer"]
 visible = false
@@ -213,6 +196,7 @@ theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pmnld")
 
 [node name="sounds" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/sounds"]
@@ -244,7 +228,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_dtic3")
 
 [node name="slider_sound" parent="TabContainer/sounds/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("6_fwbia")]
 layout_mode = 2
-bus_index = 0
 
 [node name="slider_sound2" parent="TabContainer/sounds/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("6_fwbia")]
 layout_mode = 2
@@ -254,11 +237,11 @@ bus_index = 1
 layout_mode = 2
 bus_index = 2
 
-[node name="jeux" type="TabBar" parent="TabContainer"]
+[node name="Accessibility" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/jeux"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Accessibility"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -270,49 +253,49 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/jeux/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Accessibility/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/jeux/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "jeux
 "
 
-[node name="Label2" type="Label" parent="TabContainer/jeux/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "jeux
 "
 
-[node name="Label3" type="Label" parent="TabContainer/jeux/MarginContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "jeux
 "
 
-[node name="Label4" type="Label" parent="TabContainer/jeux/MarginContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "jeux
 "
 
-[node name="Label5" type="Label" parent="TabContainer/jeux/MarginContainer/VBoxContainer"]
+[node name="Label5" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "jeux
 "
 
-[node name="Label6" type="Label" parent="TabContainer/jeux/MarginContainer/VBoxContainer"]
+[node name="Label6" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "jeux
 "
 
-[node name="Label7" type="Label" parent="TabContainer/jeux/MarginContainer/VBoxContainer"]
+[node name="Label7" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "jeux
 "
 
-[node name="Label8" type="Label" parent="TabContainer/jeux/MarginContainer/VBoxContainer"]
+[node name="Label8" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "jeux
 "

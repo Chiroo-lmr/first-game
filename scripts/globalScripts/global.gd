@@ -22,6 +22,7 @@ var interacted_once = false
 var TalkingWithNPC = false
 
 var cameraPosition = Vector2(272, 120)
+var cameraSmoothing = true
 
 var label = 0
 @onready var QuitButton
