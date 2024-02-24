@@ -11,7 +11,6 @@ func _on_depause_pressed():
 	Global.gameStart = true
 	Global.gamePause = false
 	allButtons.visible = false
-	Global.reginTimerPlayer.paused = false
 
 func _on_options_pressed():
 	get_node("../Options_menu").visible = true

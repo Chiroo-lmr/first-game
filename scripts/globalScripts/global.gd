@@ -6,6 +6,7 @@ var playerLivePosition = Vector2(272,120)
 var player : Node2D
 var playerCanAttack = true
 var currentDirection = "none" # utilisé pour les animations 
+var not_red_at = 0 # utilisé pour rendre le player rouge quand attaqué 
 
 var killed_enemies = [] 
 var enemiesKilled = 0

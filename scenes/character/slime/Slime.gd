@@ -71,6 +71,7 @@ func attack():
 		Global.playerHealth -= randi_range(7, 13)
 		Global.enemyIsAttacking = true
 		canAttack = false
+		Global.not_red_at = Time.get_unix_time_from_system() + 0.5
 		$canAttackCooldown.start()
 	else:Global.enemyIsAttacking = false
 		
@@ -118,23 +119,16 @@ func apply_knockback(distance=20, time=0.1):
 			self.position = new_coordinates
 	)
 	
-
-
 func _physics_process(delta):
 	reginTimerPaused()
 	if Global.gameStart == true:
 		if Time.get_unix_time_from_system ( ) > not_red_at:
 			deal_with_damage()
+			playerChase()
 			updateHealth()
-		playerChase()
-		attack()
-	#print("isAttacking" + str(isAttacking))
-	#if canAttack == false:
-		#print("canAttack" + str(canAttack))
-	#if AttackZone == true:
-		#print("AttackZone" + str(AttackZone))
-	#if player_chase == true:
-		#print("player_chase" + str(player_chase))
+			attack()
+		else:
+			$AnimatedSprite2D.play("damage")
 
 
 

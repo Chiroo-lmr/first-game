@@ -5,13 +5,13 @@ var enemyAttackRange = false # utilisé quand l'ennemy et dans la zone ou le pla
 var enemyAttackCooldown = true
 var playerAlive = true # utilisé pour l'ui de mort
 var movement = 0 # utilisé pour savoir si le player bouge
-var not_red_at = 0 # utilisé pour rendre le player rouge quand attaqué 
 var canAttack = true # utilisé pour ne pouvoir attaquer que une fois toute les secondes
 var isAttacking = false
 var pos_player = position
-var pos_slime
+var pos_slime = null
 var canKnockback = false
 var countForSound = 0 # j'ai trouvé que cette solution un peu bullshit jsp comment faire autrement
+var enemy 
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -26,17 +26,21 @@ func _physics_process(delta):
 		playerRed()
 		thePlayerHasNoHealth()
 		ajustmentsHealth()
-		if canKnockback == true:
+		if canKnockback == true and pos_slime:
 			if Global.enemyIsAttacking == true:
 				apply_knockback(pos_player, pos_slime)
 				print("hello again")
-				
-	if Global.gamePause:
+		if enemyAttackRange == true:
+			get_pos_slime(enemy)
+			print(enemy.position)
+		$reginTimer.start()
+	if Global.gamePause == true:
 		$AnimatedSprite2D.stop()
-			
+		$reginTimer.stop()
+		
 func player_movement(delta):
 	if Global.TalkingWithNPC == false:
-		if Time.get_unix_time_from_system() > not_red_at:
+		if Time.get_unix_time_from_system() > Global.not_red_at:
 			var dirx = Input.get_axis("ui_left", "ui_right")
 			var diry = Input.get_axis("ui_up", "ui_down")
 			if !dirx == 0 and !diry == 0:
@@ -120,9 +124,10 @@ func play_anim(mov):
 	if Global.TalkingWithNPC == true:
 		$walks.stop()
 	
-func apply_knockback(slime_pos, player_pos, distance=20, time=0.1):
+func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
 	"""This function do the job for getting knockback after getting hit"""
 
+	
 	var xb = pos_player.x - pos_slime.x
 	var yb = pos_player.y - pos_slime.y
 	
@@ -146,7 +151,7 @@ func apply_knockback(slime_pos, player_pos, distance=20, time=0.1):
 	)
 
 func playerRed():
-	if Time.get_unix_time_from_system ( ) < not_red_at:
+	if Time.get_unix_time_from_system ( ) < Global.not_red_at:
 		$AnimatedSprite2D.play("damage")
 
 func player():
@@ -155,10 +160,14 @@ func player():
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		enemyAttackRange = true
-		pos_slime = body.position
-		pos_player = self.position
 		canKnockback = true
+		enemy = body
 		
+func get_pos_slime(enemy):
+	pos_slime = enemy.position
+	pos_player = self.position
+		
+
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		enemyAttackRange = false
@@ -167,7 +176,8 @@ func _on_player_hitbox_body_exited(body):
 func _on_regin_timer_timeout():
 	if Global.playerHealth < 100:
 		Global.playerHealth +=20
-
+	print("hello")
+	
 func attackPressedAnim():
 	if Global.gameStart == true and Global.TalkingWithNPC == false:
 		var dir = Global.currentDirection

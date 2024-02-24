@@ -452,7 +452,7 @@ script = ExtResource("1_xovnq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13, -2)
 sprite_frames = SubResource("SpriteFrames_wbgwg")
-animation = &"front_idle"
+animation = &"damage"
 offset = Vector2(2.08165e-12, -15)
 
 [node name="hitboxWithElement" type="CollisionShape2D" parent="."]
