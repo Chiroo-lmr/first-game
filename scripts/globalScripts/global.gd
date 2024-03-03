@@ -1,7 +1,7 @@
 extends Node2D
 
 var playerCurrentAttack = false
-var playerHealth = 1000
+var playerHealth = 100
 var playerLivePosition = Vector2(272,120)
 var player : Node2D
 var playerCanAttack = true

@@ -6,6 +6,8 @@ var player_chase = false # si oui, le slime va poursuivre le joueur`
 var AttackZone = false # si oui, le player est dans la zone de combat du slime
 var not_red_at = 0 # jsp ca marche pas mais c pour rendre le slime rouge
 var canAttack = true # si oui, le slime peut attaquer
+var canWalk = true
+var animWalks = false
 
 func updateHealth():
 	var healthBar = $healthBar
@@ -127,12 +129,21 @@ func _physics_process(delta):
 			playerChase()
 			updateHealth()
 			attack()
+			walk()
+			move_and_slide()
 		else:
 			$AnimatedSprite2D.play("damage")
 
+func walk():
+	if canWalk == true and not player_chase:
+		var direction = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized()
+		velocity = direction * 250
+		if direction.x > 0:
+			$AnimatedSprite2D.flip_h = false
+		else:
+			$AnimatedSprite2D.flip_h = true
+		$waitToWalk.start()
+		canWalk = false
 
-
-
-
-
-
+func _on_wait_to_walk_timeout():
+	canWalk = true
