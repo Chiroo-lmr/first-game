@@ -26,17 +26,16 @@ func _physics_process(delta):
 		playerRed()
 		thePlayerHasNoHealth()
 		ajustmentsHealth()
+		$regin.paused = false
 		if canKnockback == true and pos_slime:
 			if Global.enemyIsAttacking == true:
 				apply_knockback(pos_player, pos_slime)
-				print("hello again")
 		if enemyAttackRange == true:
 			get_pos_slime(enemy)
 			print(enemy.position)
-		$reginTimer.start()
 	if Global.gamePause == true:
 		$AnimatedSprite2D.stop()
-		$reginTimer.stop()
+		$regin.paused = true
 		
 func player_movement(delta):
 	if Global.TalkingWithNPC == false:
@@ -172,11 +171,6 @@ func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		enemyAttackRange = false
 		canKnockback = false
-
-func _on_regin_timer_timeout():
-	if Global.playerHealth < 100:
-		Global.playerHealth +=20
-	print("hello")
 	
 func attackPressedAnim():
 	if Global.gameStart == true and Global.TalkingWithNPC == false:
@@ -221,8 +215,10 @@ func _on_is_attacking_timeout():
 func ajustmentsHealth():
 	if Global.playerHealth > 100:
 		Global.playerHealth = 100
-	if Global.playerHealth <= 0 :
+		print(Global.playerHealth)
+	if Global.playerHealth < 0 :
 		Global.playerHealth = 0
+		print(Global.playerHealth)
 
 func thePlayerHasNoHealth():
 	if Global.playerHealth <= 0:
@@ -239,11 +235,12 @@ func _on_can_attack_cooldown_timeout():
 	
 func reginTimerPaused():
 	if Global.gamePause == true:
-		$reginTimer.paused = true
+		$regin.paused = true
 	else:
-		$reginTimer.paused = false
-
-	
+		$regin.paused = false
 
 
-
+func _on_timer_timeout():
+	print("g")
+	if Global.playerHealth < 100:
+		Global.playerHealth +=20

@@ -472,12 +472,15 @@ shape = SubResource("CircleShape2D_nwsnt")
 [node name="canAttackCooldown" type="Timer" parent="."]
 wait_time = 0.75
 
-[node name="reginTimer" type="Timer" parent="."]
+[node name="isAttacking" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="regin" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
-[node name="isAttacking" type="Timer" parent="."]
-wait_time = 0.5
+[node name="timeBeforeSoundAttack" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="walks" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_baqcv")
@@ -488,12 +491,9 @@ position = Vector2(-12, -5)
 stream = ExtResource("5_6f4me")
 bus = &"Sfx"
 
-[node name="timeBeforeSoundAttack" type="Timer" parent="."]
-wait_time = 0.1
-
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="attack_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="canAttackCooldown" to="." method="_on_can_attack_cooldown_timeout"]
-[connection signal="timeout" from="reginTimer" to="." method="_on_regin_timer_timeout"]
 [connection signal="timeout" from="isAttacking" to="." method="_on_is_attacking_timeout"]
+[connection signal="timeout" from="regin" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="timeBeforeSoundAttack" to="." method="_on_time_before_sound_attack_timeout"]
