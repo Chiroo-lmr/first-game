@@ -6,6 +6,7 @@ extends Control
 var can_listen = false
 var action_keycode
 var button_index
+var mouse_keycode
 
 func _ready():
 	set_process_unhandled_key_input(false)
@@ -16,7 +17,9 @@ func _process(delta):
 		can_listen = true
 	else:
 		can_listen = false
-			
+	print(action_keycode)
+	
+	
 func set_text_for_key():
 	label.text = "unassigned"
 	match action_name:
@@ -56,21 +59,22 @@ func _input(event):
 	if can_listen == true:
 		if event is InputEventKey:
 			var is_duplicate = false
-			action_keycode=OS.get_keycode_string(event.physical_keycode)
-			for i in get_tree().get_nodes_in_group("hotkey_button"):
-				if i.action_name!=self.action_name:
-					if i.button.text=="%s" %action_keycode:
-						is_duplicate=true
-						$HBoxContainer/alread_assigned.visible = true
-						$Timer.start()
-						button.button_pressed = false
-						break
+			while true:
+				for i in get_tree().get_nodes_in_group("hotkey_button"):
+					if i.action_name!=self.action_name:
+						if i.button.text=="%s" %OS.get_keycode_string(event.physical_keycode):
+							is_duplicate=true
+							$HBoxContainer/alread_assigned.visible = true
+							$Timer.start()
+							button.button_pressed = false
+				break
 			if not is_duplicate:
 				InputMap.action_erase_events(action_name)
 				InputMap.action_add_event(action_name,event)
 				set_text_for_key()
 				$HBoxContainer/alread_assigned.visible = false
 				button.button_pressed = false
+				action_keycode = OS.get_keycode_string(event.physical_keycode)
 		accept_event()
 		if event is InputEventMouseButton and event.button_index != 5 and event.button_index != 4:
 			print(button_index)
@@ -80,27 +84,29 @@ func _input(event):
 			button_index = event.button_index
 			match button_index:
 				1:
-					action_keycode = "Left Mouse Button"
+					mouse_keycode = "Left Mouse Button"
 				2:
-					action_keycode = "Right Mouse Button"
+					mouse_keycode = "Right Mouse Button"
 				3:
-					action_keycode = "Middle Mouse Button"
+					mouse_keycode = "Middle Mouse Button"
 				8:
-					action_keycode = "Mouse Thumb Button 1"
+					mouse_keycode = "Mouse Thumb Button 1"
 				9:
-					action_keycode = "Mouse Thumb Button 2"
-			for i in get_tree().get_nodes_in_group("hotkey_button"):
-				if i.action_name!=self.action_name:
-					if i.button.text=="%s" %action_keycode:
-						is_duplicate=true
-						$HBoxContainer/alread_assigned.visible = true
-						$Timer.start()
-						button.button_pressed = false
-						break
+					mouse_keycode = "Mouse Thumb Button 2"
+			while true:
+				for i in get_tree().get_nodes_in_group("hotkey_button"):
+					if i.action_name!=self.action_name:
+						if i.button.text=="%s" %mouse_keycode:
+							is_duplicate=true
+							$HBoxContainer/alread_assigned.visible = true
+							$Timer.start()
+							button.button_pressed = false
+				break
 			if not is_duplicate:
 				InputMap.action_erase_events(action_name)
 				InputMap.action_add_event(action_name,event)
 				set_text_for_key()
 				$HBoxContainer/alread_assigned.visible = false
 				button.button_pressed = false
+				action_keycode = OS.get_keycode_string(event.physical_keycode)
 		accept_event()
