@@ -27,7 +27,6 @@ func _on_option_button_item_selected(index):
 	return index
 	
 func _process(delta):
-	print(indexSelect)
 	targetResolution = str(DisplayServer.window_get_size().x) + " x " + str(DisplayServer.window_get_size().y)
 	if targetResolution not in RESOLUTION_DICTIONARY:
 		option_button.set_item_disabled(4, false)

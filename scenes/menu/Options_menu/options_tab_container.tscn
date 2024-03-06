@@ -36,7 +36,7 @@ grow_vertical = 2
 theme_override_constants/side_margin = 40
 theme_override_fonts/font = ExtResource("1_x7ml6")
 theme_override_font_sizes/font_size = 40
-current_tab = 1
+current_tab = 2
 
 [node name="General" type="TabBar" parent="TabContainer"]
 visible = false
@@ -88,6 +88,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="graphics" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/graphics"]
@@ -129,7 +130,6 @@ theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pmnld")
 
 [node name="controls" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/controls"]
@@ -179,15 +179,11 @@ action_name = "ui_down"
 layout_mode = 2
 action_name = "attack"
 
-[node name="HotKey_rebind_button7" parent="TabContainer/controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_mk4vc")]
-layout_mode = 2
-action_name = "ui_accept"
-
 [node name="HotKey_rebind_button6" parent="TabContainer/controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_mk4vc")]
 layout_mode = 2
 action_name = "ui_cancel"
 
-[node name="HotKey_rebind_button8" parent="TabContainer/controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_mk4vc")]
+[node name="HotKey_rebind_button7" parent="TabContainer/controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_mk4vc")]
 layout_mode = 2
 action_name = "information"
 

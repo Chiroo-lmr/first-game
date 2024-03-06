@@ -7,6 +7,7 @@ func _on_fullscreen_toggled(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_size(Vector2i(DisplayServer.window_get_size().x, DisplayServer.window_get_size().y - 5 ))
 
 
 func _process(delta):

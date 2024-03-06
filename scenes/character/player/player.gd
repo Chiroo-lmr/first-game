@@ -173,39 +173,39 @@ func _on_player_hitbox_body_exited(body):
 		canKnockback = false
 	
 func attackPressedAnim():
-	if Global.gameStart == true and Global.TalkingWithNPC == false:
+	if Input.is_action_pressed("attack") and canAttack == true and Global.gameStart == true and Global.TalkingWithNPC == false and movement == 0:
 		var dir = Global.currentDirection
-		if Input.is_action_pressed("attack") and canAttack == true:
-			isAttacking = true
-			Global.playerCurrentAttack = true
-			Global.playerCanAttack = false
-			$timeBeforeSoundAttack.start()
-			$attack.play()
-			if dir == "right" and canAttack == true:
-				$AnimatedSprite2D.flip_h = false
-				$AnimatedSprite2D.play("side_attack", 1, true)
-				$canAttackCooldown.start()
-				$isAttacking.start()
-			if dir == "left":
-				$AnimatedSprite2D.flip_h = true
-				$AnimatedSprite2D.play("side_attack")
-				$canAttackCooldown.start()
-				$isAttacking.start()
-			if dir == "down":
-				$AnimatedSprite2D.play("front_attack")
-				$canAttackCooldown.start()
-				$isAttacking.start()
-			if dir == "up":
-				$AnimatedSprite2D.play("back_attack")
-				$canAttackCooldown.start()
-				$isAttacking.start()
-			if dir == "none":
-				$AnimatedSprite2D.play("front_attack")
-				$canAttackCooldown.start()
-				$isAttacking.start()
-			canAttack = false
-		else:
-			Global.playerCurrentAttack = false
+		var anim = $AnimatedSprite2D
+		isAttacking = true
+		Global.playerCurrentAttack = true
+		Global.playerCanAttack = false
+		$timeBeforeSoundAttack.start()
+		$attack.play()
+		if dir == "right" and canAttack == true:
+			anim.flip_h = false
+			anim.play("side_attack", 1, true)
+			$canAttackCooldown.start()
+			$isAttacking.start()
+		if dir == "left":
+			anim.flip_h = true
+			anim.play("side_attack")
+			$canAttackCooldown.start()
+			$isAttacking.start()
+		if dir == "down":
+			anim.play("front_attack")
+			$canAttackCooldown.start()
+			$isAttacking.start()
+		if dir == "up":
+			anim.play("back_attack")
+			$canAttackCooldown.start()
+			$isAttacking.start()
+		if dir == "none":
+			anim.play("front_attack")
+			$canAttackCooldown.start()
+			$isAttacking.start()
+		canAttack = false
+	else:
+		Global.playerCurrentAttack = false
 
 func _on_is_attacking_timeout():
 	$isAttacking.stop()

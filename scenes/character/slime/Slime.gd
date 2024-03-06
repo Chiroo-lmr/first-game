@@ -1,13 +1,30 @@
 extends CharacterBody2D
 var player = null # le node player
 var health = 100 # la vie du slime
-var speed = 30 # vitesse "inversé"
+var speed = 35 # vitesse "inversé"
 var player_chase = false # si oui, le slime va poursuivre le joueur`
 var AttackZone = false # si oui, le player est dans la zone de combat du slime
 var not_red_at = 0 # jsp ca marche pas mais c pour rendre le slime rouge
 var canAttack = true # si oui, le slime peut attaquer
 var canWalk = true
 var animWalks = false
+
+
+func _physics_process(delta):
+	print("canAttacklime" + str(canAttack))
+	print("AttackZone" + str(AttackZone))
+	reginTimerPaused()
+	if Global.gameStart == true:
+		if Time.get_unix_time_from_system ( ) > not_red_at:
+			deal_with_damage()
+			playerChase()
+			updateHealth()
+			attack()
+			walk()
+			move_and_slide()
+		else:
+			$AnimatedSprite2D.play("damage")
+
 
 func updateHealth():
 	var healthBar = $healthBar
@@ -36,13 +53,11 @@ func _on_detection_area_body_entered(body):
 	if body.has_method("player"):
 		player = body
 		player_chase = true
-		print("detection du player, le slime le poursuit")
 	
 func _on_detection_area_body_exited(body):
 	if body.has_method("player"):
 		player = null
 		player_chase = false
-		print("pas de detection du player, le slime ne le poursuit pas")
 
 func playerChase():
 	var direction = Vector2.ZERO	
@@ -120,19 +135,6 @@ func apply_knockback(distance=20, time=0.1):
 		func end_movement():
 			self.position = new_coordinates
 	)
-	
-func _physics_process(delta):
-	reginTimerPaused()
-	if Global.gameStart == true:
-		if Time.get_unix_time_from_system ( ) > not_red_at:
-			deal_with_damage()
-			playerChase()
-			updateHealth()
-			attack()
-			walk()
-			move_and_slide()
-		else:
-			$AnimatedSprite2D.play("damage")
 
 func walk():
 	if canWalk == true and not player_chase:

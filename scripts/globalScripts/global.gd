@@ -52,8 +52,8 @@ func getSlimePosition(currentPosition):
 	SlimeID.append(currentPosition)
 	
 func _physics_process(delta):
-	if !Input.is_action_just_pressed("attack"):
-		playerCurrentAttack = false
+	if Input.is_action_just_pressed("attack"):
+		playerCurrentAttack = true
 	else:
 		playerCurrentAttack = true
 	if enemiesKilled == 4:

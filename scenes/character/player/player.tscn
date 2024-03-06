@@ -483,6 +483,7 @@ autostart = true
 wait_time = 0.1
 
 [node name="walks" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-12, -5)
 stream = ExtResource("4_baqcv")
 bus = &"Sfx"
 

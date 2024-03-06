@@ -11,3 +11,7 @@ func _process(delta):
 		$HBoxContainer/CheckButton.button_pressed = true
 	else:
 		$HBoxContainer/CheckButton.button_pressed = false
+
+
+func _on_button_pressed():
+	pass # Replace with function body.
