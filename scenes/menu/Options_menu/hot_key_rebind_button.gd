@@ -17,7 +17,6 @@ func _process(delta):
 		can_listen = true
 	else:
 		can_listen = false
-	print(action_keycode)
 	
 	
 func set_text_for_key():
@@ -77,7 +76,6 @@ func _input(event):
 				action_keycode = OS.get_keycode_string(event.physical_keycode)
 		accept_event()
 		if event is InputEventMouseButton and event.button_index != 5 and event.button_index != 4:
-			print(button_index)
 			if event.double_click == true:
 				event.double_click = false
 			var is_duplicate = false

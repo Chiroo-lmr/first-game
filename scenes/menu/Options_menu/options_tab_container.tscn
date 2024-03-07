@@ -36,10 +36,8 @@ grow_vertical = 2
 theme_override_constants/side_margin = 40
 theme_override_fonts/font = ExtResource("1_x7ml6")
 theme_override_font_sizes/font_size = 40
-current_tab = 2
 
 [node name="General" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_x7ml6")
 theme_override_font_sizes/font_size = 30
@@ -130,6 +128,7 @@ theme_override_constants/separation = 12
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pmnld")
 
 [node name="controls" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/controls"]
@@ -259,40 +258,4 @@ alignment = 1
 
 [node name="Label" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "jeux
-"
-
-[node name="Label2" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "jeux
-"
-
-[node name="Label3" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "jeux
-"
-
-[node name="Label4" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "jeux
-"
-
-[node name="Label5" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "jeux
-"
-
-[node name="Label6" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "jeux
-"
-
-[node name="Label7" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "jeux
-"
-
-[node name="Label8" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "jeux
-"
+text = "a la fin flm la"

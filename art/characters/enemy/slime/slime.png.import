@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be5i4ehhywx15"
-path="res://.godot/imported/Pixel Heart remove.png-cf58bc5fd28f762a84c2b9e6f0a73075.ctex"
+uid="uid://dj1g41scwq7bv"
+path="res://.godot/imported/slime.png-86bace660cd00f157f923d53f8740ac3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Pixel Heart remove.png"
-dest_files=["res://.godot/imported/Pixel Heart remove.png-cf58bc5fd28f762a84c2b9e6f0a73075.ctex"]
+source_file="res://art/characters/enemy/slime/slime.png"
+dest_files=["res://.godot/imported/slime.png-86bace660cd00f157f923d53f8740ac3.ctex"]
 
 [params]
 
