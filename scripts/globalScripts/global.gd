@@ -67,6 +67,7 @@ func _physics_process(delta):
 		gameOver = false
 		gamePause = false
 		gameLaunch = false
+	print(gameOver)
 	
 	
 func restartGame():

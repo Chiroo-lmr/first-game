@@ -3,7 +3,6 @@ extends CharacterBody2D
 @export var speed = 600
 var enemyAttackRange = false # utilisé quand l'ennemy et dans la zone ou le player peut attaquer
 var enemyAttackCooldown = true
-var playerAlive = true # utilisé pour l'ui de mort
 var movement = 0 # utilisé pour savoir si le player bouge
 var canAttack = true # utilisé pour ne pouvoir attaquer que une fois toute les secondes
 var isAttacking = false
@@ -19,12 +18,11 @@ func _ready():
 
 func _physics_process(delta):
 	Global.playerLivePosition = position
-	if Global.gameStart == true:
+	if Global.gameStart == true and Global.gameOver == false:
 		player_movement(delta)
 		attackPressedAnim()
 		play_anim(movement)
 		playerRed()
-		thePlayerHasNoHealth()
 		ajustmentsHealth()
 		$regin.paused = false
 		if canKnockback == true and pos_slime:
@@ -32,7 +30,6 @@ func _physics_process(delta):
 				apply_knockback(pos_player, pos_slime)
 		if enemyAttackRange == true:
 			get_pos_slime(enemy)
-			print(enemy.position)
 	if Global.gamePause == true:
 		$AnimatedSprite2D.stop()
 		$regin.paused = true
@@ -215,18 +212,16 @@ func _on_is_attacking_timeout():
 func ajustmentsHealth():
 	if Global.playerHealth > 100:
 		Global.playerHealth = 100
-		print(Global.playerHealth)
 	if Global.playerHealth < 0 :
 		Global.playerHealth = 0
-		print(Global.playerHealth)
+		thePlayerHasNoHealth()
 
 func thePlayerHasNoHealth():
 	if Global.playerHealth <= 0:
-		playerAlive = false # respawn screen
 		Global.playerHealth = 0
-		$AnimatedSprite2D.play("death")
 		Global.gameOver = true
-		Global.gameStart = false
+		$AnimatedSprite2D.play("death")
+		await $AnimatedSprite2D.animation_finished
 		self.queue_free()
 
 func _on_can_attack_cooldown_timeout():
@@ -241,6 +236,6 @@ func reginTimerPaused():
 
 
 func _on_timer_timeout():
-	print("g")
-	if Global.playerHealth < 100:
-		Global.playerHealth +=20
+	if Global.TalkingWithNPC == false:
+		if Global.playerHealth < 100:
+			Global.playerHealth +=20

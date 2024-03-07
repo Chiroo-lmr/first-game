@@ -304,7 +304,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qqgog")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -452,7 +452,7 @@ script = ExtResource("1_xovnq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13, -2)
 sprite_frames = SubResource("SpriteFrames_wbgwg")
-animation = &"damage"
+animation = &"death"
 offset = Vector2(2.08165e-12, -15)
 
 [node name="hitboxWithElement" type="CollisionShape2D" parent="."]

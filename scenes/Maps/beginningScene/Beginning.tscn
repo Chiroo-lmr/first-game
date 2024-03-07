@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/Camera/cameraFollow.gd" id="5_o3vnr"]
 [ext_resource type="PackedScene" uid="uid://bqujmg635fbuw" path="res://scenes/menu/GameOver_menu/game_over_menu.tscn" id="5_wc8f1"]
 [ext_resource type="PackedScene" uid="uid://7ew5ehj0byw4" path="res://scenes/menu/UI/UI.tscn" id="6_7g7d1"]
-[ext_resource type="PackedScene" uid="uid://c8e6a6xcxrm46" path="res://scenes/menu/Options_menu/options_menu.tscn" id="7_luxda"]
+[ext_resource type="PackedScene" path="res://scenes/menu/Options_menu/options_menu.tscn" id="7_luxda"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true

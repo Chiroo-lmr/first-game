@@ -11,8 +11,6 @@ var animWalks = false
 
 
 func _physics_process(delta):
-	print("canAttacklime" + str(canAttack))
-	print("AttackZone" + str(AttackZone))
 	reginTimerPaused()
 	if Global.gameStart == true:
 		if Time.get_unix_time_from_system ( ) > not_red_at:
@@ -24,6 +22,8 @@ func _physics_process(delta):
 			move_and_slide()
 		else:
 			$AnimatedSprite2D.play("damage")
+	else:
+		$AnimatedSprite2D.play("idle")
 
 
 func updateHealth():
