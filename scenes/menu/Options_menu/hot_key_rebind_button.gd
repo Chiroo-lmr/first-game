@@ -108,5 +108,4 @@ func _input(event):
 				set_text_for_key()
 				$HBoxContainer/alread_assigned.visible = false
 				button.button_pressed = false
-				action_keycode = OS.get_keycode_string(event.physical_keycode)
 		accept_event()
