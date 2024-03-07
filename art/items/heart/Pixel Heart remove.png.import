@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd13jekp2gmx8"
-path="res://.godot/imported/player-red.png-13e4f64dc956eb74b19a6f10f7cd22c7.ctex"
+uid="uid://be5i4ehhywx15"
+path="res://.godot/imported/Pixel Heart remove.png-1967bac129e76101f1d5bc2b23658d4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/characters/player-red.png"
-dest_files=["res://.godot/imported/player-red.png-13e4f64dc956eb74b19a6f10f7cd22c7.ctex"]
+source_file="res://art/items/heart/Pixel Heart remove.png"
+dest_files=["res://.godot/imported/Pixel Heart remove.png-1967bac129e76101f1d5bc2b23658d4a.ctex"]
 
 [params]
 

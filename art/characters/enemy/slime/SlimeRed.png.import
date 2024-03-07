@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6ppnwyyd0sss"
-path="res://.godot/imported/Godot Engine S.jpeg-0fadfad5618b875905d49c034368a364.ctex"
+uid="uid://b05l3p0qw5k2o"
+path="res://.godot/imported/SlimeRed.png-dc69fc43a3974ea92040c1f7e75fd661.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Godot Engine S.jpeg"
-dest_files=["res://.godot/imported/Godot Engine S.jpeg-0fadfad5618b875905d49c034368a364.ctex"]
+source_file="res://art/characters/enemy/slime/SlimeRed.png"
+dest_files=["res://.godot/imported/SlimeRed.png-dc69fc43a3974ea92040c1f7e75fd661.ctex"]
 
 [params]
 
