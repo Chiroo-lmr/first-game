@@ -7,10 +7,10 @@ var Slime4
 func _ready():
 	$player.position = Global.playerLivePosition
 	spawnEnemies()
-	$WorldCamera.position = Vector2(272, 120)
 	$WorldCamera.zoom = Vector2(1.25, 1.25)
 	if Global.cameraPosition == Vector2(0, 0): $WorldCamera.position = Global.cameraPosition
-	if Global.cameraPosition == Vector2(480, 272): $WorldCamera.position = Global.cameraPosition
+	if Global.cameraPosition == Vector2(480, 180): $WorldCamera.position = Global.cameraPosition
+	if Global.cameraPosition == Vector2(272, 120): $WorldCamera.position = Global.cameraPosition
 	
 func _process(delta):
 	if Slime1 == null:
@@ -36,7 +36,6 @@ func _on_cliff_side_transition_point_body_entered(body):
 			Global.SlimeID[2][1] = Slime3.position
 		if Slime4  != null:
 			Global.SlimeID[3][1] = Slime4.position
-		$WorldCamera.position = Vector2(0, 0)
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/Maps/PrayingTree/PrayingTree.tscn")
 		Global.currentScene = "PrayingTree"
@@ -57,11 +56,10 @@ func _on_cliff_side_2_transition_point_body_entered(body):
 			Global.SlimeID[2][1] = Slime3.position
 		if Slime4  != null:
 			Global.SlimeID[3][1] = Slime4.position
-		$WorldCamera.position = Vector2(480, 272)
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/Maps/NPCBedroomBeginning/NPCBedroomBeginning.tscn")
 		Global.currentScene = "NPCBedroomBeginning"
-		Global.cameraPosition = Vector2(480, 272)
+		Global.cameraPosition = Vector2(480, 180)
 		
 	
 func _on_cliff_side_2_transition_point_body_exited(body):

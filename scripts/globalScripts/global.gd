@@ -55,7 +55,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack"):
 		playerCurrentAttack = true
 	else:
-		playerCurrentAttack = true
+		playerCurrentAttack = false
 	if enemiesKilled == 4:
 		allSlimesGone = true
 	if gameOver == true:
@@ -67,8 +67,6 @@ func _physics_process(delta):
 		gameOver = false
 		gamePause = false
 		gameLaunch = false
-	print(gameOver)
-	
 	
 func restartGame():
 	gameStart = true

@@ -6,34 +6,46 @@ var enemyAttackCooldown = true
 var movement = 0 # utilisé pour savoir si le player bouge
 var canAttack = true # utilisé pour ne pouvoir attaquer que une fois toute les secondes
 var isAttacking = false
-var pos_player = position
-var pos_slime = null
-var canKnockback = false
+var canBeKnockback = false
 var countForSound = 0 # j'ai trouvé que cette solution un peu bullshit jsp comment faire autrement
-var enemy 
+var enemy
+
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 	Global.player = self
+	$canAttackCooldown.start()
 
 func _physics_process(delta):
 	Global.playerLivePosition = position
-	if Global.gameStart == true and Global.gameOver == false:
+	if Global.gameStart == true:
 		player_movement(delta)
 		attackPressedAnim()
 		play_anim(movement)
 		playerRed()
 		ajustmentsHealth()
-		$regin.paused = false
-		if canKnockback == true and pos_slime:
-			if Global.enemyIsAttacking == true:
-				apply_knockback(pos_player, pos_slime)
-		if enemyAttackRange == true:
-			get_pos_slime(enemy)
+		checkAttackNPC()
+		checkIfAttacked()
 	if Global.gamePause == true:
-		$AnimatedSprite2D.stop()
+		gamePause()
+
+func gamePause():
+	if Global.currentDirection == "up":
+		$AnimatedSprite2D.play("back_idle")
+	elif Global.currentDirection == "down":
+		$AnimatedSprite2D.play("front_idle")
+	elif Global.currentDirection == "left":
+		$AnimatedSprite2D.flip_h = true
+		$AnimatedSprite2D.play("side_idle")
+	elif Global.currentDirection == "right":
+		$AnimatedSprite2D.flip_h = false
+		$AnimatedSprite2D.play("side_idle")
+	$walks.stop()
+	if Global.gamePause == true:
 		$regin.paused = true
-		
+	else:
+		$regin.paused = false
+
 func player_movement(delta):
 	if Global.TalkingWithNPC == false:
 		if Time.get_unix_time_from_system() > Global.not_red_at:
@@ -78,7 +90,6 @@ func player_movement(delta):
 func play_anim(mov):
 	var dir = Global.currentDirection
 	var anim = $AnimatedSprite2D
-	
 	if dir == "right" and Global.TalkingWithNPC == false:
 		anim.flip_h = false
 		if movement == 1:
@@ -119,10 +130,11 @@ func play_anim(mov):
 		countForSound-= 1
 	if Global.TalkingWithNPC == true:
 		$walks.stop()
-	
-func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
-	"""This function do the job for getting knockback after getting hit"""
 
+func apply_knockback(pos_slime, pos_player, distance=10, time=0.1):
+	"""This function do the job for getting knockback after getting hit"""
+	print(pos_slime)
+	print(pos_player)
 	
 	var xb = pos_player.x - pos_slime.x
 	var yb = pos_player.y - pos_slime.y
@@ -146,6 +158,9 @@ func apply_knockback(pos_slime, pos_player, distance=20, time=0.1):
 			self.position = new_coordinates
 	)
 
+func checkIfAttacked():
+	if Global.enemyIsAttacking and canBeKnockback:
+		apply_knockback(enemy.position, position)
 func playerRed():
 	if Time.get_unix_time_from_system ( ) < Global.not_red_at:
 		$AnimatedSprite2D.play("damage")
@@ -156,18 +171,13 @@ func player():
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		enemyAttackRange = true
-		canKnockback = true
+		canBeKnockback = true
 		enemy = body
-		
-func get_pos_slime(enemy):
-	pos_slime = enemy.position
-	pos_player = self.position
-		
 
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		enemyAttackRange = false
-		canKnockback = false
+		canBeKnockback = false
 	
 func attackPressedAnim():
 	if Input.is_action_pressed("attack") and canAttack == true and Global.gameStart == true and Global.TalkingWithNPC == false and movement == 0:
@@ -201,6 +211,7 @@ func attackPressedAnim():
 			$canAttackCooldown.start()
 			$isAttacking.start()
 		canAttack = false
+		Global.playerCanAttack = false
 	else:
 		Global.playerCurrentAttack = false
 
@@ -212,30 +223,35 @@ func _on_is_attacking_timeout():
 func ajustmentsHealth():
 	if Global.playerHealth > 100:
 		Global.playerHealth = 100
-	if Global.playerHealth < 0 :
+	if Global.playerHealth <= 0 :
 		Global.playerHealth = 0
 		thePlayerHasNoHealth()
 
 func thePlayerHasNoHealth():
-	if Global.playerHealth <= 0:
-		Global.playerHealth = 0
 		Global.gameOver = true
 		$AnimatedSprite2D.play("death")
-		await $AnimatedSprite2D.animation_finished
-		self.queue_free()
 
 func _on_can_attack_cooldown_timeout():
 	Global.playerCanAttack = true
 	canAttack = true
-	
-func reginTimerPaused():
-	if Global.gamePause == true:
-		$regin.paused = true
-	else:
-		$regin.paused = false
-
 
 func _on_timer_timeout():
 	if Global.TalkingWithNPC == false:
 		if Global.playerHealth < 100:
 			Global.playerHealth +=20
+			
+func checkAttackNPC():
+	if Global.TalkingWithNPC:
+		if Global.playerCanAttack == false:
+			$canAttackCooldown.paused = true
+			canAttack = Global.playerCanAttack
+	else:
+		$canAttackCooldown.paused = false
+
+
+
+
+
+
+
+

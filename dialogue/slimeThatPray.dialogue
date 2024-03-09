@@ -1,4 +1,5 @@
 ~ main
+set Global.playerCanAttack = false
 if Global.allSlimesGone and not Global.interacted_once:
 	Slime: Hello dear Warrior, I saw that you fought against the slimes !
 	- Hello, effectivel, I killed them all. 
@@ -8,6 +9,7 @@ if Global.allSlimesGone and not Global.interacted_once:
 		set Global.saidAllSlimesGones = true
 		set Global.interacted_once = true
 		set Global.TalkingWithNPC = false
+		set Global.playerCanAttack = false
 		=> END
 if Global.saidAllSlimesGones == false
 	if Global.interacted_once == true
@@ -20,40 +22,48 @@ if Global.saidAllSlimesGones == false
 				set Global.label = 0
 				set Global.saidAllSlimesGones = true
 				set Global.TalkingWithNPC = false
+				set Global.playerCanAttack = false
 				=> END 
 		elif Global.allSlimesGone == false:
 			Slime: Did you achieve to kill them ?
 			- No, I didn't yet...
 				Slime: No problem, I can wait
 				set Global.TalkingWithNPC = false
+				set Global.playerCanAttack = false
 				=> END
 	if Global.interacted_once == false
 		Slime: [[Hello !|Hello warrior !]]
 		- Goodbye
 			set Global.TalkingWithNPC = false
+			set Global.playerCanAttack = false
 			=> END 
 		- who are you ? 
 			Slime: [[I am a slime, I live here since i'm born|I am a slime, I live here|I am a slime, I like to pray the god Slime|I am a simple NPC from a video game, I have no way to escape from here]]
 			- goodbye 
 				set Global.TalkingWithNPC = false
+				set Global.playerCanAttack = false
 				=> END 
 			- What is wrong ? Why are you looking anxious ?
 				Slime: I'm really embarrased, I usually go to the other side of the path to pray the god of slime...
 				- I understand, but I am busy and I can't help you. 
 					Slime: It is sad, I can't go to the cliff due to bad slimes 
 					set Global.TalkingWithNPC = false
+					set Global.playerCanAttack = false
 				- And ?
 					Slime: Well, a lot of little slimes appeared at the middle of the path, they're terryfing ! I don't know how I could avoid them...
 					- I'm sorry, I can't fight for you
 						Slime: [[It isn't very nice, but goodbye.| Pleeease I really need your help]]
 						set Global.TalkingWithNPC = false
+						set Global.playerCanAttack = false
 					- I can kill them for you if you want !
 						Slime: Oh, really, if you can do that for me !
 						set Global.label = 1
 						set Global.interacted_once = true
 						set Global.TalkingWithNPC = false
+						set Global.playerCanAttack = false
 else:
 	Slime: thank you so much for killing all the slimes !
 	set Global.label = 0
 	set Global.TalkingWithNPC = false
+	set Global.playerCanAttack = false
 => END

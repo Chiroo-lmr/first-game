@@ -1,8 +1,11 @@
 extends CharacterBody2D
 var dialogue = preload("res://dialogue/slimeThatPray.dialogue")
 
-func _ready():
-	$AnimatedSprite2D.play("idle")
+func _process(delta):
+	if Global.saidAllSlimesGones == false:
+		$AnimatedSprite2D.play("idleStressed")
+	else:
+		$AnimatedSprite2D.play("idleDestressed")
 
 func NPC():
 	pass

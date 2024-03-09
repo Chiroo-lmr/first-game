@@ -8,31 +8,43 @@ var not_red_at = 0 # jsp ca marche pas mais c pour rendre le slime rouge
 var canAttack = true # si oui, le slime peut attaquer
 var canWalk = true
 var animWalks = false
-
+var isAlive = true
 
 func _physics_process(delta):
 	reginTimerPaused()
-	if Global.gameStart == true:
-		if Time.get_unix_time_from_system ( ) > not_red_at:
-			deal_with_damage()
-			playerChase()
-			updateHealth()
-			attack()
-			walk()
-			move_and_slide()
-		else:
-			$AnimatedSprite2D.play("damage")
+	move_and_slide()
+	if isAlive == true:
+		if Global.gameStart == true:
+			if Time.get_unix_time_from_system ( ) > not_red_at:
+				deal_with_damage()
+				playerChase()
+				updateHealth()
+				attack()
+				walk()
+				ajustmentsHealth()
+			else:
+				$AnimatedSprite2D.play("damage")
+		elif Global.gamePause:
+			$AnimatedSprite2D.play("idle")
 	else:
-		$AnimatedSprite2D.play("idle")
-
+		theSlimeHasNoHealth()
 
 func updateHealth():
 	var healthBar = $healthBar
 	healthBar.value = health
 	if health >= 100 :
 		healthBar.visible = false
-	else:
-		healthBar.visible = true	
+	elif health > 0:
+		healthBar.visible = true
+
+func ajustmentsHealth():
+	if health > 100:
+		health = 100
+	if health <= 0 :
+		health = 0
+		isAlive = false
+		theSlimeHasNoHealth()
+
 
 func _on_regin_timer_timeout():
 	if health < 100:
@@ -61,7 +73,7 @@ func _on_detection_area_body_exited(body):
 
 func playerChase():
 	var direction = Vector2.ZERO	
-	if player_chase :
+	if player_chase:
 		position += (player.position - position) / speed
 		
 		$AnimatedSprite2D.play("walk")
@@ -102,15 +114,13 @@ func deal_with_damage():
 			$canAttackCooldown.start()
 			apply_knockback() 
 			not_red_at = Time.get_unix_time_from_system ( ) + 0.3
-			if health <=0 :
-				queue_free()
 			$reginTimer.start()
 	
 func enemy():
 	pass
 		
 
-func apply_knockback(distance=20, time=0.1):
+func apply_knockback(distance=10, time=0.1):
 	var pos = self.position
 	var player_pos = get_parent().get_node("player").position
 	
@@ -149,3 +159,9 @@ func walk():
 
 func _on_wait_to_walk_timeout():
 	canWalk = true
+
+func theSlimeHasNoHealth():
+	$AnimatedSprite2D.play("death")
+	await $AnimatedSprite2D.animation_finished
+	self.queue_free()
+
