@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://oeniqgxtntxu"
+path="res://.godot/imported/slimeThatPray.dialogue-3f7784e6b62e381c6330664c3f292a4d.tres"
+
+[deps]
+
+source_file="res://dialogue/slimeThatPray.dialogue"
+dest_files=["res://.godot/imported/slimeThatPray.dialogue-3f7784e6b62e381c6330664c3f292a4d.tres"]
+
+[params]
+
+defaults=true
