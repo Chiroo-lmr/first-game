@@ -167,11 +167,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_65rwg"]
-radius = 47.0106
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7cqb"]
 radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_65rwg"]
+radius = 47.0106
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_swng2"]
 radius = 15.0
@@ -183,10 +183,12 @@ script = ExtResource("1_u7qum")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wwls0")
-animation = &"death"
-frame = 4
-frame_progress = 1.0
+animation = &"idle"
 offset = Vector2(2.08165e-12, -6)
+
+[node name="hitboxElements" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_i7cqb")
 
 [node name="detection_area" type="Area2D" parent="."]
 collision_layer = 4
@@ -195,10 +197,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 position = Vector2(2.08165e-12, -4)
 shape = SubResource("CircleShape2D_65rwg")
-
-[node name="hitboxElements" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_i7cqb")
 
 [node name="enemy_hitbox_combat" type="Area2D" parent="."]
 collision_layer = 4
@@ -209,7 +207,6 @@ position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_swng2")
 
 [node name="canAttackCooldown" type="Timer" parent="."]
-wait_time = 0.773
 
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 10.0

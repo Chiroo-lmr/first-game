@@ -1,7 +1,7 @@
 extends CharacterBody2D
 var player = null # le node player
 var health = 100 # la vie du slime
-var speed = 35 # vitesse "inversé"
+var speed = 8 # multiplicateur en gros 
 var player_chase = false # si oui, le slime va poursuivre le joueur`
 var AttackZone = false # si oui, le player est dans la zone de combat du slime
 var not_red_at = 0 # jsp ca marche pas mais c pour rendre le slime rouge
@@ -24,8 +24,12 @@ func _physics_process(delta):
 				ajustmentsHealth()
 			else:
 				$AnimatedSprite2D.play("damage")
-		elif Global.gamePause:
+		elif Global.gamePause == true:
 			$AnimatedSprite2D.play("idle")
+			velocity = Vector2(0, 0)
+		elif Global.gameOver == true:
+			$AnimatedSprite2D.play("idle")
+			velocity = Vector2(0, 0)
 	else:
 		theSlimeHasNoHealth()
 
@@ -72,9 +76,8 @@ func _on_detection_area_body_exited(body):
 		player_chase = false
 
 func playerChase():
-	var direction = Vector2.ZERO	
 	if player_chase:
-		position += (player.position - position) / speed
+		velocity = (player.position - position) * speed
 		
 		$AnimatedSprite2D.play("walk")
 		if (player.position.x - position.x) < 0 :
@@ -96,7 +99,7 @@ func _on_enemy_hitbox_combat_body_exited(body):
 		AttackZone = false
 
 func attack():
-	if AttackZone == true and canAttack == true and Global.gameStart == true:
+	if AttackZone == true and canAttack == true and Global.gameStart == true and isAlive == true:
 		Global.playerHealth -= randi_range(7, 13)
 		Global.enemyIsAttacking = true
 		canAttack = false
@@ -161,6 +164,9 @@ func _on_wait_to_walk_timeout():
 	canWalk = true
 
 func theSlimeHasNoHealth():
+	$hitboxElements.disabled = true
+	$healthBar.visible = false
+	velocity = Vector2(0, 0)
 	$AnimatedSprite2D.play("death")
 	await $AnimatedSprite2D.animation_finished
 	self.queue_free()

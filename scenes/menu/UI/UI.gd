@@ -11,7 +11,7 @@ func _process(delta):
 		Global.gameTab = false
 	if Global.label == 1:
 		labelScore.visible = true
-		labelScore.text = "Enemis tués : " + str(Global.enemiesKilled)
+		labelScore.text = "Killed enemies : " + str(Global.enemiesKilled)
 	else:
 		labelScore.visible = false
 	

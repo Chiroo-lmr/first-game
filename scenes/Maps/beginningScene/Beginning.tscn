@@ -35,7 +35,7 @@ position = Vector2(272, 120)
 collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bord"]
-polygon = PackedVector2Array(-5.20412e-13, 48, -5.20412e-13, 272, 480, 272, 480, 204, 496, 204, 496, 148, 480, 148, 480, -5.20412e-13, 42, -5.20412e-13, 42, -16, -16, -16, -16, 48, -32, 48, -32, -30, 510, -30, 510, 288, -26, 290, -32, 48)
+polygon = PackedVector2Array(42, -5.20412e-13, 216, -5.20412e-13, 216, 16, 232, 16, 232, 32, 328, 32, 328, 64, 480, 64, 480, 148, 496, 148, 496, 204, 480, 204, 480, 272, 72, 272, 72, 184, -5.20412e-13, 184, -5.20412e-13, 48, -16, 48, -16, -16, 42, -16, 42, -32, -48, -34, -54, 326, 562, 314, 542, -42, 42, -16)
 
 [node name="cliffSideTransitionPoint" type="Area2D" parent="."]
 collision_mask = 10
