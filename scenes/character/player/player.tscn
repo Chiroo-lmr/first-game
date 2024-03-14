@@ -1,10 +1,14 @@
-[gd_scene load_steps=62 format=3 uid="uid://cci24oag33sfq"]
+[gd_scene load_steps=63 format=3 uid="uid://cci24oag33sfq"]
 
 [ext_resource type="Script" path="res://scenes/character/player/player.gd" id="1_xovnq"]
 [ext_resource type="Texture2D" uid="uid://dc3ca7sfhhb2u" path="res://art/characters/player/player.png" id="2_jqegg"]
 [ext_resource type="Texture2D" uid="uid://dd13jekp2gmx8" path="res://art/characters/player/player-red.png" id="3_fpk7m"]
 [ext_resource type="AudioStream" uid="uid://cy1pnyqesqf1i" path="res://art/sounds/player/walks/walks.mp3" id="4_baqcv"]
 [ext_resource type="AudioStream" uid="uid://cm8holbgmylu0" path="res://art/sounds/player/attack/sword/Sword whoosh 1.mp3" id="5_6f4me"]
+
+[sub_resource type="Curve" id="Curve_0ltnu"]
+_data = [Vector2(0.0182292, 1), 0.0, 0.0, 0, 0, Vector2(0.739583, 0.847634), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13ob5"]
 atlas = ExtResource("2_jqegg")
@@ -448,14 +452,26 @@ collision_mask = 13
 safe_margin = 0.001
 script = ExtResource("1_xovnq")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 2)
+amount = 4
+lifetime = 0.4
+explosiveness = 0.15
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 3)
+gravity = Vector2(-150, 2.08165e-12)
+scale_amount_curve = SubResource("Curve_0ltnu")
+color = Color(0.388235, 0.203922, 0.0431373, 1)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-13, -2)
+position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_wbgwg")
-animation = &"death"
+animation = &"front_idle"
 offset = Vector2(2.08165e-12, -15)
 
 [node name="hitboxWithElement" type="CollisionShape2D" parent="."]
-position = Vector2(-12, -5)
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_fuqn8")
 
 [node name="attack_hitbox" type="Area2D" parent="."]
@@ -463,7 +479,7 @@ collision_layer = 2
 collision_mask = 13
 
 [node name="playerhitbox" type="CollisionShape2D" parent="attack_hitbox"]
-position = Vector2(-12, -5)
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_nwsnt")
 
 [node name="canAttackCooldown" type="Timer" parent="."]
@@ -479,13 +495,13 @@ autostart = true
 wait_time = 0.1
 
 [node name="walks" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-12, -5)
+position = Vector2(0, 2)
 stream = ExtResource("4_baqcv")
 volume_db = -15.0
 bus = &"Sfx"
 
 [node name="attack" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-12, -5)
+position = Vector2(0, 2)
 stream = ExtResource("5_6f4me")
 bus = &"Sfx"
 

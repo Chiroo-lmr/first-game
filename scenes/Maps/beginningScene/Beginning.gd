@@ -8,8 +8,8 @@ func _ready():
 	$player.position = Global.playerLivePosition
 	spawnEnemies()
 	$WorldCamera.zoom = Vector2(1.25, 1.25)
-	if Global.cameraPosition == Vector2(0, 0): $WorldCamera.position = Global.cameraPosition
-	if Global.cameraPosition == Vector2(480, 180): $WorldCamera.position = Global.cameraPosition
+	if Global.cameraPosition == Vector2(8, 16): $WorldCamera.position = Global.cameraPosition
+	if Global.cameraPosition == Vector2(472, 176): $WorldCamera.position = Global.cameraPosition
 	if Global.cameraPosition == Vector2(272, 120): $WorldCamera.position = Global.cameraPosition
 	
 func _process(delta):
@@ -39,7 +39,7 @@ func _on_cliff_side_transition_point_body_entered(body):
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/Maps/PrayingTree/PrayingTree.tscn")
 		Global.currentScene = "PrayingTree"
-		Global.cameraPosition = Vector2(0, 0)
+		Global.cameraPosition = Vector2(8, 16)
 
 
 func _on_cliff_side_transition_point_body_exited(body):
@@ -59,7 +59,7 @@ func _on_cliff_side_2_transition_point_body_entered(body):
 		Global.transitionScene = true
 		get_tree().change_scene_to_file("res://scenes/Maps/NPCBedroomBeginning/NPCBedroomBeginning.tscn")
 		Global.currentScene = "NPCBedroomBeginning"
-		Global.cameraPosition = Vector2(480, 180)
+		Global.cameraPosition = Vector2(472, 176)
 		
 	
 func _on_cliff_side_2_transition_point_body_exited(body):

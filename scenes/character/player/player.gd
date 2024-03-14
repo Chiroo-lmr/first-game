@@ -18,8 +18,13 @@ func _ready():
 
 func _physics_process(delta):
 	Global.playerLivePosition = position
+	if Global.gamePause == true:
+		$CPUParticles2D.emitting = false
+	elif Global.gameOver == true:
+		$CPUParticles2D.emitting = false
+	if Global.TalkingWithNPC == true:
+		$CPUParticles2D.emitting = false
 	if Global.gameStart == true:
-		print(velocity)
 		player_movement(delta)
 		attackPressedAnim()
 		play_anim(movement)
@@ -97,6 +102,7 @@ func play_anim(mov):
 			anim.play("side_attack")
 		elif movement == 1 and isAttacking == false:
 			anim.play("side_walk")
+			$CPUParticles2D.gravity = Vector2(-150, 0)
 		elif movement == 0 and isAttacking == false:
 			anim.play("side_idle")
 	if dir == "left" and Global.TalkingWithNPC == false:
@@ -105,6 +111,7 @@ func play_anim(mov):
 			anim.play("side_attack")
 		elif movement == 1 and isAttacking == false:
 			anim.play("side_walk")
+			$CPUParticles2D.gravity = Vector2(150, 0)
 		elif movement == 0 and isAttacking == false:
 			anim.play("side_idle")
 	if dir == "down" and Global.TalkingWithNPC == false:
@@ -112,12 +119,14 @@ func play_anim(mov):
 			anim.play("front_attack")
 		if movement == 1 and isAttacking == false:
 			anim.play("front_walk")
+			$CPUParticles2D.gravity = Vector2(0, -150)
 		elif movement == 0 and isAttacking == false:
 			anim.play("front_idle")
 	if dir == "up" and Global.TalkingWithNPC == false:
 		if movement == 1 and isAttacking == true:
 			anim.play("back_attack")
 		if movement == 1 and isAttacking == false:
+			$CPUParticles2D.gravity = Vector2(0, 150)
 			anim.play("back_walk")
 		elif movement == 0 and isAttacking == false:
 			anim.play("back_idle")
@@ -139,26 +148,32 @@ func play_anim(mov):
 		countForSound-= 1
 	if Global.TalkingWithNPC == true:
 		$walks.stop()
+	if movement == 1 and Global.TalkingWithNPC == false:
+		$CPUParticles2D.emitting = true
+	elif movement == 0:
+		$CPUParticles2D.emitting = false
 
 func apply_knockback(distance=20, time=0.1):
 	"""This function do the job for getting knockback after getting hit"""
 
+	var pos_player = position
+	var pos_enemy = enemy.position
 	
-	var xb = position.x - enemy.position.x
-	var yb = position.y - enemy.position.y
+	var xb = pos_player.x - pos_enemy.x
+	var yb = pos_player.y - pos_enemy.y
 	
 	var X = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * xb
 	var Y = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * yb
 	
 	var relative_new_coordinates = Vector2(X, Y)
-	var new_coordinates = position+relative_new_coordinates
+	var new_coordinates = pos_player + relative_new_coordinates
 	
 	var collision = move_and_collide(relative_new_coordinates) # is null when nothing hit, else it is KinematicCollision2D
-
+	print(collision)
 	if collision: # check if there is no collision
 		new_coordinates = self.position # get the stop position
 			
-	self.position = position # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
+	self.position = pos_player # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
 	var tween = create_tween()
 	tween.tween_property(self,"position",new_coordinates,time)
 	tween.tween_callback(
