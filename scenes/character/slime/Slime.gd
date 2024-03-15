@@ -12,6 +12,7 @@ var isAlive = true
 
 func _physics_process(delta):
 	reginTimerPaused()
+	handleParticles()
 	move_and_slide()
 	if isAlive == true:
 		if Global.gameStart == true:
@@ -26,13 +27,30 @@ func _physics_process(delta):
 				$AnimatedSprite2D.play("damage")
 		elif Global.gamePause == true:
 			$AnimatedSprite2D.play("idle")
+			$CPUParticles2D.emitting = false
 			velocity = Vector2(0, 0)
 		elif Global.gameOver == true:
 			$AnimatedSprite2D.play("idle")
+			$CPUParticles2D.emitting = false
 			velocity = Vector2(0, 0)
 	else:
 		theSlimeHasNoHealth()
 
+func handleParticles():
+	if $AnimatedSprite2D.animation == "idle":
+		$CPUParticles2D.emitting = true
+		if velocity.x > 0:
+			$CPUParticles2D.gravity.x = -150
+		if velocity.x < 0:
+			$CPUParticles2D.gravity.x = 150
+		if velocity.y > 0:
+			$CPUParticles2D.gravity.y = -150
+		if velocity.y < 0:
+			$CPUParticles2D.gravity.y = 150
+	if velocity == Vector2(0, 0):
+		$CPUParticles2D.emitting = false
+		
+		
 func updateHealth():
 	var healthBar = $healthBar
 	healthBar.value = health
@@ -78,7 +96,7 @@ func _on_detection_area_body_exited(body):
 func playerChase():
 	if player_chase:
 		velocity = (player.position - position) * speed
-		
+		$CPUParticles2D.emitting = false
 		$AnimatedSprite2D.play("walk")
 		if (player.position.x - position.x) < 0 :
 			$AnimatedSprite2D.flip_h = true
@@ -87,6 +105,7 @@ func playerChase():
 		move_and_collide(Vector2(0,0))
 	else:
 		$AnimatedSprite2D.play("idle")
+		$CPUParticles2D.emitting = true
 		
 
 # detecte si le joueur est dans la collision de combat du slime
