@@ -7,8 +7,7 @@ extends Control
 var creditsOpened = false
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/Maps/beginningScene/Beginning.tscn")
-	Global.gameStart = true
-	Global.gameLaunch = false
+	Global.gameStatus = "Start"
 
 func _on_options_pressed():
 	$Options_menu.visible = true

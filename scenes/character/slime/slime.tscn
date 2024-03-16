@@ -1,24 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://cq5fo8lp2wpc0"]
+[gd_scene load_steps=23 format=3 uid="uid://cq5fo8lp2wpc0"]
 
 [ext_resource type="Script" path="res://scenes/character/slime/Slime.gd" id="1_u7qum"]
-[ext_resource type="Texture2D" uid="uid://b05l3p0qw5k2o" path="res://art/characters/enemy/slime/SlimeRed.png" id="2_xk43m"]
 [ext_resource type="Texture2D" uid="uid://dj1g41scwq7bv" path="res://art/characters/enemy/slime/slime.png" id="3_7vvvg"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ic8ri"]
-atlas = ExtResource("2_xk43m")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uimr6"]
-atlas = ExtResource("2_xk43m")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qr6m5"]
-atlas = ExtResource("2_xk43m")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vrqgw"]
-atlas = ExtResource("2_xk43m")
-region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xfl6l"]
 atlas = ExtResource("3_7vvvg")
@@ -86,23 +69,6 @@ region = Rect2(192, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wwls0"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ic8ri")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uimr6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qr6m5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vrqgw")
-}],
-"loop": true,
-"name": &"damage",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xfl6l")
@@ -183,7 +149,7 @@ script = ExtResource("1_u7qum")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wwls0")
-animation = &"idle"
+animation = &"death"
 offset = Vector2(2.08165e-12, -6)
 
 [node name="hitboxElements" type="CollisionShape2D" parent="."]
@@ -207,6 +173,9 @@ position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_swng2")
 
 [node name="canAttackCooldown" type="Timer" parent="."]
+
+[node name="enemyIsAttackingTime" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="reginTimer" type="Timer" parent="."]
 wait_time = 10.0

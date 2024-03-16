@@ -31,59 +31,40 @@ var label = 0
 @onready var restartButton
 @onready var depauseButton
 
-var gameLaunch = true
-var gameOver = false
-var gameStart = false
-var gamePause = false
+var gameStatus = "Launch"
 var gameTab = false
 var checkIfRestartFinish = false
+var ButtonsGameOver = false
 
-func _ready():
-	pass
-	
 func addSlime(Slime_id):
 	SlimeID.append(Slime_id)
 
 func addKilledEnemies(enemy_id):
 	killed_enemies.append(enemy_id)
 	enemiesKilled += 1
-	
+
 func getSlimePosition(currentPosition):
 	SlimeID.append(currentPosition)
-	
+
 func _physics_process(delta):
-	if Input.is_action_just_pressed("attack"):
-		playerCurrentAttack = true
-	else:
-		playerCurrentAttack = false
+	print(enemyIsAttacking)
 	if enemiesKilled == 4:
 		allSlimesGone = true
-	if gameOver == true:
-		gameStart = false
-		gamePause = false
-		gameLaunch = false
-		gameTab = false
-	if gameStart == true:
-		gameOver = false
-		gamePause = false
-		gameLaunch = false
 	
 func restartGame():
-	gameStart = true
-	gamePause = false
-	gameOver = false
+	gameStatus = "Start"
 	killed_enemies = [] 
 	enemiesKilled = 0
 	SlimeID = [[0, Vector2(randi_range(200, 220), randi_range(40, 60))], [0, Vector2(randi_range(430, 470), randi_range(90, 110))], [0, Vector2(randi_range(40, 70), randi_range(100, 140))], [0, Vector2(randi_range(140, 170), randi_range(180, 210))]]
 	allSlimesGone = false
-	playerHealth = 100
-	playerLivePosition = Vector2(272, 120)
-	allSlimesGone = false
 	saidAllSlimesGones = false
 	interacted_once = false
 	TalkingWithNPC = false
+	playerHealth = 100
+	playerLivePosition = Vector2(272, 120)
 	label = 0
 	cameraPosition = Vector2(272, 120)
+	ButtonsGameOver = false
 	get_tree().reload_current_scene()
 	checkIfRestartFinish = true
 
@@ -91,6 +72,5 @@ func menuButton():
 	restartGame()
 	if checkIfRestartFinish == true:
 		get_tree().change_scene_to_file("res://scenes/menu/Main_menu/main_menu.tscn")
-	Global.gameLaunch = true
-	Global.gameStart = false
+	gameStatus = "Launch"
 	

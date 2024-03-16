@@ -1,10 +1,10 @@
 extends CanvasLayer
 
 func _process(delta):
-	if Global.gameLaunch == true:
+	if Global.gameStatus == "Launch":
 		%Main_menuButton.visible = true
 		%backToGameButton.visible = false
-	elif Global.gamePause == true:
+	elif Global.gameStatus == "Pause":
 		%Main_menuButton.visible = false
 		%backToGameButton.visible = true
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://jle8vp6khpyf"]
+[gd_scene load_steps=10 format=3 uid="uid://jle8vp6khpyf"]
 
 [ext_resource type="Script" path="res://scenes/Maps/beginningScene/Beginning.gd" id="1_owmpw"]
 [ext_resource type="TileSet" uid="uid://cetdbn0e3eqft" path="res://tres/Beginning.tres" id="2_s0g1d"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bqujmg635fbuw" path="res://scenes/menu/GameOver_menu/game_over_menu.tscn" id="5_wc8f1"]
 [ext_resource type="PackedScene" uid="uid://7ew5ehj0byw4" path="res://scenes/menu/UI/UI.tscn" id="6_7g7d1"]
 [ext_resource type="PackedScene" uid="uid://c8e6a6xcxrm46" path="res://scenes/menu/Options_menu/options_menu.tscn" id="7_luxda"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sl8to"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -66,6 +68,13 @@ limit_top = 0
 limit_right = 1920
 limit_bottom = 1080
 script = ExtResource("5_o3vnr")
+
+[node name="bgBlack" type="NinePatchRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+z_index = 1
+offset_right = 480.0
+offset_bottom = 272.0
+texture = SubResource("ViewportTexture_sl8to")
 
 [connection signal="body_entered" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_exited"]

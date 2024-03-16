@@ -5,18 +5,24 @@ extends CanvasLayer
 	
 func _process(delta):
 	updateHealth()
-	if Input.is_action_pressed("information") and Global.gameStart == true:
+	npcLabelEnemies()
+	if Input.is_action_pressed("information") and Global.gameStatus == "Start":
 		game_tab()
 	else:
 		Global.gameTab = false
+	if Global.gameStatus == "Over":
+		HealthBar.visible = false
+	
+
+func npcLabelEnemies():
 	if Global.label == 1:
 		labelScore.visible = true
 		labelScore.text = "Killed enemies : " + str(Global.enemiesKilled)
 	else:
 		labelScore.visible = false
-	
+
 func game_tab():
-	Global.gameStart = true
+	Global.gameStatus = "Start"
 	Global.gameTab = true
 
 func updateHealth():

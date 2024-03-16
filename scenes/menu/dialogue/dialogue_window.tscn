@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://c522ibfqrgs0i"]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="1_pa7bg"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="2_lbj0w"]
+
+[node name="dialogue_window" type="CanvasLayer"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.14349
+anchor_top = 0.775926
+anchor_right = 0.85651
+anchor_bottom = 1.0
+offset_right = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="DialogueLabel" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_pa7bg")
+skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="DialogueResponsesMenu" type="VBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_lbj0w")

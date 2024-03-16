@@ -18,16 +18,14 @@ func _ready():
 
 func _physics_process(delta):
 	Global.playerLivePosition = position
-	if Global.gameStart == true:
-		print(velocity)
+	if Global.gameStatus == "Start":
 		player_movement(delta)
 		attackPressedAnim()
 		play_anim(movement)
-		playerRed()
 		ajustmentsHealth()
 		checkAttackNPC()
 		checkIfAttacked()
-	if Global.gamePause == true:
+	if Global.gameStatus == "Pause":
 		gamePause()
 
 func gamePause():
@@ -42,123 +40,124 @@ func gamePause():
 		$AnimatedSprite2D.flip_h = false
 		$AnimatedSprite2D.play("side_idle")
 	$walks.stop()
-	if Global.gamePause == true:
+	if Global.gameStatus == "Pause":
 		$regin.paused = true
 	else:
 		$regin.paused = false
 
 func player_movement(delta):
 	if Global.TalkingWithNPC == false:
-		if Time.get_unix_time_from_system() > Global.not_red_at:
-			var dirx = Input.get_axis("ui_left", "ui_right")
-			var diry = Input.get_axis("ui_up", "ui_down")
-			if !dirx == 0 and !diry == 0:
+		var dirx = Input.get_axis("ui_left", "ui_right")
+		var diry = Input.get_axis("ui_up", "ui_down")
+		if !dirx == 0 and !diry == 0:
+			movement = 1
+			play_anim(1)
+			velocity = Vector2(dirx * speed / 1.4, diry * speed / 1.4)
+		else:
+			if diry == -1:
+				Global.currentDirection = "up"
 				movement = 1
 				play_anim(1)
-				velocity = Vector2(dirx * speed / 1.4, diry * speed / 1.4)
-			else:
-				if diry == -1:
-					Global.currentDirection = "up"
-					movement = 1
-					play_anim(1)
-					velocity.y = diry * speed
-					velocity.x = 0
-				if diry == 1:
-					Global.currentDirection = "down"
-					movement = 1
-					play_anim(1)
-					velocity.y = diry * speed
-					velocity.x = 0
-				if dirx == -1:
-					Global.currentDirection = "left"
-					movement = 1
-					play_anim(1)
-					velocity.x = dirx * speed
-					velocity.y = 0
-				if dirx == 1:
-					Global.currentDirection = "right"
-					movement = 1
-					play_anim(1)
-					velocity.x = dirx * speed
-					velocity.y = 0
-			if dirx == 0 and diry == 0:
-				movement = 0
-				play_anim(0)
+				velocity.y = diry * speed
 				velocity.x = 0
+			if diry == 1:
+				Global.currentDirection = "down"
+				movement = 1
+				play_anim(1)
+				velocity.y = diry * speed
+				velocity.x = 0
+			if dirx == -1:
+				Global.currentDirection = "left"
+				movement = 1
+				play_anim(1)
+				velocity.x = dirx * speed
 				velocity.y = 0
-			move_and_slide()
+			if dirx == 1:
+				Global.currentDirection = "right"
+				movement = 1
+				play_anim(1)
+				velocity.x = dirx * speed
+				velocity.y = 0
+		if dirx == 0 and diry == 0:
+			movement = 0
+			play_anim(0)
+			velocity.x = 0
+			velocity.y = 0
+		move_and_slide()
 	
 func play_anim(mov):
-	var dir = Global.currentDirection
-	var anim = $AnimatedSprite2D
-	if dir == "right" and Global.TalkingWithNPC == false:
-		anim.flip_h = false
-		if movement == 1 and isAttacking == true:
-			anim.play("side_attack")
-		elif movement == 1 and isAttacking == false:
-			anim.play("side_walk")
-		elif movement == 0 and isAttacking == false:
-			anim.play("side_idle")
-	if dir == "left" and Global.TalkingWithNPC == false:
-		anim.flip_h = true
-		if movement == 1 and isAttacking == true:
-			anim.play("side_attack")
-		elif movement == 1 and isAttacking == false:
-			anim.play("side_walk")
-		elif movement == 0 and isAttacking == false:
-			anim.play("side_idle")
-	if dir == "down" and Global.TalkingWithNPC == false:
-		if movement == 1 and isAttacking == true:
-			anim.play("front_attack")
-		if movement == 1 and isAttacking == false:
-			anim.play("front_walk")
-		elif movement == 0 and isAttacking == false:
-			anim.play("front_idle")
-	if dir == "up" and Global.TalkingWithNPC == false:
-		if movement == 1 and isAttacking == true:
-			anim.play("back_attack")
-		if movement == 1 and isAttacking == false:
-			anim.play("back_walk")
-		elif movement == 0 and isAttacking == false:
-			anim.play("back_idle")
-	if Global.TalkingWithNPC == true:
-		if dir == "right": anim.play("side_idle")
-		elif dir == "left": 
+	if Global.gameStatus == "Start":
+		var dir = Global.currentDirection
+		var anim = $AnimatedSprite2D
+		if dir == "right" and Global.TalkingWithNPC == false:
+			anim.flip_h = false
+			if movement == 1 and isAttacking == true:
+				anim.play("side_attack")
+			elif movement == 1 and isAttacking == false:
+				anim.play("side_walk")
+			elif movement == 0 and isAttacking == false:
+				anim.play("side_idle")
+		if dir == "left" and Global.TalkingWithNPC == false:
 			anim.flip_h = true
-			anim.play("side_idle")
-		elif dir == "up": anim.play("back_idle")
-		elif dir == "down": anim.play("front_idle")
-	if dir == "none":
-		if isAttacking == false:
-			anim.play("front_idle")
-	if movement == 1 and countForSound == 0:
-		$walks.play()
-		countForSound += 1
-	if movement == 0 and countForSound == 1:
-		$walks.stop()
-		countForSound-= 1
-	if Global.TalkingWithNPC == true:
-		$walks.stop()
+			if movement == 1 and isAttacking == true:
+				anim.play("side_attack")
+			elif movement == 1 and isAttacking == false:
+				anim.play("side_walk")
+			elif movement == 0 and isAttacking == false:
+				anim.play("side_idle")
+		if dir == "down" and Global.TalkingWithNPC == false:
+			if movement == 1 and isAttacking == true:
+				anim.play("front_attack")
+			if movement == 1 and isAttacking == false:
+				anim.play("front_walk")
+			elif movement == 0 and isAttacking == false:
+				anim.play("front_idle")
+		if dir == "up" and Global.TalkingWithNPC == false:
+			if movement == 1 and isAttacking == true:
+				anim.play("back_attack")
+			if movement == 1 and isAttacking == false:
+				anim.play("back_walk")
+			elif movement == 0 and isAttacking == false:
+				anim.play("back_idle")
+		if Global.TalkingWithNPC == true:
+			if dir == "right": anim.play("side_idle")
+			elif dir == "left": 
+				anim.flip_h = true
+				anim.play("side_idle")
+			elif dir == "up": anim.play("back_idle")
+			elif dir == "down": anim.play("front_idle")
+		if dir == "none":
+			if isAttacking == false:
+				anim.play("front_idle")
+		if movement == 1 and countForSound == 0:
+			$walks.play()
+			countForSound += 1
+		if movement == 0 and countForSound == 1:
+			$walks.stop()
+			countForSound-= 1
+		if Global.TalkingWithNPC == true:
+			$walks.stop()
 
 func apply_knockback(distance=20, time=0.1):
 	"""This function do the job for getting knockback after getting hit"""
-
+	var pos_player = position
+	var pos_slime = enemy.position
 	
-	var xb = position.x - enemy.position.x
-	var yb = position.y - enemy.position.y
+	var xb = pos_player.x - pos_slime.x
+	var yb = pos_player.y - pos_slime.y
 	
 	var X = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * xb
 	var Y = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * yb
 	
 	var relative_new_coordinates = Vector2(X, Y)
-	var new_coordinates = position+relative_new_coordinates
+	var new_coordinates = pos_player+relative_new_coordinates
 	
 	var collision = move_and_collide(relative_new_coordinates) # is null when nothing hit, else it is KinematicCollision2D
 
-	if collision: # check if there is no collision
-		new_coordinates = self.position # get the stop position
+	if collision: # check if there is collision
+		new_coordinates = position # get the stop position
 			
-	self.position = position # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
+	self.position = pos_player # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
 	var tween = create_tween()
 	tween.tween_property(self,"position",new_coordinates,time)
 	tween.tween_callback(
@@ -167,12 +166,12 @@ func apply_knockback(distance=20, time=0.1):
 	)
 
 func checkIfAttacked():
-	if Global.enemyIsAttacking and canBeKnockback:
+	if Global.enemyIsAttacking == true and canBeKnockback and Global.gameStatus == "Start" and canBeRed == true:
 		apply_knockback()
-
-func playerRed():
-	if Time.get_unix_time_from_system ( ) < Global.not_red_at and canBeRed == true:
-		$AnimatedSprite2D.play("damage")
+		$AnimatedSprite2D.modulate = Color(1, 0, 0)
+		var tweenModulate = get_tree().create_tween()
+		tweenModulate.tween_property($AnimatedSprite2D, "modulate", Color(1, 1, 1), 0.5)
+		play_anim(movement)
 
 func player():
 	pass
@@ -189,13 +188,12 @@ func _on_player_hitbox_body_exited(body):
 		canBeKnockback = false
 	
 func attackPressedAnim():
-	if Input.is_action_pressed("attack") and canAttack == true and Global.gameStart == true and Global.TalkingWithNPC == false:
+	if Input.is_action_pressed("attack") and canAttack == true and Global.gameStatus == "Start" and Global.TalkingWithNPC == false:
 		var dir = Global.currentDirection
 		var anim = $AnimatedSprite2D
 		isAttacking = true
 		canBeRed = false
 		Global.playerCurrentAttack = true
-		Global.playerCanAttack = false
 		$timeBeforeSoundAttack.start()
 		$attack.play()
 		velocity = Vector2(0, 0)
@@ -240,9 +238,20 @@ func ajustmentsHealth():
 		thePlayerHasNoHealth()
 
 func thePlayerHasNoHealth():
-		Global.gameOver = true
-		$AnimatedSprite2D.play("death")
-		$walks.stop()
+	Global.gameStatus = "Over"
+	$walks.stop()
+	gamePause() # economiser du code je suis un rat oui
+	var camera = get_parent().get_node("WorldCamera")
+	var tweenZoom = get_tree().create_tween()
+	tweenZoom.tween_property(camera, "zoom", Vector2(4, 4), 2).as_relative().set_trans(Tween.TRANS_SINE)
+	await tweenZoom.finished
+	z_index = 2
+	$AnimatedSprite2D.play("death")
+	var BGBlack = get_parent().get_node("bgBlack")
+	var tweenBGBlack = get_tree().create_tween()
+	tweenBGBlack.tween_property(BGBlack, "modulate:a", 1, 2)
+	await tweenBGBlack.finished
+	Global.ButtonsGameOver = true
 
 func _on_can_attack_cooldown_timeout():
 	Global.playerCanAttack = true

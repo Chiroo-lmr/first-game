@@ -14,20 +14,17 @@ func _physics_process(delta):
 	reginTimerPaused()
 	move_and_slide()
 	if isAlive == true:
-		if Global.gameStart == true:
-			if Time.get_unix_time_from_system ( ) > not_red_at:
+		if Global.gameStatus == "Start":
 				deal_with_damage()
 				playerChase()
 				updateHealth()
 				attack()
 				walk()
 				ajustmentsHealth()
-			else:
-				$AnimatedSprite2D.play("damage")
-		elif Global.gamePause == true:
+		elif Global.gameStatus == "Pause":
 			$AnimatedSprite2D.play("idle")
 			velocity = Vector2(0, 0)
-		elif Global.gameOver == true:
+		elif Global.gameStatus == "Over":
 			$AnimatedSprite2D.play("idle")
 			velocity = Vector2(0, 0)
 	else:
@@ -49,7 +46,6 @@ func ajustmentsHealth():
 		isAlive = false
 		theSlimeHasNoHealth()
 
-
 func _on_regin_timer_timeout():
 	if health < 100:
 		health +=20
@@ -59,7 +55,7 @@ func _on_regin_timer_timeout():
 		health = 0
 
 func reginTimerPaused():
-	if Global.gamePause == true:
+	if Global.gameStatus == "Pause":
 		$reginTimer.paused = true
 	else:
 		$reginTimer.paused = false
@@ -99,24 +95,27 @@ func _on_enemy_hitbox_combat_body_exited(body):
 		AttackZone = false
 
 func attack():
-	if AttackZone == true and canAttack == true and Global.gameStart == true and isAlive == true:
+	if AttackZone == true and canAttack == true and Global.gameStatus == "Start" and isAlive == true:
 		Global.playerHealth -= randi_range(7, 13)
 		Global.enemyIsAttacking = true
 		canAttack = false
-		Global.not_red_at = Time.get_unix_time_from_system() + 0.5
 		$canAttackCooldown.start()
-	else:Global.enemyIsAttacking = false
+		$enemyIsAttackingTime.start()
+		await $enemyIsAttackingTime.timeout
+		Global.enemyIsAttacking = false
 		
 func _on_can_attack_cooldown_timeout():
+	Global.enemyIsAttacking = false
 	canAttack = true
-	Global.enemyIsAttacking = true
 
 func deal_with_damage():
 	if Global.playerCurrentAttack == true and AttackZone == true:
 			health -= randi_range(15, 20)
 			$canAttackCooldown.start()
 			apply_knockback() 
-			not_red_at = Time.get_unix_time_from_system ( ) + 0.3
+			$AnimatedSprite2D.modulate = Color(1, 0, 0)
+			var tweenModulate = get_tree().create_tween()
+			tweenModulate.tween_property($AnimatedSprite2D, "modulate", Color(1, 1, 1), 0.5)
 			$reginTimer.start()
 	
 func enemy():

@@ -8,8 +8,7 @@ func _process(delta):
 		gamePause()
 
 func _on_depause_pressed():
-	Global.gameStart = true
-	Global.gamePause = false
+	Global.gameStatus = "Start"
 	allButtons.visible = false
 
 func _on_options_pressed():
@@ -23,13 +22,10 @@ func _on_menu_button_pressed():
 	Global.menuButton()
 
 func gamePause():
-	if Global.gameOver == false and Global.gameLaunch == false:
-		if Global.gameStart == true:
-			Global.gameStart = false
-			Global.gamePause = true
-			Global.gameTab = false
+	if Global.gameStatus != "Over" and Global.gameStatus != "Launch":
+		if Global.gameStatus == "Start":
+			Global.gameStatus = "Pause"
 			allButtons.visible = true
 		else:
-			Global.gameStart = true
-			Global.gamePause = false
+			Global.gameStatus = "Start"
 			allButtons.visible = false
