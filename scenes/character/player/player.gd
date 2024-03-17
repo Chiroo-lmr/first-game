@@ -138,25 +138,25 @@ func play_anim(mov):
 		if Global.TalkingWithNPC == true:
 			$walks.stop()
 
-func apply_knockback(distance=20, time=0.1):
+func apply_knockback(distance=5, time=0.1):
 	"""This function do the job for getting knockback after getting hit"""
 	var pos_player = position
 	var pos_slime = enemy.position
-	
+
 	var xb = pos_player.x - pos_slime.x
 	var yb = pos_player.y - pos_slime.y
-	
+
 	var X = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * xb
 	var Y = (1+ (distance/sqrt(pow(xb, 2) + pow(yb,2)) )) * yb
-	
+
 	var relative_new_coordinates = Vector2(X, Y)
 	var new_coordinates = pos_player+relative_new_coordinates
-	
+
 	var collision = move_and_collide(relative_new_coordinates) # is null when nothing hit, else it is KinematicCollision2D
 
 	if collision: # check if there is collision
 		new_coordinates = position # get the stop position
-			
+
 	self.position = pos_player # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
 	var tween = create_tween()
 	tween.tween_property(self,"position",new_coordinates,time)

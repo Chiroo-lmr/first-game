@@ -4,7 +4,7 @@ func _process(delta):
 	if Global.gameStatus == "Launch":
 		$MarginContainer/HBoxContainer2/BackToBefore.text = "Back To Main Menu"
 	elif Global.gameStatus == "Pause":
-		$MarginContainer/HBoxContainer2/BackToBefore.text = "Back To Game"
+		$MarginContainer/HBoxContainer2/BackToBefore.text = "Back To The Game"
 	if Input.is_action_just_pressed("ui_cancel"):
 		visible = false
 		
