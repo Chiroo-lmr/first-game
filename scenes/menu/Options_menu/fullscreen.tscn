@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drxeqtwylobc3"]
 
-[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_ell0k"]
 [ext_resource type="Script" path="res://scenes/menu/Options_menu/fullscreen.gd" id="1_vcno5"]
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="2_psorv"]
 
 [node name="fullscreen" type="Control"]
 layout_mode = 3
@@ -26,7 +26,7 @@ alignment = 1
 [node name="Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(600, 30)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_ell0k")
+theme_override_fonts/font = ExtResource("2_psorv")
 theme_override_font_sizes/font_size = 50
 text = "Fullscreen"
 vertical_alignment = 1

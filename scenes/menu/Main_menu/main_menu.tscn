@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://byktsq2qxjv53"]
+[gd_scene load_steps=8 format=3 uid="uid://byktsq2qxjv53"]
 
 [ext_resource type="Script" path="res://scenes/menu/Main_menu/main_menu.gd" id="1_7u6y8"]
 [ext_resource type="Texture2D" uid="uid://dfc1pw51vhp2j" path="res://art/tilesets/grass.png" id="2_8xqwf"]
-[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="3_1cccy"]
+[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/fonts/Lemon font/Lemon-Regular.ttf" id="3_1cccy"]
 [ext_resource type="PackedScene" uid="uid://c8e6a6xcxrm46" path="res://scenes/menu/Options_menu/options_menu.tscn" id="4_0bolk"]
+[ext_resource type="FontFile" uid="uid://2enpj1aoyvdq" path="res://art/fonts/Pixelify/PixelifySans-VariableFont_wght.ttf" id="4_23i2l"]
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="5_1nbgs"]
 [ext_resource type="AudioStream" uid="uid://oo7eoyuq2ng5" path="res://art/music/C418.ogg" id="5_kj0rl"]
 
 [node name="Main_menu" type="Control"]
@@ -64,7 +66,7 @@ alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_fonts/font = ExtResource("4_23i2l")
 theme_override_font_sizes/font_size = 50
 text = "Thanks to the 
 creators of 
@@ -90,14 +92,14 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_fonts/font = ExtResource("5_1nbgs")
 theme_override_font_sizes/font_size = 50
 text = "start"
 
 [node name="Options" type="Button" parent="MarginContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_fonts/font = ExtResource("5_1nbgs")
 theme_override_font_sizes/font_size = 50
 text = "Options"
 
@@ -105,13 +107,13 @@ text = "Options"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_fonts/font = ExtResource("5_1nbgs")
 theme_override_font_sizes/font_size = 50
 text = "leave the game"
 
 [node name="CreditsButton" type="Button" parent="MarginContainer/Buttons"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_1cccy")
+theme_override_fonts/font = ExtResource("5_1nbgs")
 theme_override_font_sizes/font_size = 30
 text = "Credits"
 

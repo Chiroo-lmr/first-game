@@ -1,9 +1,10 @@
-[gd_scene load_steps=59 format=3 uid="uid://cci24oag33sfq"]
+[gd_scene load_steps=60 format=3 uid="uid://cci24oag33sfq"]
 
 [ext_resource type="Script" path="res://scenes/character/player/player.gd" id="1_xovnq"]
 [ext_resource type="Texture2D" uid="uid://dc3ca7sfhhb2u" path="res://art/characters/player/player.png" id="2_jqegg"]
 [ext_resource type="AudioStream" uid="uid://cy1pnyqesqf1i" path="res://art/sounds/player/walks/walks.mp3" id="4_baqcv"]
 [ext_resource type="AudioStream" uid="uid://cm8holbgmylu0" path="res://art/sounds/player/attack/sword/Sword whoosh 1.mp3" id="5_6f4me"]
+[ext_resource type="AudioStream" uid="uid://dtry4ajb6eqrt" path="res://art/sounds/player/death/Undertale Battle Encounter Sound.mp3" id="5_dmwa6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13ob5"]
 atlas = ExtResource("2_jqegg")
@@ -464,6 +465,9 @@ bus = &"Sfx"
 [node name="attack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_6f4me")
 bus = &"Sfx"
+
+[node name="death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_dmwa6")
 
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="attack_hitbox" to="." method="_on_player_hitbox_body_exited"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://7hcurh5irjb1"]
 
 [ext_resource type="Script" path="res://scenes/menu/Pause_menu/pause_menu.gd" id="1_rh0r8"]
-[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="2_ojt8o"]
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="2_adxth"]
 
 [node name="pause_menu" type="CanvasLayer"]
 script = ExtResource("1_rh0r8")
@@ -28,21 +28,21 @@ theme_override_constants/separation = 50
 [node name="depause" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ojt8o")
+theme_override_fonts/font = ExtResource("2_adxth")
 theme_override_font_sizes/font_size = 50
 text = "depause"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ojt8o")
+theme_override_fonts/font = ExtResource("2_adxth")
 theme_override_font_sizes/font_size = 50
 text = "Options"
 
 [node name="Restart" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ojt8o")
+theme_override_fonts/font = ExtResource("2_adxth")
 theme_override_font_sizes/font_size = 50
 text = "restart
 "
@@ -50,7 +50,7 @@ text = "restart
 [node name="menuButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ojt8o")
+theme_override_fonts/font = ExtResource("2_adxth")
 theme_override_font_sizes/font_size = 50
 text = "Go to the menu"
 

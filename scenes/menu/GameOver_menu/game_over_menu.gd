@@ -5,6 +5,7 @@ func _process(delta):
 	if Global.ButtonsGameOver == true:
 		if animPlayedOnce == false:
 			animPlayedOnce = true
+			$AudioStreamPlayer.playing = true
 			var tweenOpacityGameOver = get_tree().create_tween()
 			%VBoxContainer.visible = true
 			%GameOver.visible = true
@@ -17,6 +18,7 @@ func _process(delta):
 
 func _on_restart_pressed():
 	Global.restartGame()
+	$AudioStreamPlayer.playing = false
 
 func _on_menu_button_pressed():
 	Global.menuButton()

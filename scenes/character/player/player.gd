@@ -247,6 +247,7 @@ func thePlayerHasNoHealth():
 	await tweenZoom.finished
 	z_index = 2
 	$AnimatedSprite2D.play("death")
+	$death.play()
 	var BGBlack = get_parent().get_node("bgBlack")
 	var tweenBGBlack = get_tree().create_tween()
 	tweenBGBlack.tween_property(BGBlack, "modulate:a", 1, 2)

@@ -105,7 +105,6 @@ func attack():
 		Global.enemyIsAttacking = false
 		
 func _on_can_attack_cooldown_timeout():
-	Global.enemyIsAttacking = false
 	canAttack = true
 
 func deal_with_damage():

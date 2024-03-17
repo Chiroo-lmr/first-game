@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://7ew5ehj0byw4"]
 
-[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_a7xon"]
 [ext_resource type="Script" path="res://scenes/menu/UI/UI.gd" id="1_nm3o5"]
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="2_o4wm5"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_nm3o5")
@@ -27,7 +27,7 @@ size_flags_vertical = 0
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_a7xon")
+theme_override_fonts/font = ExtResource("2_o4wm5")
 theme_override_font_sizes/font_size = 40
 text = "[enemy_killed]"
 
