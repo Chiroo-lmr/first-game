@@ -6,6 +6,12 @@ func _process(delta):
 		$AnimatedSprite2D.play("idleStressed")
 	else:
 		$AnimatedSprite2D.play("idleDestressed")
+	if Global.TalkingWithNPC == true:
+		var tween = get_tree().create_tween()
+		tween.tween_property(get_parent().get_node("CS2Camera"), "zoom", Vector2(5, 5), 1.5)
+	else:
+		var tween = get_tree().create_tween()
+		tween.tween_property(get_parent().get_node("CS2Camera"), "zoom", Vector2(Global.cameraZoom, Global.cameraZoom), 0.25)
 
 func NPC():
 	pass

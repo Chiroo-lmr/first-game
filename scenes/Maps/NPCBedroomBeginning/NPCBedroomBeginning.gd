@@ -3,7 +3,6 @@ extends Node2D
 func _ready():
 	preload("res://dialogue/slimeThatPray.dialogue")
 	
-
 func _on_collision_transition_scene_body_entered(body):
 	if body.has_method("player"):
 		Global.transitionScene = true
