@@ -12,7 +12,6 @@ var isAlive = true
 
 func _physics_process(delta):
 	reginTimerPaused()
-	handleParticles()
 	move_and_slide()
 	if isAlive == true:
 		if Global.gameStart == true:
@@ -36,21 +35,6 @@ func _physics_process(delta):
 	else:
 		theSlimeHasNoHealth()
 
-func handleParticles():
-	if $AnimatedSprite2D.animation == "idle":
-		$CPUParticles2D.emitting = true
-		if velocity.x > 0:
-			$CPUParticles2D.gravity.x = -150
-		if velocity.x < 0:
-			$CPUParticles2D.gravity.x = 150
-		if velocity.y > 0:
-			$CPUParticles2D.gravity.y = -150
-		if velocity.y < 0:
-			$CPUParticles2D.gravity.y = 150
-	if velocity == Vector2(0, 0):
-		$CPUParticles2D.emitting = false
-		
-		
 func updateHealth():
 	var healthBar = $healthBar
 	healthBar.value = health
@@ -178,6 +162,17 @@ func walk():
 			$AnimatedSprite2D.flip_h = true
 		$waitToWalk.start()
 		canWalk = false
+		$CPUParticles2D.emitting = true
+	if velocity == Vector2(0, 0):
+		$CPUParticles2D.emitting = false 
+	if velocity.x > 0:
+		$CPUParticles2D.gravity = Vector2(-150, 0)
+	if velocity.x < 0:
+		$CPUParticles2D.gravity = Vector2(150, 0)
+	if velocity.y > 0:
+		$CPUParticles2D.gravity = Vector2(0, -150)
+	if velocity.y < 0:
+		$CPUParticles2D.gravity = Vector2(0, 150)
 
 func _on_wait_to_walk_timeout():
 	canWalk = true
