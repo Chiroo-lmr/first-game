@@ -3,6 +3,26 @@
 [ext_resource type="Script" path="res://scenes/character/slime/Slime.gd" id="1_u7qum"]
 [ext_resource type="Texture2D" uid="uid://dj1g41scwq7bv" path="res://art/characters/enemy/slime/slime.png" id="3_7vvvg"]
 
+[sub_resource type="Curve" id="Curve_o87jm"]
+_data = [Vector2(0.0260417, 0.985626), 0.0, 0.0, 0, 0, Vector2(0.223958, 0.74414), 0.0, 0.0, 0, 0, Vector2(0.578125, 1), 0.0, 0.0, 0, 0, Vector2(0.856771, 0.721141), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic8ri"]
+atlas = ExtResource("2_xk43m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uimr6"]
+atlas = ExtResource("2_xk43m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr6m5"]
+atlas = ExtResource("2_xk43m")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrqgw"]
+atlas = ExtResource("2_xk43m")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xfl6l"]
 atlas = ExtResource("3_7vvvg")
 region = Rect2(0, 128, 32, 32)
@@ -146,6 +166,18 @@ radius = 15.0
 collision_layer = 4
 collision_mask = 43
 script = ExtResource("1_u7qum")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(2.08165e-12, -4)
+amount = 2
+lifetime = 0.4
+explosiveness = 0.15
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(1, 2)
+gravity = Vector2(-150, 2.08165e-12)
+scale_amount_curve = SubResource("Curve_o87jm")
+color = Color(0.117647, 0.266667, 0.407843, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wwls0")

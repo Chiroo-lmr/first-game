@@ -23,9 +23,11 @@ func _physics_process(delta):
 				ajustmentsHealth()
 		elif Main.gameStatus == "Pause":
 			$AnimatedSprite2D.play("idle")
+			$CPUParticles2D.emitting = false
 			velocity = Vector2(0, 0)
 		elif Main.gameStatus == "Over":
 			$AnimatedSprite2D.play("idle")
+			$CPUParticles2D.emitting = false
 			velocity = Vector2(0, 0)
 	else:
 		theSlimeHasNoHealth()
@@ -74,7 +76,7 @@ func _on_detection_area_body_exited(body):
 func playerChase():
 	if player_chase:
 		velocity = (player.position - position) * speed
-		
+		$CPUParticles2D.emitting = false
 		$AnimatedSprite2D.play("walk")
 		if (player.position.x - position.x) < 0 :
 			$AnimatedSprite2D.flip_h = true
@@ -83,6 +85,7 @@ func playerChase():
 		move_and_collide(Vector2(0,0))
 	else:
 		$AnimatedSprite2D.play("idle")
+		$CPUParticles2D.emitting = true
 		
 
 # detecte si le joueur est dans la collision de combat du slime
@@ -157,6 +160,17 @@ func walk():
 			$AnimatedSprite2D.flip_h = true
 		$waitToWalk.start()
 		canWalk = false
+		$CPUParticles2D.emitting = true
+	if velocity == Vector2(0, 0):
+		$CPUParticles2D.emitting = false 
+	if velocity.x > 0:
+		$CPUParticles2D.gravity = Vector2(-150, 0)
+	if velocity.x < 0:
+		$CPUParticles2D.gravity = Vector2(150, 0)
+	if velocity.y > 0:
+		$CPUParticles2D.gravity = Vector2(0, -150)
+	if velocity.y < 0:
+		$CPUParticles2D.gravity = Vector2(0, 150)
 
 func _on_wait_to_walk_timeout():
 	canWalk = true
