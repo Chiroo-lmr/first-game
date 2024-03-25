@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 func _process(delta):
-	if Global.gameStatus == "Launch":
+	if Main.gameStatus == "Launch":
 		$MarginContainer/HBoxContainer2/BackToBefore.text = "Back To Main Menu"
-	elif Global.gameStatus == "Pause":
+	elif Main.gameStatus == "Pause":
 		$MarginContainer/HBoxContainer2/BackToBefore.text = "Back To The Game"
 	if Input.is_action_just_pressed("ui_cancel"):
 		visible = false

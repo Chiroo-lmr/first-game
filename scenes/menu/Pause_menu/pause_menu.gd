@@ -4,28 +4,31 @@ extends CanvasLayer
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel") and Global.TalkingWithNPC == false:
+	if Input.is_action_just_pressed("ui_cancel") and Main.TalkingWithNPC == false:
 		gamePause()
 
 func _on_depause_pressed():
-	Global.gameStatus = "Start"
+	Main.gameStatus = "Start"
 	allButtons.visible = false
 
 func _on_options_pressed():
 	get_node("../Options_menu").visible = true
-	
 
 func _on_restart_pressed():
-	Global.restartGame()
+	Main.restartGame()
+	visible = false
 
 func _on_menu_button_pressed():
-	Global.menuButton()
+	Main.menuButton()
+	visible = false
 
 func gamePause():
-	if Global.gameStatus != "Over" and Global.gameStatus != "Launch":
-		if Global.gameStatus == "Start":
-			Global.gameStatus = "Pause"
+	if Main.gameStatus != "Over" and Main.gameStatus != "Launch":
+		if Main.gameStatus == "Start":
+			Main.gameStatus = "Pause"
+			visible = true
 			allButtons.visible = true
 		else:
-			Global.gameStatus = "Start"
+			Main.gameStatus = "Start"
 			allButtons.visible = false
+			visible = false

@@ -14,17 +14,17 @@ func _physics_process(delta):
 	reginTimerPaused()
 	move_and_slide()
 	if isAlive == true:
-		if Global.gameStatus == "Start":
+		if Main.gameStatus == "Start":
 				deal_with_damage()
 				playerChase()
 				updateHealth()
 				attack()
 				walk()
 				ajustmentsHealth()
-		elif Global.gameStatus == "Pause":
+		elif Main.gameStatus == "Pause":
 			$AnimatedSprite2D.play("idle")
 			velocity = Vector2(0, 0)
-		elif Global.gameStatus == "Over":
+		elif Main.gameStatus == "Over":
 			$AnimatedSprite2D.play("idle")
 			velocity = Vector2(0, 0)
 	else:
@@ -55,7 +55,7 @@ func _on_regin_timer_timeout():
 		health = 0
 
 func reginTimerPaused():
-	if Global.gameStatus == "Pause":
+	if Main.gameStatus == "Pause":
 		$reginTimer.paused = true
 	else:
 		$reginTimer.paused = false
@@ -95,20 +95,20 @@ func _on_enemy_hitbox_combat_body_exited(body):
 		AttackZone = false
 
 func attack():
-	if AttackZone == true and canAttack == true and Global.gameStatus == "Start" and isAlive == true:
-		Global.playerHealth -= randi_range(7, 13)
-		Global.enemyIsAttacking = true
+	if AttackZone == true and canAttack == true and Main.gameStatus == "Start" and isAlive == true:
+		Main.playerHealth -= randi_range(7, 13)
+		Main.enemyIsAttacking = true
 		canAttack = false
 		$canAttackCooldown.start()
 		$enemyIsAttackingTime.start()
 		await $enemyIsAttackingTime.timeout
-		Global.enemyIsAttacking = false
+		Main.enemyIsAttacking = false
 		
 func _on_can_attack_cooldown_timeout():
 	canAttack = true
 
 func deal_with_damage():
-	if Global.playerCurrentAttack == true and AttackZone == true:
+	if Main.playerCurrentAttack == true and AttackZone == true:
 			health -= randi_range(15, 20)
 			$canAttackCooldown.start()
 			apply_knockback() 

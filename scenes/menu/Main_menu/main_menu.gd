@@ -1,13 +1,17 @@
-extends Control
+extends CanvasLayer
 
 @onready var startButton = %Play
 @onready var QuitButton = %Quit
 @onready var options = %Options
 @onready var creditsLabel = %Credits
 var creditsOpened = false
+
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://scenes/Maps/beginningScene/Beginning.tscn")
-	Global.gameStatus = "Start"
+	visible = false
+	var world = preload("res://scenes/Maps/beginningScene/Beginning.tscn").instantiate()
+	get_parent().add_child(world)
+	get_parent().get_node("World").visible = true
+	Main.gameStatus = "Start"
 
 func _on_options_pressed():
 	$Options_menu.visible = true

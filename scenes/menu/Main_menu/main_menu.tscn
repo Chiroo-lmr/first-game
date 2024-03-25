@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://byktsq2qxjv53"]
+[gd_scene load_steps=7 format=3 uid="uid://byktsq2qxjv53"]
 
 [ext_resource type="Script" path="res://scenes/menu/Main_menu/main_menu.gd" id="1_7u6y8"]
 [ext_resource type="Texture2D" uid="uid://dfc1pw51vhp2j" path="res://art/tilesets/grass.png" id="2_8xqwf"]
@@ -6,19 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://c8e6a6xcxrm46" path="res://scenes/menu/Options_menu/options_menu.tscn" id="4_0bolk"]
 [ext_resource type="FontFile" uid="uid://2enpj1aoyvdq" path="res://art/fonts/Pixelify/PixelifySans-VariableFont_wght.ttf" id="4_23i2l"]
 [ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="5_1nbgs"]
-[ext_resource type="AudioStream" uid="uid://oo7eoyuq2ng5" path="res://art/music/C418.ogg" id="5_kj0rl"]
 
-[node name="Main_menu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Main_menu" type="CanvasLayer"]
 script = ExtResource("1_7u6y8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,7 +19,6 @@ grow_vertical = 2
 texture = ExtResource("2_8xqwf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -118,12 +109,6 @@ theme_override_font_sizes/font_size = 30
 text = "Credits"
 
 [node name="Options_menu" parent="." instance=ExtResource("4_0bolk")]
-
-[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_kj0rl")
-volume_db = -11.506
-autoplay = true
-bus = &"Music"
 
 [connection signal="pressed" from="MarginContainer/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Options" to="." method="_on_options_pressed"]

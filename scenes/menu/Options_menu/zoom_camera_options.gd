@@ -5,8 +5,8 @@ extends Control
 
 func _on_h_slider_value_changed(value):
 	zoom_value.text = str(value) + "x"
-	Global.cameraZoom = value
-	h_slider.value = Global.cameraZoom
+	Main.cameraZoom = value
+	h_slider.value = Main.cameraZoom
 	
 func _process(delta):
-	h_slider.value = Global.cameraZoom
+	h_slider.value = Main.cameraZoom
