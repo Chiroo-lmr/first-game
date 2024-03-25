@@ -17,12 +17,12 @@ func _ready():
 	$canAttackCooldown.start()
 
 func _physics_process(delta):
-	Global.playerLivePosition = position
-	if Global.gamePause == true:
+	Main.playerLivePosition = position
+	if Main.gameStatus == "Pause":
 		$CPUParticles2D.emitting = false
-	elif Global.gameOver == true:
+	elif Main.gameStatus == "Over":
 		$CPUParticles2D.emitting = false
-	if Global.TalkingWithNPC == true:
+	if Main.TalkingWithNPC == true:
 		$CPUParticles2D.emitting = false
 	Main.playerLivePosition = position
 	if Main.gameStatus == "Start":
@@ -93,9 +93,9 @@ func player_movement(delta):
 		move_and_slide()
 	
 func play_anim(mov):
-	var dir = Global.currentDirection
+	var dir = Main.currentDirection
 	var anim = $AnimatedSprite2D
-	if dir == "right" and Global.TalkingWithNPC == false:
+	if dir == "right" and Main.TalkingWithNPC == false:
 		anim.flip_h = false
 		if movement == 1 and isAttacking == true:
 			anim.play("side_attack")
@@ -104,7 +104,7 @@ func play_anim(mov):
 			$CPUParticles2D.gravity = Vector2(-150, 0)
 		elif movement == 0 and isAttacking == false:
 			anim.play("side_idle")
-	if dir == "left" and Global.TalkingWithNPC == false:
+	if dir == "left" and Main.TalkingWithNPC == false:
 		anim.flip_h = true
 		if movement == 1 and isAttacking == true:
 			anim.play("side_attack")
@@ -113,7 +113,7 @@ func play_anim(mov):
 			$CPUParticles2D.gravity = Vector2(150, 0)
 		elif movement == 0 and isAttacking == false:
 			anim.play("side_idle")
-	if dir == "down" and Global.TalkingWithNPC == false:
+	if dir == "down" and Main.TalkingWithNPC == false:
 		if movement == 1 and isAttacking == true:
 			anim.play("front_attack")
 		if movement == 1 and isAttacking == false:
@@ -121,7 +121,7 @@ func play_anim(mov):
 			$CPUParticles2D.gravity = Vector2(0, -150)
 		elif movement == 0 and isAttacking == false:
 			anim.play("front_idle")
-	if dir == "up" and Global.TalkingWithNPC == false:
+	if dir == "up" and Main.TalkingWithNPC == false:
 		if movement == 1 and isAttacking == true:
 			anim.play("back_attack")
 		if movement == 1 and isAttacking == false:
@@ -129,7 +129,7 @@ func play_anim(mov):
 			anim.play("back_walk")
 		elif movement == 0 and isAttacking == false:
 			anim.play("back_idle")
-	if Global.TalkingWithNPC == true:
+	if Main.TalkingWithNPC == true:
 		if dir == "right": anim.play("side_idle")
 		elif dir == "left": 
 			anim.flip_h = true
@@ -145,9 +145,9 @@ func play_anim(mov):
 	if movement == 0 and countForSound == 1:
 		$walks.stop()
 		countForSound-= 1
-	if Global.TalkingWithNPC == true:
+	if Main.TalkingWithNPC == true:
 		$walks.stop()
-	if movement == 1 and Global.TalkingWithNPC == false:
+	if movement == 1 and Main.TalkingWithNPC == false:
 		$CPUParticles2D.emitting = true
 	elif movement == 0:
 		$CPUParticles2D.emitting = false
