@@ -113,7 +113,7 @@ func _on_can_attack_cooldown_timeout():
 
 func deal_with_damage():
 	if Global.playerCurrentAttack == true and AttackZone == true:
-			health -= randi_range(15, 20)
+			health -= randi_range(150, 200) # -----------------------------------------------------------------------------------------------------------------------------------------------------
 			$canAttackCooldown.start()
 			apply_knockback() 
 			not_red_at = Time.get_unix_time_from_system ( ) + 0.3

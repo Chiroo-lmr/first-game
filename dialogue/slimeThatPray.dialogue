@@ -9,6 +9,7 @@ if Global.allSlimesGone and not Global.interacted_once:
 		set Global.interacted_once = true
 		set Global.TalkingWithNPC = false
 		set Global.playerCanAttack = false
+		set Global.QuestEnd = true # we know the quest is end and we can start the bossfight
 		=> END
 if Global.saidAllSlimesGones == false
 	if Global.interacted_once == true
@@ -21,6 +22,7 @@ if Global.saidAllSlimesGones == false
 				set Global.saidAllSlimesGones = true
 				set Global.TalkingWithNPC = false
 				set Global.playerCanAttack = false
+				set Global.QuestEnd = true # we know the quest is end and we can start the bossfight
 		elif Global.allSlimesGone == false:
 			Slime: [[Did you killed all the slime so I can pray ?|Did you accomplish your mission ?]]
 			- No, I didn't yet...

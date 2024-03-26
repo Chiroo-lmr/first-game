@@ -21,6 +21,9 @@ var allSlimesGone = false
 var saidAllSlimesGones = false
 var interacted_once = false
 var TalkingWithNPC = false
+var QuestEnd = false
+
+var BossfightStarted = false
 
 var cameraPosition = Vector2(272, 120)
 var cameraSmoothing = true
