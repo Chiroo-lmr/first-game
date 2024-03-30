@@ -14,11 +14,8 @@ func _process(delta):
 		# Other code about bossfight should be in res://scenes/Maps/PrayingTreeBossFight/PrayingTreeBossFight.gd
 		var tween = create_tween()
 		var p = self.get_parent()
-		tween.tween_property(p, "modulate", Color.BLACK, 3)
-		
-		await tween.finished
-		
-		
+		tween.tween_property(p, "modulate", Color.BLACK, 3)	
+		await tween.finished	
 		get_tree().change_scene_to_file("res://scenes/Maps/PrayingTreeBossFight/PrayingTreeBossFight.tscn")
 		
 	if Main.TalkingWithNPC == true:

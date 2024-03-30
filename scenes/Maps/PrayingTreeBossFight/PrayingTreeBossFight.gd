@@ -15,5 +15,4 @@ func spawn_boss():
 	slime_boss.scale.y *= 5
 	
 func _ready():
-	
 	spawn_boss()
