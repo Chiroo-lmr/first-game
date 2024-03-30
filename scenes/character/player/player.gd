@@ -11,6 +11,7 @@ var countForSound = 0 # j'ai trouvé que cette solution un peu bullshit jsp comm
 var enemy
 var canBeRed = true
 
+
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 	Global.player = self
@@ -19,7 +20,6 @@ func _ready():
 func _physics_process(delta):
 	Global.playerLivePosition = position
 	if Global.gameStart == true:
-		print(velocity)
 		player_movement(delta)
 		attackPressedAnim()
 		play_anim(movement)

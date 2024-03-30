@@ -12,6 +12,12 @@ func _process(delta):
 		Global.BossfightStarted = true
 		# then we load the boss fight scene. 
 		# Other code about bossfight should be in res://scenes/Maps/PrayingTreeBossFight/PrayingTreeBossFight.gd
+		var tween = create_tween()
+		var p = self.get_parent()
+		tween.tween_property(p, "modulate", Color.BLACK, 3)
+		
+		await tween.finished
+		
 		
 		get_tree().change_scene_to_file("res://scenes/Maps/PrayingTreeBossFight/PrayingTreeBossFight.tscn")
 		
