@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dilb4qjuje64c"]
 
 [ext_resource type="Script" path="res://scenes/menu/Options_menu/smooth_camera_options.gd" id="1_4f3gv"]
-[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_cs2l7"]
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="2_ugwxl"]
 
 [node name="Smooth_camera_options" type="Control"]
 layout_mode = 3
@@ -26,7 +26,7 @@ theme_override_constants/separation = 42
 [node name="Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(600, 2.08165e-12)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_cs2l7")
+theme_override_fonts/font = ExtResource("2_ugwxl")
 theme_override_font_sizes/font_size = 50
 text = "Camera Smoothing"
 

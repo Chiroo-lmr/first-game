@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://diiyvroyq1pc3"
-path="res://.godot/imported/Lemon-Regular.ttf-e74dbd2799026684171b5e51beec08b1.fontdata"
+uid="uid://b6qfkou17vf3u"
+path="res://.godot/imported/PixelifySans-Regular.ttf-55c7daa7862487724146d4d386a988ec.fontdata"
 
 [deps]
 
-source_file="res://art/Lemon font/Lemon-Regular.ttf"
-dest_files=["res://.godot/imported/Lemon-Regular.ttf-e74dbd2799026684171b5e51beec08b1.fontdata"]
+source_file="res://art/fonts/Pixelify/static/PixelifySans-Regular.ttf"
+dest_files=["res://.godot/imported/PixelifySans-Regular.ttf-55c7daa7862487724146d4d386a988ec.fontdata"]
 
 [params]
 

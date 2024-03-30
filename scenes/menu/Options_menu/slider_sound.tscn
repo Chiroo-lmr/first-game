@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsc22ah1vdmkk"]
 
-[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_5rgbb"]
 [ext_resource type="Script" path="res://scenes/menu/Options_menu/slider_sound.gd" id="1_kq40v"]
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="2_g30wi"]
 
 [node name="slider_sound" type="Control"]
 layout_mode = 3
@@ -23,7 +23,7 @@ theme_override_constants/separation = 42
 [node name="Audio_name_lbl" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(600, 30)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_5rgbb")
+theme_override_fonts/font = ExtResource("2_g30wi")
 theme_override_font_sizes/font_size = 50
 text = "Master volume"
 
@@ -43,7 +43,7 @@ layout_mode = 2
 
 [node name="Audio_num_lbl" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_5rgbb")
+theme_override_fonts/font = ExtResource("2_g30wi")
 theme_override_font_sizes/font_size = 50
 text = "100 %"
 

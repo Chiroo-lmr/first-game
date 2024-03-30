@@ -1,53 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqujmg635fbuw"]
+[gd_scene load_steps=6 format=3 uid="uid://bqujmg635fbuw"]
 
-[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_4i2bp"]
 [ext_resource type="Script" path="res://scenes/menu/GameOver_menu/game_over_menu.gd" id="1_logm5"]
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="2_1pjcq"]
+[ext_resource type="AudioStream" uid="uid://ba6cxmeqj17ek" path="res://art/music/death/Game Over Theme Undertale.mp3" id="3_fl8e1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_chnct"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lbyy"]
 
 [node name="gameOver_menu" type="CanvasLayer"]
 script = ExtResource("1_logm5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(800, 100)
-anchors_preset = 8
+anchors_preset = 13
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -91.5
-offset_top = -76.0
-offset_right = 91.5
-offset_bottom = 76.0
+anchor_bottom = 1.0
+offset_left = -223.5
+offset_right = 223.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 theme_override_constants/separation = 50
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_chnct")
 
 [node name="GameOver" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_4i2bp")
-theme_override_font_sizes/font_size = 70
-text = "The Game is Over, you're dead..."
+theme_override_fonts/font = ExtResource("2_1pjcq")
+theme_override_font_sizes/font_size = 130
+text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Restart" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_4i2bp")
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("2_1pjcq")
 theme_override_font_sizes/font_size = 50
 text = "restart
 "
 
 [node name="menuButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_4i2bp")
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_1pjcq")
 theme_override_font_sizes/font_size = 50
 text = "Go to the menu"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0lbyy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fl8e1")
+bus = &"Music"
 
 [connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="VBoxContainer/menuButton" to="." method="_on_menu_button_pressed"]

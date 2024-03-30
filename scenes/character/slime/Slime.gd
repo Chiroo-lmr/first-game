@@ -14,21 +14,20 @@ func _physics_process(delta):
 	reginTimerPaused()
 	move_and_slide()
 	if isAlive == true:
-		if Global.gameStart == true:
-			if Time.get_unix_time_from_system ( ) > not_red_at:
+		if Main.gameStatus == "Start":
 				deal_with_damage()
 				playerChase()
 				updateHealth()
 				attack()
 				walk()
 				ajustmentsHealth()
-			else:
-				$AnimatedSprite2D.play("damage")
-		elif Global.gamePause == true:
+		elif Main.gameStatus == "Pause":
 			$AnimatedSprite2D.play("idle")
+			$CPUParticles2D.emitting = false
 			velocity = Vector2(0, 0)
-		elif Global.gameOver == true:
+		elif Main.gameStatus == "Over":
 			$AnimatedSprite2D.play("idle")
+			$CPUParticles2D.emitting = false
 			velocity = Vector2(0, 0)
 	else:
 		theSlimeHasNoHealth()
@@ -49,7 +48,6 @@ func ajustmentsHealth():
 		isAlive = false
 		theSlimeHasNoHealth()
 
-
 func _on_regin_timer_timeout():
 	if health < 100:
 		health +=20
@@ -59,7 +57,7 @@ func _on_regin_timer_timeout():
 		health = 0
 
 func reginTimerPaused():
-	if Global.gamePause == true:
+	if Main.gameStatus == "Pause":
 		$reginTimer.paused = true
 	else:
 		$reginTimer.paused = false
@@ -78,7 +76,7 @@ func _on_detection_area_body_exited(body):
 func playerChase():
 	if player_chase:
 		velocity = (player.position - position) * speed
-		
+		$CPUParticles2D.emitting = false
 		$AnimatedSprite2D.play("walk")
 		if (player.position.x - position.x) < 0 :
 			$AnimatedSprite2D.flip_h = true
@@ -87,6 +85,7 @@ func playerChase():
 		move_and_collide(Vector2(0,0))
 	else:
 		$AnimatedSprite2D.play("idle")
+		$CPUParticles2D.emitting = true
 		
 
 # detecte si le joueur est dans la collision de combat du slime
@@ -99,24 +98,26 @@ func _on_enemy_hitbox_combat_body_exited(body):
 		AttackZone = false
 
 func attack():
-	if AttackZone == true and canAttack == true and Global.gameStart == true and isAlive == true:
-		Global.playerHealth -= randi_range(7, 13)
-		Global.enemyIsAttacking = true
+	if AttackZone == true and canAttack == true and Main.gameStatus == "Start" and isAlive == true:
+		Main.playerHealth -= randi_range(7, 13)
+		Main.enemyIsAttacking = true
 		canAttack = false
-		Global.not_red_at = Time.get_unix_time_from_system() + 0.5
 		$canAttackCooldown.start()
-	else:Global.enemyIsAttacking = false
+		$enemyIsAttackingTime.start()
+		await $enemyIsAttackingTime.timeout
+		Main.enemyIsAttacking = false
 		
 func _on_can_attack_cooldown_timeout():
 	canAttack = true
-	Global.enemyIsAttacking = true
 
 func deal_with_damage():
-	if Global.playerCurrentAttack == true and AttackZone == true:
-			health -= randi_range(150, 200) # -----------------------------------------------------------------------------------------------------------------------------------------------------
+	if Main.playerCurrentAttack == true and AttackZone == true:
+			health -= randi_range(15, 20)
 			$canAttackCooldown.start()
 			apply_knockback() 
-			not_red_at = Time.get_unix_time_from_system ( ) + 0.3
+			$AnimatedSprite2D.modulate = Color(1, 0, 0)
+			var tweenModulate = get_tree().create_tween()
+			tweenModulate.tween_property($AnimatedSprite2D, "modulate", Color(1, 1, 1), 0.5)
 			$reginTimer.start()
 	
 func enemy():
@@ -159,6 +160,17 @@ func walk():
 			$AnimatedSprite2D.flip_h = true
 		$waitToWalk.start()
 		canWalk = false
+		$CPUParticles2D.emitting = true
+	if velocity == Vector2(0, 0):
+		$CPUParticles2D.emitting = false 
+	if velocity.x > 0:
+		$CPUParticles2D.gravity = Vector2(-150, 0)
+	if velocity.x < 0:
+		$CPUParticles2D.gravity = Vector2(150, 0)
+	if velocity.y > 0:
+		$CPUParticles2D.gravity = Vector2(0, -150)
+	if velocity.y < 0:
+		$CPUParticles2D.gravity = Vector2(0, 150)
 
 func _on_wait_to_walk_timeout():
 	canWalk = true

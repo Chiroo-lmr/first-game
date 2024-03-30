@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcaf8hv1o60b5"]
+[gd_scene load_steps=13 format=3 uid="uid://bcaf8hv1o60b5"]
 
-[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/Lemon font/Lemon-Regular.ttf" id="1_x7ml6"]
+[ext_resource type="FontFile" uid="uid://diiyvroyq1pc3" path="res://art/fonts/Lemon font/Lemon-Regular.ttf" id="1_x7ml6"]
 [ext_resource type="PackedScene" uid="uid://dilb4qjuje64c" path="res://scenes/menu/Options_menu/smooth_camera_options.tscn" id="2_67al7"]
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="2_l0rr4"]
 [ext_resource type="PackedScene" uid="uid://b6xhnmrquqspn" path="res://scenes/menu/Options_menu/hot_key_rebind_button.tscn" id="2_mk4vc"]
 [ext_resource type="PackedScene" uid="uid://dmes2pcoud72a" path="res://scenes/menu/Options_menu/zoom_camera_options.tscn" id="3_tg1ia"]
 [ext_resource type="PackedScene" uid="uid://bj81dhyh704t6" path="res://scenes/menu/Options_menu/options_resolution_button.tscn" id="3_yhipb"]
@@ -34,7 +35,7 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/side_margin = 40
-theme_override_fonts/font = ExtResource("1_x7ml6")
+theme_override_fonts/font = ExtResource("2_l0rr4")
 theme_override_font_sizes/font_size = 40
 
 [node name="General" type="TabBar" parent="TabContainer"]
@@ -75,7 +76,7 @@ theme_override_constants/separation = 100
 
 [node name="Label" type="Label" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_x7ml6")
+theme_override_fonts/font = ExtResource("2_l0rr4")
 theme_override_font_sizes/font_size = 75
 text = "Camera"
 

@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://fccp5nbjriki"]
+[gd_scene load_steps=2 format=3 uid="uid://fccp5nbjriki"]
+
+[ext_resource type="FontFile" uid="uid://cqv8ewgtl1j8b" path="res://art/fonts/Pixelify/static/PixelifySans-Bold.ttf" id="1_0jvxa"]
 
 [node name="Options_Display_Button" type="Control"]
 layout_mode = 3
@@ -22,6 +24,7 @@ alignment = 1
 [node name="Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(400, 30)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0jvxa")
 theme_override_font_sizes/font_size = 50
 text = "WINDOW MODE"
 vertical_alignment = 1
