@@ -105,14 +105,13 @@ radius = 15.0
 script = ExtResource("1_u6sfw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-20, 17.5)
 scale = Vector2(0.375, 0.453125)
 sprite_frames = SubResource("SpriteFrames_s0ate")
 animation = &"idleDestressed"
-frame_progress = 0.604755
+frame = 1
+frame_progress = 0.852599
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-20, 18)
 shape = SubResource("CircleShape2D_kw2bq")
 
 [node name="detectionPlayer" type="Area2D" parent="."]
@@ -120,7 +119,6 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectionPlayer"]
-position = Vector2(-20, 18)
 shape = SubResource("CircleShape2D_1610j")
 
 [connection signal="body_entered" from="detectionPlayer" to="." method="_on_detection_player_body_entered"]

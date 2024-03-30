@@ -21,7 +21,6 @@ var allSlimesGone = false
 var saidAllSlimesGones = false
 var interacted_once = false
 var TalkingWithNPC = false
-var QuestEnd = false
 
 var BossfightStarted = false
 
@@ -54,7 +53,6 @@ func getSlimePosition(currentPosition):
 func _physics_process(delta):
 	if enemiesKilled == 4:
 		allSlimesGone = true
-	print(currentScene)
 
 func resetVar():
 	killed_enemies = [] 
@@ -69,6 +67,7 @@ func resetVar():
 	label = 0
 	cameraPosition = Vector2(272, 120)
 	ButtonsGameOver = false
+	BossfightStarted = false
 
 func restartGame():
 	resetVar()

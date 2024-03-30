@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://bejagm4e64yk6"]
+[gd_scene load_steps=8 format=3 uid="uid://bejagm4e64yk6"]
 
-[ext_resource type="Script" path="res://scenes/Maps/PrayingTreeBossFight/PrayingTreeBossFight.gd" id="1_6o5tj"]
 [ext_resource type="TileSet" uid="uid://mm2hxd11xseu" path="res://tres/PrayingTree.tres" id="2_4kvfj"]
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/character/player/player.tscn" id="3_t50r6"]
 [ext_resource type="PackedScene" uid="uid://7ew5ehj0byw4" path="res://scenes/menu/UI/UI.tscn" id="4_a34mg"]
@@ -13,7 +12,6 @@
 y_sort_enabled = true
 position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(4, 4)
-script = ExtResource("1_6o5tj")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

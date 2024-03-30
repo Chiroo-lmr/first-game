@@ -10,6 +10,8 @@ func _on_play_pressed():
 	visible = false
 	var world = preload("res://scenes/Maps/beginningScene/Beginning.tscn").instantiate()
 	get_parent().add_child(world)
+	remove_child(get_parent().get_node("World/slime_boss"))
+	remove_child(get_parent().get_node("World/NPC2"))
 	get_parent().get_node("World").visible = true
 	Main.gameStatus = "Start"
 

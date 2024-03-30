@@ -35,7 +35,17 @@ position = Vector2(272, 120)
 collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bord"]
-polygon = PackedVector2Array(10, -5.20412e-13, 10, 32, -344, 32, -344, 184, -202, 184, -202, 200, 66, 200, 66, 266, 490, 266, 490, 232, 666, 234, 666, 202, 778, 202, 778, 186, 826, 186, 826, 168, 858, 168, 858, 78, 842, 78, 842, 64, 810, 64, 810, 46, 780, 46, 780, 30, 666, 30, 666, 46, 650, 46, 650, 80, 570, 80, 570, 58, 332, 58, 332, 30, 236, 30, 236, 14, 218, 14, 218, -5.20412e-13, 12, -5.20412e-13, 10, -30, 322, -104, 1022, -92, 1042, 336, -542, 310, -530, -96, -14, -102, 10, -30, 12, -5.20412e-13)
+polygon = PackedVector2Array(10, -5.20412e-13, 10, 32, -344, 32, -344, 184, -202, 184, -202, 200, 66, 200, 66, 266, 490, 266, 490, 232, 666, 234, 666, 202, 778, 202, 778, 186, 826, 186, 826, 168, 858, 168, 858, 78, 842, 78, 842, 64, 810, 64, 810, 46, 780, 46, 780, 30, 666, 30, 666, 46, 650, 46, 650, 80, 570, 80, 570, 58, 332, 58, 332, 30, 241.759, 30, 236, 30, 236, 14, 218, 14, 218, -5.20412e-13, 12, -5.20412e-13, 10, -30, 322, -104, 1022, -92, 1042, 336, -542, 310, -530, -96, -14, -102, 10, -30, 12, -5.20412e-13)
+
+[node name="cliffSideCollision" type="StaticBody2D" parent="."]
+position = Vector2(2.08165e-12, 48)
+collision_mask = 6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="cliffSideCollision"]
+position = Vector2(1.5, 62.25)
+scale = Vector2(0.0507813, 1)
+polygon = PackedVector2Array(-19.6923, -63.25, -24.0308, 10, -18, 86, -34, 86, -29.5384, -63.25)
+disabled = true
 
 [node name="cliffSideTransitionPoint" type="Area2D" parent="."]
 position = Vector2(2.08165e-12, 48)
@@ -77,7 +87,7 @@ texture = SubResource("ViewportTexture_sl8to")
 position = Vector2(758.25, 78)
 
 [node name="NPC" parent="." instance=ExtResource("11_ukne5")]
-position = Vector2(789, 100)
+position = Vector2(781.5, 117)
 
 [connection signal="body_entered" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_exited"]

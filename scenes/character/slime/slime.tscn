@@ -165,7 +165,7 @@ color = Color(0.117647, 0.266667, 0.407843, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wwls0")
-animation = &"death"
+animation = &"idle"
 offset = Vector2(2.08165e-12, -6)
 
 [node name="hitboxElements" type="CollisionShape2D" parent="."]

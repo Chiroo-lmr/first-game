@@ -1,6 +1,6 @@
 extends CharacterBody2D
 var player = null # le node player
-var health = 100 # la vie du slime
+@export var health = 100 # la vie du slime
 var speed = 8 # multiplicateur en gros 
 var player_chase = false # si oui, le slime va poursuivre le joueur`
 var AttackZone = false # si oui, le player est dans la zone de combat du slime
@@ -112,7 +112,7 @@ func _on_can_attack_cooldown_timeout():
 
 func deal_with_damage():
 	if Main.playerCurrentAttack == true and AttackZone == true:
-			health -= randi_range(15, 20)
+			health -= randi_range(150, 200)
 			$canAttackCooldown.start()
 			apply_knockback() 
 			$AnimatedSprite2D.modulate = Color(1, 0, 0)
