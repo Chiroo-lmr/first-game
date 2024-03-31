@@ -48,7 +48,7 @@ if Main.saidAllSlimesGones == false
 				- And ?
 					Slime: Well, a lot of little slimes appeared at the middle of the path, they're terryfing ! I don't know how I could avoid them...
 					- I'm sorry, I can't fight for you
-						Slime: [[It isn't very nice, but goodbye.| Pleeease I really need your help]]
+						Slime: [[It isn't very nice, but goodbye.|Pleeease I really need your help]]
 						set Main.TalkingWithNPC = false
 						set Main.playerCanAttack = false
 						=> END
@@ -60,8 +60,7 @@ if Main.saidAllSlimesGones == false
 						set Main.TalkingWithNPC = false
 						set Main.playerCanAttack = false
 else:
-	Slime: thank you so much for killing all the slimes !
+	Slime: [[ thank you so much for killing all the slimes !|You're such a hero !| I am on the way to pray ! This is so exciting !| No more slimes here !]]
 	set Main.label = 0
 	set Main.TalkingWithNPC = false
 	set Main.playerCanAttack = false
-=> END

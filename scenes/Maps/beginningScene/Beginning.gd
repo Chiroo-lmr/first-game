@@ -32,8 +32,9 @@ func _process(delta):
 		if 4 not in Main.killed_enemies:
 			Main.addKilledEnemies(4)
 	if Main.saidAllSlimesGones:
-		spawn_boss()
-		spawn_npc()
+		#spawn_boss()
+		#spawn_npc()
+		pass
 
 func spawn_boss():
 	if countSpawnBoss == 0:
@@ -49,14 +50,14 @@ func spawn_boss():
 		slime_boss.scale.y *= 3
 		countSpawnBoss = 1
 
-func spawn_npc():
-	if countSpawnNPC == 0:
-		var NPCScene = preload("res://scenes/character/npcs/SlimeThatPray.tscn")
-		var NPC = NPCScene.instantiate()
-		add_child(NPC)
-		print("NPC spawned")
-		NPC.position = Vector2(-25, 176)
-		countSpawnNPC = 1
+#func spawn_npc():
+	#if countSpawnNPC == 0:
+		#var NPCScene = preload("res://scenes/character/npcs/SlimeThatPray.tscn")
+		#var NPC = NPCScene.instantiate()
+		#add_child(NPC)
+		#print("NPC spawned")
+		#NPC.position = Vector2(-25, 176)
+		#countSpawnNPC = 1
 
 func _on_cliff_side_transition_point_body_entered(body):
 	if body.has_method("player"):

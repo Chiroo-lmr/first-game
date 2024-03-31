@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jle8vp6khpyf"]
+[gd_scene load_steps=9 format=3 uid="uid://jle8vp6khpyf"]
 
 [ext_resource type="Script" path="res://scenes/Maps/beginningScene/Beginning.gd" id="1_owmpw"]
 [ext_resource type="TileSet" uid="uid://cetdbn0e3eqft" path="res://tres/Beginning.tres" id="2_s0g1d"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://cslvka7xb5qkp" path="res://scenes/character/npcs/SlimeThatPray.tscn" id="11_ukne5"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sl8to"]
+
+[sub_resource type="Curve2D" id="Curve2D_q5u28"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0.25, 0, 0, 0, 0, -86, 3, 0, 0, 0, 0, -140.5, 33.25, 0, 0, 0, 0, -203, 53.5, 0, 0, 0, 0, -286.75, 57.5, 0, 0, 0, 0, -351, 52.25, 0, 0, 0, 0, -391.5, 30.5, 0, 0, 0, 0, -442.25, 10.25, 0, 0, 0, 0, -506, 6.5, 0, 0, 0, 0, -621, 0, 0, 0, 0, 0, -696.75, -13.25, 0, 0, 0, 0, -757.25, -7.75, 0, 0, 0, 0, -981, -5.5, 0, 0, 0, 0, -1029, 7.5)
+}
+point_count = 14
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -84,10 +90,22 @@ offset_bottom = 272.0
 texture = SubResource("ViewportTexture_sl8to")
 
 [node name="HealthCoins" parent="." instance=ExtResource("10_swkpe")]
-position = Vector2(758.25, 78)
+position = Vector2(760.25, 87.75)
 
-[node name="NPC" parent="." instance=ExtResource("11_ukne5")]
+[node name="Path2D" type="Path2D" parent="."]
 position = Vector2(781.5, 117)
+curve = SubResource("Curve2D_q5u28")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, 0.25)
+rotation = 3.10963
+rotates = false
+loop = false
+
+[node name="NPC" parent="Path2D/PathFollow2D" instance=ExtResource("11_ukne5")]
+position = Vector2(-0.00799561, 0.249878)
+rotation = -3.10963
+scale = Vector2(1, 1)
 
 [connection signal="body_entered" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_exited"]

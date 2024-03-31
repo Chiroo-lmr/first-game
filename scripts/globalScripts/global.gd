@@ -68,6 +68,7 @@ func resetVar():
 	cameraPosition = Vector2(272, 120)
 	ButtonsGameOver = false
 	BossfightStarted = false
+	currentScene = "Beginning"
 
 func restartGame():
 	resetVar()
