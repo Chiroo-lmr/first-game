@@ -2,14 +2,13 @@
 set Main.playerCanAttack = false
 if Main.allSlimesGone and not Main.interacted_once:
 	Slime: Hello dear Warrior, I saw that you fought against the slimes !
-	- Hello, effectivel, I killed them all. 
+	- Hello, effectively, I killed them all. 
 		Slime: Thank you Warrior ! You helped me to clear the path to the cliff !
 		Slime: And with these slimes, I couldn't pray the god of Slimes! But now, and thanks to you, you killed them, let's go to the tree !
 		set Main.saidAllSlimesGones = true
 		set Main.interacted_once = true
 		set Main.TalkingWithNPC = false
 		set Main.playerCanAttack = false
-		set Main.QuestEnd = true # we know the quest is end and we can start the bossfight
 		=> END
 if Main.saidAllSlimesGones == false
 	if Main.interacted_once == true
@@ -59,8 +58,48 @@ if Main.saidAllSlimesGones == false
 						set Main.interacted_once = true
 						set Main.TalkingWithNPC = false
 						set Main.playerCanAttack = false
-else:
+if Main.saidAllSlimesGones == true and Main.IsAtTheTree == false:
 	Slime: [[ thank you so much for killing all the slimes !|You're such a hero !| I am on the way to pray ! This is so exciting !| No more slimes here !]]
-	set Main.label = 0
 	set Main.TalkingWithNPC = false
 	set Main.playerCanAttack = false
+if Main.saidAllSlimesGones == true and Main.IsAtTheTree == true and Main.playerAbovePraying == false:
+	Slime: Here we are ! Now, come above me and pray with me 
+	set Main.TalkingWithNPC = false
+	set Main.playerCanAttack = false
+if Main.playerAbovePraying == true:
+	set Main.playerCanAttack = false
+	Slime: Okay, now you are going to repeat after me, did you understand ?
+	- No.
+		Slime: But... This is very simple, what didn't you understand ?
+		- EVERYTHING
+			Slime: YOU JUST REPEAT WHAT I SAY, IS THIS OKAY ?
+			- Yes !
+				Slime: Ok, so:
+				set Main.willRepeat = true
+			- No.
+				Slime: YOU'RE KIDDING, RIGHT ? YOU, KNOW WHAT ? I DON'T GIVE YOU THE CHOICE. YoU rEpEaT !
+				set Main.willRepeat = true
+		- I understand now, I'll just repeat after you, right ?
+			Slime: Well done ! So:
+			set Main.willRepeat = true
+	- yes !
+	set Main.willRepeat = true
+if Main.willRepeat == true:
+	
+	Slime: Today in this afternoon, I met a villager
+	- Today in this afternoon, I met a villager
+		Slime: He was courageous, helpfull, nice. He was a good person.
+		- He was courageous, helpfull, nice. He was a good person.
+			Slime: He killed all the bad slimes
+			- He killed all the bad slimes
+				Slime: Ô, lord, god of slimes, I thanked you everyday 'cause you help me
+				- Ô, lord, god of slimes, I thanked you everyday 'cause you help me
+					Slime: And now I can thank you again, everyday, thanks to the vilager.
+					- And now I can thank you again, everyday, thanks to the vilager.
+						set Main.BossfightStarted = true
+						God of Slimes: Hum...
+						God of Slimes: They were my sons.
+						God of Slimes: You both are going to die.
+						set Main.TalkingWithNPC = false
+						set Main.playerCanAttack = false
+						set Main.willRepeat = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cslvka7xb5qkp"]
+[gd_scene load_steps=18 format=3 uid="uid://cslvka7xb5qkp"]
 
 [ext_resource type="Script" path="res://scenes/character/npcs/NPC.gd" id="1_u6sfw"]
 [ext_resource type="Texture2D" uid="uid://niehv7187pgi" path="res://art/characters/npc/red slime/spritesheet.png" id="2_38853"]
@@ -10,6 +10,8 @@ radius = 11.0454
 radius = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci6wr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1w0nn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hark"]
 atlas = ExtResource("2_38853")
@@ -116,13 +118,21 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectionPlayer"]
 shape = SubResource("CircleShape2D_1610j")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerAnnoying" type="Area2D" parent="."]
 position = Vector2(-10, 2.08165e-12)
 collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnnoying"]
 shape = SubResource("RectangleShape2D_ci6wr")
+
+[node name="playerAbovePray" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, -18)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerAbovePray"]
+shape = SubResource("RectangleShape2D_1w0nn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.375, 0.453125)
@@ -131,6 +141,11 @@ animation = &"idleDestressed"
 frame = 1
 frame_progress = 0.852599
 
+[node name="CanTalk" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="detectionPlayer" to="." method="_on_detection_player_body_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="PlayerAnnoying" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="PlayerAnnoying" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="playerAbovePray" to="." method="_on_player_above_pray_body_entered"]
+[connection signal="body_exited" from="playerAbovePray" to="." method="_on_player_above_pray_body_exited"]

@@ -4,8 +4,6 @@ var Slime2
 var Slime3
 var Slime4
 var slime_boss = null
-var countSpawnBoss = 0
-var countSpawnNPC = 0
 
 func _ready():
 	%player.position = Vector2(272, 120)
@@ -18,7 +16,6 @@ func _ready():
 	if Main.cameraPosition == Vector2(272, 120): %WorldCamera.position = Main.cameraPosition
 
 func _process(delta):
-	print(Main.currentScene)
 	if Slime1 == null:
 		if 1 not in Main.killed_enemies:
 			Main.addKilledEnemies(1)
@@ -31,33 +28,6 @@ func _process(delta):
 	if Slime4 == null:
 		if 4 not in Main.killed_enemies:
 			Main.addKilledEnemies(4)
-	if Main.saidAllSlimesGones:
-		#spawn_boss()
-		#spawn_npc()
-		pass
-
-func spawn_boss():
-	if countSpawnBoss == 0:
-		var SlimeScene = preload("res://scenes/character/slime/Slime.tscn")
-		slime_boss = SlimeScene.instantiate()
-		slime_boss.position = Vector2(-235, 120)
-		add_child(slime_boss)
-		print("boss created")
-		#we set some things so it looks like a real boss and not a normal slime
-		#slime_boss.apply_knockback = func(): return # it removes the knockback
-		slime_boss.health *= 4 # we give it extra life
-		slime_boss.scale.x *= 3
-		slime_boss.scale.y *= 3
-		countSpawnBoss = 1
-
-#func spawn_npc():
-	#if countSpawnNPC == 0:
-		#var NPCScene = preload("res://scenes/character/npcs/SlimeThatPray.tscn")
-		#var NPC = NPCScene.instantiate()
-		#add_child(NPC)
-		#print("NPC spawned")
-		#NPC.position = Vector2(-25, 176)
-		#countSpawnNPC = 1
 
 func _on_cliff_side_transition_point_body_entered(body):
 	if body.has_method("player"):

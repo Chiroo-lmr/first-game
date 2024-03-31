@@ -17,7 +17,7 @@ func _physics_process(delta):
 		if Main.gameStatus == "Start":
 				deal_with_damage()
 				playerChase()
-				updateHealth()
+				#updateHealth()
 				attack()
 				walk()
 				ajustmentsHealth()
@@ -98,7 +98,7 @@ func _on_enemy_hitbox_combat_body_exited(body):
 		AttackZone = false
 
 func attack():
-	if AttackZone == true and canAttack == true and Main.gameStatus == "Start" and isAlive == true:
+	if AttackZone == true and canAttack == true and Main.gameStatus == "Start" and isAlive == true and Main.TalkingWithNPC == false:
 		Main.playerHealth -= randi_range(7, 13)
 		Main.enemyIsAttacking = true
 		canAttack = false
