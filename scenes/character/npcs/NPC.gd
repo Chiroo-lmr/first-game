@@ -27,8 +27,9 @@ func _process(delta):
 		$playerAbovePray/CollisionShape2D.disabled = true
 	if Main.gameStatus == "Start":
 		if Main.TalkingWithNPC == true:
-			var tween = get_tree().create_tween()
-			tween.tween_property(world.get_node("WorldCamera"), "zoom", Vector2(5, 5), 3)
+			if Main.playerAbovePraying == false:
+				var tween = get_tree().create_tween()
+				tween.tween_property(world.get_node("WorldCamera"), "zoom", Vector2(5, 5), 3)
 			CanTalk = false
 			CountCanTalk = 0
 			if Main.willRepeat == true:
@@ -60,6 +61,10 @@ func _on_area_2d_body_exited(body):
 
 func _on_player_above_pray_body_entered(body):
 	Main.playerAbovePraying = true
+	if Main.BossfightStarted == false:
+		DialogueManager.show_example_dialogue_balloon(dialogue, "main")
+		Main.TalkingWithNPC = true
+		CanTalk = false
 
 func _on_player_above_pray_body_exited(body):
 	Main.playerAbovePraying = false

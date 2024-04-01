@@ -1,10 +1,10 @@
 [gd_scene load_steps=18 format=3 uid="uid://dn06ysmgjhcn0"]
 
-[ext_resource type="Script" path="res://scenes/character/slime/Slime.gd" id="1_t51rs"]
+[ext_resource type="Script" path="res://scenes/character/slime/god_of_slimes.gd" id="1_wbxc6"]
 [ext_resource type="Texture2D" uid="uid://dj1g41scwq7bv" path="res://art/characters/enemy/slime/slime.png" id="2_cejcb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pym46"]
-radius = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yby7p"]
+size = Vector2(128, 96)
 
 [sub_resource type="Curve" id="Curve_g7ur4"]
 _data = [Vector2(0.0260417, 0.985626), 0.0, 0.0, 0, 0, Vector2(0.223958, 0.74414), 0.0, 0.0, 0, 0, Vector2(0.578125, 1), 0.0, 0.0, 0, 0, Vector2(0.856771, 0.721141), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -100,14 +100,15 @@ radius = 97.3242
 radius = 155.332
 
 [node name="god_of_slimes" type="CharacterBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
 collision_layer = 4
 collision_mask = 11
-script = ExtResource("1_t51rs")
-health = 400
+motion_mode = 1
+script = ExtResource("1_wbxc6")
 
 [node name="hitboxElements" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_pym46")
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_yby7p")
 
 [node name="canAttackCooldown" type="Timer" parent="."]
 

@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://kgr12nr7qn78"]
+[gd_scene load_steps=10 format=3 uid="uid://kgr12nr7qn78"]
 
 [ext_resource type="Script" path="res://scenes/Main/main.gd" id="1_47yoo"]
 [ext_resource type="PackedScene" uid="uid://byktsq2qxjv53" path="res://scenes/menu/Main_menu/main_menu.tscn" id="1_vwckh"]
-[ext_resource type="AudioStream" uid="uid://oo7eoyuq2ng5" path="res://art/music/C418.ogg" id="2_ihkx5"]
 [ext_resource type="PackedScene" uid="uid://7ew5ehj0byw4" path="res://scenes/menu/UI/UI.tscn" id="4_s6jrc"]
 [ext_resource type="PackedScene" uid="uid://7hcurh5irjb1" path="res://scenes/menu/Pause_menu/pause_menu.tscn" id="5_o1850"]
 [ext_resource type="PackedScene" uid="uid://bqujmg635fbuw" path="res://scenes/menu/GameOver_menu/game_over_menu.tscn" id="6_ehfm4"]
 [ext_resource type="PackedScene" uid="uid://c8e6a6xcxrm46" path="res://scenes/menu/Options_menu/options_menu.tscn" id="7_6ri7q"]
+[ext_resource type="AudioStream" uid="uid://oo7eoyuq2ng5" path="res://art/music/main/C418.ogg" id="7_8axn6"]
 [ext_resource type="AudioStream" uid="uid://cuu2wc2r7wb2r" path="res://art/music/boss_battle/god_of_slimes/Boss_Battle.mp3" id="7_a5mf7"]
+[ext_resource type="AudioStream" uid="uid://bh6t7sxpiv0ou" path="res://art/music/boss_battle/prayer/prayer at the tree.mp3" id="9_jpnfr"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_47yoo")
@@ -26,7 +27,7 @@ visible = false
 [node name="Options_menu" parent="." instance=ExtResource("7_6ri7q")]
 
 [node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ihkx5")
+stream = ExtResource("7_8axn6")
 volume_db = -11.506
 autoplay = true
 bus = &"Music"
@@ -34,3 +35,6 @@ bus = &"Music"
 [node name="BossStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_a5mf7")
 bus = &"Music"
+
+[node name="prayerStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_jpnfr")

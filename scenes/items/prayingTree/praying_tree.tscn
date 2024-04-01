@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://4yqlxxo1ms5k"]
+
+[ext_resource type="Texture2D" uid="uid://ca2xtg3sumjcu" path="res://art/objects/objects.png" id="1_0mu2l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4qgv"]
+atlas = ExtResource("1_0mu2l")
+region = Rect2(0, 80, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujq37"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4qgv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwit5"]
+size = Vector2(20, 21)
+
+[node name="PrayingTree" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_ujq37")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_rwit5")

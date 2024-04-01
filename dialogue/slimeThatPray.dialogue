@@ -63,7 +63,7 @@ if Main.saidAllSlimesGones == true and Main.IsAtTheTree == false:
 	set Main.TalkingWithNPC = false
 	set Main.playerCanAttack = false
 if Main.saidAllSlimesGones == true and Main.IsAtTheTree == true and Main.playerAbovePraying == false:
-	Slime: Here we are ! Now, come above me and pray with me 
+	Slime: Here we are ! Now, come next to me and pray.
 	set Main.TalkingWithNPC = false
 	set Main.playerCanAttack = false
 if Main.playerAbovePraying == true:
