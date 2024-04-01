@@ -85,7 +85,6 @@ if Main.playerAbovePraying == true:
 	- yes !
 	set Main.willRepeat = true
 if Main.willRepeat == true:
-	
 	Slime: Today in this afternoon, I met a villager
 	- Today in this afternoon, I met a villager
 		Slime: He was courageous, helpfull, nice. He was a good person.

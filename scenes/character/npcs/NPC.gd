@@ -8,7 +8,6 @@ var CanTalk = true
 var CountCanTalk = 0
 
 func _process(delta):
-	print(Main.playerAbovePraying)
 	if Main.saidAllSlimesGones == false:
 		$AnimatedSprite2D.play("idleStressed")
 	elif Main.BossfightStarted:
@@ -17,25 +16,10 @@ func _process(delta):
 		$AnimatedSprite2D.play("idleDestressed")
 	
 	if Main.saidAllSlimesGones and not Main.IsAtTheTree:
-		print("Starting boss fight")
-		if Main.TalkingWithNPC == false and not playerAnnoying:
+		if Main.TalkingWithNPC == false and not playerAnnoying and Main.gameStatus != "Pause":
 			p.progress_ratio += delta * 0.1
 		if p.progress_ratio == 1:
 			Main.IsAtTheTree = true
-		
-		# then we load the boss fight scene. 
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(p.get_node("bgBlack"), "modulate:a", 1, 1)
-		#await tween.finished
-		#p.get_node("player").position = Vector2(-8, 116)
-		#Main.currentScene = ("PrayingTree")
-		#p.get_node("WorldCamera").limit_left = -1664
-		#p.get_node("WorldCamera").limit_right = 0
-		#if Main.currentScene == "Praying Tree":
-			#p.get_node("cliffSideCollision/CollisionPolygon2D").disabled = false
-		#Main.currentDirection = "left"
-		#var tween2 = get_tree().create_tween()
-		#tween2.tween_property(p.get_node("bgBlack"), "modulate:a", 0, 1)
 		
 	if Main.IsAtTheTree == true:
 		$playerAbovePray/CollisionShape2D.disabled = false

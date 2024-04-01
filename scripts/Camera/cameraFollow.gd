@@ -2,7 +2,6 @@ extends Camera2D
 @onready var playerLivePosition 
 
 func _process(delta):
-	print(zoom)
 	if Main.gameStatus != "Over":
 		zoom = Vector2(Main.cameraZoom, Main.cameraZoom)
 	if Main.player and Main.transitionScene == false:

@@ -16,6 +16,7 @@ func _ready():
 	if Main.cameraPosition == Vector2(272, 120): %WorldCamera.position = Main.cameraPosition
 
 func _process(delta):
+	print($bgBlack.modulate.a)
 	if Slime1 == null:
 		if 1 not in Main.killed_enemies:
 			Main.addKilledEnemies(1)
