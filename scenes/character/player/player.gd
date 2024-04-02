@@ -205,7 +205,6 @@ func _on_player_hitbox_body_exited(body):
 func attackPressedAnim():
 	var dir = Main.currentDirection
 	var anim = $AnimatedSprite2D
-	print(anim.animation)
 	if Input.is_action_pressed("attack") and canAttack == true and Main.gameStatus == "Start" and Main.TalkingWithNPC == false:
 		isAttacking = true
 		canBeRed = false
