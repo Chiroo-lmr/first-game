@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://jle8vp6khpyf"]
+[gd_scene load_steps=16 format=3 uid="uid://jle8vp6khpyf"]
 
 [ext_resource type="Script" path="res://scenes/Maps/beginningScene/Beginning.gd" id="1_owmpw"]
 [ext_resource type="TileSet" uid="uid://cetdbn0e3eqft" path="res://tres/Beginning.tres" id="2_s0g1d"]
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/character/player/player.tscn" id="4_k0gef"]
 [ext_resource type="Script" path="res://scripts/Camera/cameraFollow.gd" id="5_o3vnr"]
 [ext_resource type="PackedScene" uid="uid://4yqlxxo1ms5k" path="res://scenes/items/prayingTree/praying_tree.tscn" id="7_cnoia"]
-[ext_resource type="PackedScene" path="res://scenes/character/slime/god_of_slimes.tscn" id="8_sne2g"]
 [ext_resource type="PackedScene" uid="uid://dp7hqrdo5nwij" path="res://scenes/items/heart/health_coins.tscn" id="10_swkpe"]
 [ext_resource type="PackedScene" uid="uid://cslvka7xb5qkp" path="res://scenes/character/npcs/SlimeThatPray.tscn" id="11_ukne5"]
 
@@ -161,11 +160,6 @@ texture = SubResource("GradientTexture2D_1cvca")
 
 [node name="PrayingTree" parent="." instance=ExtResource("7_cnoia")]
 position = Vector2(-272, 103.75)
-
-[node name="god_of_slimes" parent="." instance=ExtResource("8_sne2g")]
-visible = false
-position = Vector2(-272, 103.75)
-scale = Vector2(0.25, 0.25)
 
 [connection signal="body_entered" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffSideTransitionPoint" to="." method="_on_cliff_side_transition_point_body_exited"]

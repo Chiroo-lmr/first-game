@@ -18,13 +18,15 @@ var currentScene = "Beginning"
 var transitionScene = false
 
 var allSlimesGone = false
-var saidAllSlimesGones = false
+var saidAllSlimesGones = true
 var interacted_once = false
 var TalkingWithNPC = false
 var IsAtTheTree = false
 var BossfightStarted = false
 var playerAbovePraying = false
 var willRepeat = false
+var BossCanMove = false
+var BossHealth = 4000
 
 var cameraPosition = Vector2(272, 120)
 var cameraSmoothing = true
@@ -76,6 +78,7 @@ func resetVar():
 	BossfightStarted = false
 	playerAbovePraying = false
 	willRepeat = false
+	BossCanMove = false
 
 func restartGame():
 	resetVar()

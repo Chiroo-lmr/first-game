@@ -1,6 +1,7 @@
 extends CharacterBody2D
+@export_enum("God", "Slime") var Slime_type
 var player = null # le node player
-@export var health = 100 # la vie du slime
+var health = 100 # la vie du slime
 var speed = 8 # multiplicateur en gros 
 var player_chase = false # si oui, le slime va poursuivre le joueur`
 var AttackZone = false # si oui, le player est dans la zone de combat du slime
@@ -10,6 +11,12 @@ var canWalk = true
 var animWalks = false
 var isAlive = true
 
+func _ready():
+	if Slime_type == 0:
+		health = 4000
+	if Slime_type == 1:
+		health = 100
+
 func _physics_process(delta):
 	reginTimerPaused()
 	move_and_slide()
@@ -17,9 +24,13 @@ func _physics_process(delta):
 		if Main.gameStatus == "Start":
 				deal_with_damage()
 				playerChase()
-				#updateHealth()
+				updateHealth()
 				attack()
-				walk()
+				if Slime_type == 0:
+					if Main.BossCanMove:
+						walk()
+				if Slime_type == 1:
+					walk()
 				ajustmentsHealth()
 		elif Main.gameStatus == "Pause":
 			$AnimatedSprite2D.play("idle")
@@ -33,28 +44,36 @@ func _physics_process(delta):
 		theSlimeHasNoHealth()
 
 func updateHealth():
-	var healthBar = $healthBar
-	healthBar.value = health
-	if health >= 100 :
-		healthBar.visible = false
-	elif health > 0:
-		healthBar.visible = true
+	if Slime_type == 1:
+		var healthBar = $healthBar
+		healthBar.value = health
+		if health >= 100 :
+			healthBar.visible = false
+		elif health > 0:
+			healthBar.visible = true
+	if Slime_type == 0:
+		Main.BossHealth = health
 
 func ajustmentsHealth():
-	if health > 100:
-		health = 100
+	if Slime_type == 1:
+		if health > 100:
+			health = 100
+	if Slime_type == 0:
+		if health > 4000:
+			health = 4000
 	if health <= 0 :
 		health = 0
 		isAlive = false
 		theSlimeHasNoHealth()
 
 func _on_regin_timer_timeout():
-	if health < 100:
-		health +=20
-		if health > 100:
-			health = 100
-	if health <= 0 :
-		health = 0
+	if Slime_type == 1:
+		if health < 100:
+			health +=20
+			if health > 100:
+				health = 100
+		if health <= 0 :
+			health = 0
 
 func reginTimerPaused():
 	if Main.gameStatus == "Pause":
@@ -99,7 +118,10 @@ func _on_enemy_hitbox_combat_body_exited(body):
 
 func attack():
 	if AttackZone == true and canAttack == true and Main.gameStatus == "Start" and isAlive == true and Main.TalkingWithNPC == false:
-		Main.playerHealth -= randi_range(7, 13)
+		if Slime_type == 1:
+			Main.playerHealth -= randi_range(7, 13)
+		if Slime_type == 0:
+			Main.playerHealth -= randi_range(1, 2)
 		Main.enemyIsAttacking = true
 		canAttack = false
 		$canAttackCooldown.start()
@@ -124,11 +146,10 @@ func enemy():
 	pass
 		
 
-func apply_knockback(distance=10, time=0.1):
+func apply_knockback(distance=10, time=0.2):
 	var pos = self.position
 	var player_pos = get_parent().get_node("player").position
-	
-	print("PLAYER POS --->" + str(player_pos))
+	if Slime_type == 0: distance = 30
 	
 	var xb = pos.x - player_pos.x
 	var yb = pos.y - player_pos.y
@@ -140,8 +161,8 @@ func apply_knockback(distance=10, time=0.1):
 	var new_coordinates = pos+relative_new_coordinates
 	
 	var collision = move_and_collide(relative_new_coordinates) # is null when nothing hit, else it is KinematicCollision2D
-	if collision: # check if there is no collision
-		new_coordinates = self.position # get the stop position		
+	if collision: # check if there is collision
+		new_coordinates = self.position # get the stop position
 	self.position = pos # the move_and_collide move the player, so we set coordinates to original coords for making smooth movement
 	var tween = create_tween()
 	tween.tween_property(self,"position",new_coordinates,time)
@@ -177,9 +198,11 @@ func _on_wait_to_walk_timeout():
 
 func theSlimeHasNoHealth():
 	$hitboxElements.disabled = true
-	$healthBar.visible = false
+	if Slime_type == 0:
+		pass
+	elif Slime_type == 1:
+		$healthBar.visible = false
 	velocity = Vector2(0, 0)
 	$AnimatedSprite2D.play("death")
 	await $AnimatedSprite2D.animation_finished
 	self.queue_free()
-

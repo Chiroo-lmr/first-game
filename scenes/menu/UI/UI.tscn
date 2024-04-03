@@ -7,7 +7,6 @@
 script = ExtResource("1_nm3o5")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,13 +17,13 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="enemy_killed" type="HBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="EnemyKilled" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="EnemyKilled" type="Label" parent="MarginContainer/enemy_killed"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -32,16 +31,30 @@ theme_override_fonts/font = ExtResource("2_o4wm5")
 theme_override_font_sizes/font_size = 40
 text = "[enemy_killed]"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+[node name="health" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
-[node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer2"]
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/health"]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0.141176, 0.67451, 0, 1)
 custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+show_percentage = false
+
+[node name="boss_health" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="BossHealthBar" type="ProgressBar" parent="MarginContainer/boss_health"]
+unique_name_in_owner = true
+modulate = Color(0.796078, 0, 0, 1)
+custom_minimum_size = Vector2(1, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8

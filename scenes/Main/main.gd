@@ -10,6 +10,8 @@ func _process(delta):
 	HandleBossBattle()
 	HandleRestartAndMenu()
 	HandleVisibleScenes()
+	if not Main.BossfightStarted:
+		$BossStreamPlayer.playing = false
 
 func HandleVisibleScenes():
 	if Main.playerHealth <= 0:
@@ -85,14 +87,15 @@ func HandleBossBattle():
 			$BossStreamPlayer.playing = true
 			$prayerStreamPlayer.volume_db = 0
 		if Main.TalkingWithNPC == false and $World != null:
+			$World/WorldCamera.position = $World/player.position
 			if CountTweenModulate == 0:
 				var tweenVertical = get_tree().create_tween()
-				tweenVertical.tween_property($World/lightsBoss/lightVertical, "energy", 1, 1)
+				tweenVertical.tween_property($World/lightsBoss/lightVertical, "energy", 3, 1)
 				await tweenVertical.finished
 				CountTweenModulate = 1
 			if CountTweenModulate == 1:
 				var tweenHorizontal = get_tree().create_tween()
-				tweenHorizontal.tween_property($World/lightsBoss/lightHorizontal, "energy", 1, 1)
+				tweenHorizontal.tween_property($World/lightsBoss/lightHorizontal, "energy", 3, 1)
 				await tweenHorizontal.finished
 				CountTweenModulate = 2
 				var tweenVertical1 = get_tree().create_tween()
@@ -100,10 +103,13 @@ func HandleBossBattle():
 				var tweenHorizontal1 = get_tree().create_tween()
 				tweenHorizontal1.tween_property($World/lightsBoss/lightHorizontal, "energy", 0, 1)
 				spawn_boss()
-			
 
 func spawn_boss():
 	if countSpawnBoss == 0:
+		var position_slime = $World/PrayingTree.position
 		$World/PrayingTree.queue_free()
-		$World/god_of_slimes.visible = true
+		var god = preload("res://scenes/character/slime/god_of_slimes.tscn")
+		var thegod = god.instantiate()
+		$World.add_child(thegod)
+		$World/god_of_slimes.position = position_slime 
 		countSpawnBoss = 1

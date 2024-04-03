@@ -150,6 +150,7 @@ animations = [{
 collision_layer = 4
 collision_mask = 43
 script = ExtResource("1_u7qum")
+Slime_type = 1
 
 [node name="hitboxElements" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -4.5)
@@ -182,16 +183,6 @@ autostart = true
 
 [node name="waitToWalk" type="Timer" parent="."]
 
-[node name="healthBar" type="ProgressBar" parent="."]
-visible = false
-modulate = Color(0.156863, 0.784314, 0.360784, 1)
-offset_left = -6.0
-offset_top = -13.0
-offset_right = 124.0
-offset_bottom = 14.0
-scale = Vector2(0.1, 0.1)
-show_percentage = false
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(2.08165e-12, -4)
 amount = 2
@@ -208,6 +199,16 @@ color = Color(0.117647, 0.266667, 0.407843, 1)
 sprite_frames = SubResource("SpriteFrames_wwls0")
 animation = &"idle"
 offset = Vector2(2.08165e-12, -6)
+
+[node name="healthBar" type="ProgressBar" parent="."]
+visible = false
+modulate = Color(0.156863, 0.784314, 0.360784, 1)
+offset_left = -6.0
+offset_top = -13.0
+offset_right = 124.0
+offset_bottom = 14.0
+scale = Vector2(0.1, 0.1)
+show_percentage = false
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

@@ -263,6 +263,7 @@ func ajustmentsHealth():
 func thePlayerHasNoHealth():
 	Main.gameStatus = "Over"
 	$walks.stop()
+	get_parent().get_parent().get_node("BossStreamPlayer").playing = false
 	gamePause() # economiser du code je suis un rat oui
 	var camera = get_parent().get_node("WorldCamera")
 	var tweenZoom = get_tree().create_tween()
