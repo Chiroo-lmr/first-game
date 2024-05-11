@@ -144,7 +144,7 @@ func _on_can_attack_cooldown_timeout():
 func deal_with_damage():
 	if Main.playerCurrentAttack == true and AttackZone == true:
 			if Slime_type == 1:
-				health -= randi_range(150, 200)
+				health -= randi_range(15, 20)
 			if Slime_type == 0:
 				health -= randi_range(150, 200)
 			$canAttackCooldown.start()
