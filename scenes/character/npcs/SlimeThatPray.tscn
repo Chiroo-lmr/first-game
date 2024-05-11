@@ -1,7 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://cslvka7xb5qkp"]
+[gd_scene load_steps=18 format=3 uid="uid://cslvka7xb5qkp"]
 
 [ext_resource type="Script" path="res://scenes/character/npcs/NPC.gd" id="1_u6sfw"]
 [ext_resource type="Texture2D" uid="uid://niehv7187pgi" path="res://art/characters/npc/red slime/spritesheet.png" id="2_38853"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kw2bq"]
+radius = 11.0454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1610j"]
+radius = 15.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ci6wr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1w0nn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hark"]
 atlas = ExtResource("2_38853")
@@ -95,21 +105,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kw2bq"]
-radius = 11.0454
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1610j"]
-radius = 15.0
-
 [node name="NPC" type="CharacterBody2D"]
 script = ExtResource("1_u6sfw")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.375, 0.453125)
-sprite_frames = SubResource("SpriteFrames_s0ate")
-animation = &"idleDestressed"
-frame = 1
-frame_progress = 0.852599
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kw2bq")
@@ -121,4 +118,32 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectionPlayer"]
 shape = SubResource("CircleShape2D_1610j")
 
+[node name="PlayerAnnoying" type="Area2D" parent="."]
+position = Vector2(-10, 2.08165e-12)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnnoying"]
+shape = SubResource("RectangleShape2D_ci6wr")
+
+[node name="playerAbovePray" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, -18)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerAbovePray"]
+position = Vector2(13, 18)
+shape = SubResource("RectangleShape2D_1w0nn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.375, 0.453125)
+sprite_frames = SubResource("SpriteFrames_s0ate")
+animation = &"idleDestressed"
+frame = 1
+frame_progress = 0.852599
+
 [connection signal="body_entered" from="detectionPlayer" to="." method="_on_detection_player_body_entered"]
+[connection signal="body_entered" from="PlayerAnnoying" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="PlayerAnnoying" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="playerAbovePray" to="." method="_on_player_above_pray_body_entered"]
+[connection signal="body_exited" from="playerAbovePray" to="." method="_on_player_above_pray_body_exited"]

@@ -18,15 +18,10 @@ func _ready():
 	$canAttackCooldown.start()
 
 func _physics_process(delta):
-	Main.playerLivePosition = position
-	if Main.gameStatus == "Pause":
-		$CPUParticles2D.emitting = false
-	elif Main.gameStatus == "Over":
-		$CPUParticles2D.emitting = false
-	if Main.TalkingWithNPC == true:
-		$CPUParticles2D.emitting = false
+	playParticles()
 	Main.playerLivePosition = position
 	if Main.gameStatus == "Start":
+		CameraMovements()
 		player_movement(delta)
 		attackPressedAnim()
 		play_anim(movement)
@@ -35,6 +30,42 @@ func _physics_process(delta):
 		checkIfAttacked()
 	if Main.gameStatus == "Pause":
 		gamePause()
+	else:
+		$regin.paused = false
+
+var CountCanTalk = 0
+
+func CameraMovements():
+	var world = get_parent()
+	if Main.gameStatus == "Start":
+		if Main.TalkingWithNPC == true:
+			if Main.playerAbovePraying == false:
+				var tween = get_tree().create_tween()
+				tween.tween_property(world.get_node("WorldCamera"), "zoom", Vector2(5, 5), 3)
+			Main.CanTalk = false
+			CountCanTalk = 0
+			if Main.willRepeat == true:
+				var tween1 = get_tree().create_tween()
+				tween1.tween_property(world.get_node("WorldCamera"), "zoom", Vector2(2, 2), 3)
+		else:
+			if not Main.BossfightStarted:
+				var tween = get_tree().create_tween()
+				tween.tween_property(world.get_node("WorldCamera"), "zoom", Vector2(Main.cameraZoom, Main.cameraZoom), 0.25)
+			if Main.CanTalk == false and CountCanTalk == 0:
+				CountCanTalk = 1
+				$canTalk.start()
+				await $canTalk.timeout
+				CountCanTalk = 0
+				print("hello")
+				Main.CanTalk = true
+
+func playParticles():
+	if Main.gameStatus == "Pause":
+		$CPUParticles2D.emitting = false
+	elif Main.gameStatus == "Over":
+		$CPUParticles2D.emitting = false
+	if Main.TalkingWithNPC == true:
+		$CPUParticles2D.emitting = false
 
 func gamePause():
 	if Main.currentDirection == "up":
@@ -48,10 +79,8 @@ func gamePause():
 		$AnimatedSprite2D.flip_h = false
 		$AnimatedSprite2D.play("side_idle")
 	$walks.stop()
-	if Main.gameStatus == "Pause":
-		$regin.paused = true
-	else:
-		$regin.paused = false
+	$regin.paused = true
+	$CPUParticles2D.emitting = false
 
 func player_movement(delta):
 	if Main.TalkingWithNPC == false:
@@ -98,33 +127,33 @@ func play_anim(mov):
 	var anim = $AnimatedSprite2D
 	if dir == "right" and Main.TalkingWithNPC == false:
 		anim.flip_h = false
-		if movement == 1 and isAttacking == true:
-			anim.play("side_attack")
-		elif movement == 1 and isAttacking == false:
+		#if movement == 1 and isAttacking == true:
+			#anim.play("side_attack")
+		if movement == 1 and isAttacking == false:
 			anim.play("side_walk")
 			$CPUParticles2D.gravity = Vector2(-150, 0)
 		elif movement == 0 and isAttacking == false:
 			anim.play("side_idle")
 	if dir == "left" and Main.TalkingWithNPC == false:
 		anim.flip_h = true
-		if movement == 1 and isAttacking == true:
-			anim.play("side_attack")
-		elif movement == 1 and isAttacking == false:
+		#if movement == 1 and isAttacking == true:
+			#anim.play("side_attack")
+		if movement == 1 and isAttacking == false:
 			anim.play("side_walk")
 			$CPUParticles2D.gravity = Vector2(150, 0)
 		elif movement == 0 and isAttacking == false:
 			anim.play("side_idle")
 	if dir == "down" and Main.TalkingWithNPC == false:
-		if movement == 1 and isAttacking == true:
-			anim.play("front_attack")
+		#if movement == 1 and isAttacking == true:
+			#anim.play("front_attack")
 		if movement == 1 and isAttacking == false:
 			anim.play("front_walk")
 			$CPUParticles2D.gravity = Vector2(0, -150)
 		elif movement == 0 and isAttacking == false:
 			anim.play("front_idle")
 	if dir == "up" and Main.TalkingWithNPC == false:
-		if movement == 1 and isAttacking == true:
-			anim.play("back_attack")
+		#if movement == 1 and isAttacking == true:
+			#anim.play("back_attack")
 		if movement == 1 and isAttacking == false:
 			$CPUParticles2D.gravity = Vector2(0, 150)
 			anim.play("back_walk")
@@ -203,9 +232,9 @@ func _on_player_hitbox_body_exited(body):
 		canBeKnockback = false
 	
 func attackPressedAnim():
+	var dir = Main.currentDirection
+	var anim = $AnimatedSprite2D
 	if Input.is_action_pressed("attack") and canAttack == true and Main.gameStatus == "Start" and Main.TalkingWithNPC == false:
-		var dir = Main.currentDirection
-		var anim = $AnimatedSprite2D
 		isAttacking = true
 		canBeRed = false
 		Main.playerCurrentAttack = true
@@ -217,25 +246,33 @@ func attackPressedAnim():
 			anim.play("side_attack", 1, true)
 			$canAttackCooldown.start()
 			$isAttacking.start()
-		if dir == "left":
+			canAttack = false
+			Main.playerCanAttack = false
+		elif dir == "left":
 			anim.flip_h = true
 			anim.play("side_attack")
 			$canAttackCooldown.start()
 			$isAttacking.start()
-		if dir == "down":
+			canAttack = false
+			Main.playerCanAttack = false
+		elif dir == "down":
 			anim.play("front_attack")
 			$canAttackCooldown.start()
 			$isAttacking.start()
-		if dir == "up":
+			canAttack = false
+			Main.playerCanAttack = false
+		elif dir == "up":
 			anim.play("back_attack")
 			$canAttackCooldown.start()
 			$isAttacking.start()
-		if dir == "none":
+			canAttack = false
+			Main.playerCanAttack = false
+		elif dir == "none":
 			anim.play("front_attack")
 			$canAttackCooldown.start()
 			$isAttacking.start()
-		canAttack = false
-		Main.playerCanAttack = false
+			canAttack = false
+			Main.playerCanAttack = false
 	else:
 		Main.playerCurrentAttack = false
 
@@ -255,6 +292,7 @@ func ajustmentsHealth():
 func thePlayerHasNoHealth():
 	Main.gameStatus = "Over"
 	$walks.stop()
+	get_parent().get_parent().get_node("BossStreamPlayer").playing = false
 	gamePause() # economiser du code je suis un rat oui
 	var camera = get_parent().get_node("WorldCamera")
 	var tweenZoom = get_tree().create_tween()
