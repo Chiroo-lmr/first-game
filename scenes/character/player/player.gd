@@ -18,15 +18,10 @@ func _ready():
 	$canAttackCooldown.start()
 
 func _physics_process(delta):
-	Main.playerLivePosition = position
-	if Main.gameStatus == "Pause":
-		$CPUParticles2D.emitting = false
-	elif Main.gameStatus == "Over":
-		$CPUParticles2D.emitting = false
-	if Main.TalkingWithNPC == true:
-		$CPUParticles2D.emitting = false
+	playParticles()
 	Main.playerLivePosition = position
 	if Main.gameStatus == "Start":
+		CameraMovements()
 		player_movement(delta)
 		attackPressedAnim()
 		play_anim(movement)
@@ -35,6 +30,42 @@ func _physics_process(delta):
 		checkIfAttacked()
 	if Main.gameStatus == "Pause":
 		gamePause()
+	else:
+		$regin.paused = false
+
+var CountCanTalk = 0
+
+func CameraMovements():
+	var world = get_parent()
+	if Main.gameStatus == "Start":
+		if Main.TalkingWithNPC == true:
+			if Main.playerAbovePraying == false:
+				var tween = get_tree().create_tween()
+				tween.tween_property(world.get_node("WorldCamera"), "zoom", Vector2(5, 5), 3)
+			Main.CanTalk = false
+			CountCanTalk = 0
+			if Main.willRepeat == true:
+				var tween1 = get_tree().create_tween()
+				tween1.tween_property(world.get_node("WorldCamera"), "zoom", Vector2(2, 2), 3)
+		else:
+			if not Main.BossfightStarted:
+				var tween = get_tree().create_tween()
+				tween.tween_property(world.get_node("WorldCamera"), "zoom", Vector2(Main.cameraZoom, Main.cameraZoom), 0.25)
+			if Main.CanTalk == false and CountCanTalk == 0:
+				CountCanTalk = 1
+				$canTalk.start()
+				await $canTalk.timeout
+				CountCanTalk = 0
+				print("hello")
+				Main.CanTalk = true
+
+func playParticles():
+	if Main.gameStatus == "Pause":
+		$CPUParticles2D.emitting = false
+	elif Main.gameStatus == "Over":
+		$CPUParticles2D.emitting = false
+	if Main.TalkingWithNPC == true:
+		$CPUParticles2D.emitting = false
 
 func gamePause():
 	if Main.currentDirection == "up":
@@ -48,10 +79,8 @@ func gamePause():
 		$AnimatedSprite2D.flip_h = false
 		$AnimatedSprite2D.play("side_idle")
 	$walks.stop()
-	if Main.gameStatus == "Pause":
-		$regin.paused = true
-	else:
-		$regin.paused = false
+	$regin.paused = true
+	$CPUParticles2D.emitting = false
 
 func player_movement(delta):
 	if Main.TalkingWithNPC == false:

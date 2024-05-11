@@ -476,6 +476,8 @@ autostart = true
 [node name="timeBeforeSoundAttack" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="canTalk" type="Timer" parent="."]
+
 [node name="walks" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 2)
 stream = ExtResource("4_baqcv")

@@ -142,9 +142,6 @@ animation = &"idleDestressed"
 frame = 1
 frame_progress = 0.852599
 
-[node name="CanTalk" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="body_entered" from="detectionPlayer" to="." method="_on_detection_player_body_entered"]
 [connection signal="body_entered" from="PlayerAnnoying" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="PlayerAnnoying" to="." method="_on_area_2d_body_exited"]

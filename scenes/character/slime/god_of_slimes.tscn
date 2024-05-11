@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dn06ysmgjhcn0"]
+[gd_scene load_steps=24 format=3 uid="uid://dn06ysmgjhcn0"]
 
 [ext_resource type="Script" path="res://scenes/character/slime/Slime.gd" id="1_8hej5"]
 [ext_resource type="Texture2D" uid="uid://dj1g41scwq7bv" path="res://art/characters/enemy/slime/slime.png" id="2_cejcb"]
+[ext_resource type="Texture2D" uid="uid://cky6r6f0uah76" path="res://art/characters/slime-red.png" id="3_l2vfj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yby7p"]
 size = Vector2(132, 96)
@@ -39,6 +40,26 @@ region = Rect2(128, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ya0k"]
 atlas = ExtResource("2_cejcb")
 region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epig6"]
+atlas = ExtResource("3_l2vfj")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5b8d"]
+atlas = ExtResource("3_l2vfj")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrpwh"]
+atlas = ExtResource("3_l2vfj")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y4q1"]
+atlas = ExtResource("3_l2vfj")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f35xv"]
+atlas = ExtResource("3_l2vfj")
+region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxrwx"]
 atlas = ExtResource("2_cejcb")
@@ -79,6 +100,26 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epig6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5b8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrpwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y4q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f35xv")
+}],
+"loop": false,
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -154,9 +195,7 @@ color = Color(0.117647, 0.266667, 0.407843, 1)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(10.5625, 9.17188)
 sprite_frames = SubResource("SpriteFrames_wtcj1")
-animation = &"attack"
-frame = 3
-frame_progress = 0.237671
+animation = &"death"
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

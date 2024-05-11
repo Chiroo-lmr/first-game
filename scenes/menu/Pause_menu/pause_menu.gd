@@ -2,7 +2,6 @@ extends CanvasLayer
 
 @onready var allButtons = %VBoxContainer
 
-
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel") and Main.TalkingWithNPC == false:
 		gamePause()

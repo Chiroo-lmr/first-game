@@ -21,13 +21,12 @@ func _process(delta):
 
 func updateBossHealth():
 	if Main.BossfightStarted:
-		print(boss_health_bar.value)
 		boss_health_bar.value = Main.BossHealth * 100 / 4000
 		visible = true
-		if CountTweebBar == 0:
+		if CountTweebBar == 0 and Main.BossSpawned:
 			CountTweebBar = 1
 			var tweenBar = get_tree().create_tween()
-			tweenBar.tween_property(boss_health_bar, "custom_minimum_size:x", 1920-64, 4)
+			tweenBar.tween_property(boss_health_bar, "custom_minimum_size:x", 1856, 4)
 			await tweenBar.finished
 			Main.BossCanMove = true
 		if Main.BossHealth <= 4000:

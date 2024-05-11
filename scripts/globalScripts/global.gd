@@ -6,7 +6,8 @@ var playerLivePosition = Vector2(272,120)
 var player : Node2D
 var playerCanAttack = true
 var currentDirection = "none" # utilisé pour les animations 
-var not_red_at = 0 # utilisé pour rendre le player rouge quand attaqué 
+var not_red_at = 0 # utilisé pour rendre le player rouge quand attaqué
+var CanTalk = true 
 
 var killed_enemies = [] 
 var enemiesKilled = 0
@@ -18,7 +19,7 @@ var currentScene = "Beginning"
 var transitionScene = false
 
 var allSlimesGone = false
-var saidAllSlimesGones = true
+var saidAllSlimesGones = false
 var interacted_once = false
 var TalkingWithNPC = false
 var IsAtTheTree = false
@@ -27,6 +28,7 @@ var playerAbovePraying = false
 var willRepeat = false
 var BossCanMove = false
 var BossHealth = 4000
+var BossSpawned = false
 
 var cameraPosition = Vector2(272, 120)
 var cameraSmoothing = true
@@ -79,6 +81,7 @@ func resetVar():
 	playerAbovePraying = false
 	willRepeat = false
 	BossCanMove = false
+	BossSpawned = false
 
 func restartGame():
 	resetVar()

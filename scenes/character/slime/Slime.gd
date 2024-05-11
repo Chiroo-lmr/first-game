@@ -16,6 +16,7 @@ func _ready():
 		health = 4000
 	if Slime_type == 1:
 		health = 100
+	$AnimatedSprite2D.play("idle")
 
 func _physics_process(delta):
 	reginTimerPaused()
@@ -26,11 +27,7 @@ func _physics_process(delta):
 				playerChase()
 				updateHealth()
 				attack()
-				if Slime_type == 0:
-					if Main.BossCanMove:
-						walk()
-				if Slime_type == 1:
-					walk()
+				walk()
 				ajustmentsHealth()
 		elif Main.gameStatus == "Pause":
 			$AnimatedSprite2D.play("idle")
@@ -93,19 +90,31 @@ func _on_detection_area_body_exited(body):
 		player_chase = false
 
 func playerChase():
-	if player_chase:
-		velocity = (player.position - position) * speed
-		$CPUParticles2D.emitting = false
-		$AnimatedSprite2D.play("walk")
-		if (player.position.x - position.x) < 0 :
-			$AnimatedSprite2D.flip_h = true
+	if Slime_type == 0:
+		if Main.BossCanMove:
+			if player_chase:
+				velocity = (player.position - position) * speed
+				$AnimatedSprite2D.play("attack")
+				if (player.position.x - position.x) < 0 :
+					$AnimatedSprite2D.flip_h = true
+				else:
+					$AnimatedSprite2D.flip_h = false
+				move_and_collide(Vector2(0,0))
+			else:
+				$AnimatedSprite2D.play("idle")
+	if Slime_type == 1:
+		if player_chase:
+			velocity = (player.position - position) * speed
+			$CPUParticles2D.emitting = false
+			$AnimatedSprite2D.play("walk")
+			if (player.position.x - position.x) < 0 :
+				$AnimatedSprite2D.flip_h = true
+			else:
+				$AnimatedSprite2D.flip_h = false
+			move_and_collide(Vector2(0,0))
 		else:
-			$AnimatedSprite2D.flip_h = false
-		move_and_collide(Vector2(0,0))
-	else:
-		$AnimatedSprite2D.play("idle")
-		$CPUParticles2D.emitting = true
-		
+			$AnimatedSprite2D.play("idle")
+			$CPUParticles2D.emitting = true
 
 # detecte si le joueur est dans la collision de combat du slime
 func _on_enemy_hitbox_combat_body_entered(body):
@@ -121,7 +130,7 @@ func attack():
 		if Slime_type == 1:
 			Main.playerHealth -= randi_range(7, 13)
 		if Slime_type == 0:
-			Main.playerHealth -= randi_range(1, 2)
+			Main.playerHealth -= randi_range(5, 7)
 		Main.enemyIsAttacking = true
 		canAttack = false
 		$canAttackCooldown.start()
@@ -134,7 +143,10 @@ func _on_can_attack_cooldown_timeout():
 
 func deal_with_damage():
 	if Main.playerCurrentAttack == true and AttackZone == true:
-			health -= randi_range(150, 200)
+			if Slime_type == 1:
+				health -= randi_range(150, 200)
+			if Slime_type == 0:
+				health -= randi_range(150, 200)
 			$canAttackCooldown.start()
 			apply_knockback() 
 			$AnimatedSprite2D.modulate = Color(1, 0, 0)
@@ -149,7 +161,7 @@ func enemy():
 func apply_knockback(distance=10, time=0.2):
 	var pos = self.position
 	var player_pos = get_parent().get_node("player").position
-	if Slime_type == 0: distance = 30
+	if Slime_type == 0: distance = 5
 	
 	var xb = pos.x - player_pos.x
 	var yb = pos.y - player_pos.y
@@ -172,35 +184,45 @@ func apply_knockback(distance=10, time=0.2):
 	)
 
 func walk():
-	if canWalk == true and not player_chase:
-		var direction = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized()
-		velocity = direction * 250
-		if direction.x > 0:
-			$AnimatedSprite2D.flip_h = false
-		else:
-			$AnimatedSprite2D.flip_h = true
-		$waitToWalk.start()
-		canWalk = false
+	if Slime_type == 0:
+		if Main.BossCanMove:
+			if canWalk == true and not player_chase:
+				var direction = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized()
+				velocity = direction * 250
+				if direction.x > 0:
+					$AnimatedSprite2D.flip_h = false
+				else:
+					$AnimatedSprite2D.flip_h = true
+				$waitToWalk.start()
+				canWalk = false
+	if Slime_type == 1:
 		$CPUParticles2D.emitting = true
-	if velocity == Vector2(0, 0):
-		$CPUParticles2D.emitting = false 
-	if velocity.x > 0:
-		$CPUParticles2D.gravity = Vector2(-150, 0)
-	if velocity.x < 0:
-		$CPUParticles2D.gravity = Vector2(150, 0)
-	if velocity.y > 0:
-		$CPUParticles2D.gravity = Vector2(0, -150)
-	if velocity.y < 0:
-		$CPUParticles2D.gravity = Vector2(0, 150)
+		if velocity == Vector2(0, 0):
+			$CPUParticles2D.emitting = false 
+		if velocity.x > 0:
+			$CPUParticles2D.gravity = Vector2(-150, 0)
+		if velocity.x < 0:
+			$CPUParticles2D.gravity = Vector2(150, 0)
+		if velocity.y > 0:
+			$CPUParticles2D.gravity = Vector2(0, -150)
+		if velocity.y < 0:
+			$CPUParticles2D.gravity = Vector2(0, 150)
+		if canWalk == true and not player_chase:
+			var direction = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized()
+			velocity = direction * 250
+			if direction.x > 0:
+				$AnimatedSprite2D.flip_h = false
+			else:
+				$AnimatedSprite2D.flip_h = true
+			$waitToWalk.start()
+			canWalk = false
 
 func _on_wait_to_walk_timeout():
 	canWalk = true
 
 func theSlimeHasNoHealth():
 	$hitboxElements.disabled = true
-	if Slime_type == 0:
-		pass
-	elif Slime_type == 1:
+	if Slime_type == 1:
 		$healthBar.visible = false
 	velocity = Vector2(0, 0)
 	$AnimatedSprite2D.play("death")
