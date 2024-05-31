@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cci24oag33sfq" path="res://scenes/character/player/player.tscn" id="4_k0gef"]
 [ext_resource type="Script" path="res://scripts/Camera/cameraFollow.gd" id="5_o3vnr"]
 [ext_resource type="PackedScene" uid="uid://4yqlxxo1ms5k" path="res://scenes/items/prayingTree/praying_tree.tscn" id="7_cnoia"]
+[ext_resource type="PackedScene" uid="uid://mq8l5owlsf0h" path="res://scenes/character/slime/god_of_slimes.tscn" id="8_sne2g"]
 [ext_resource type="PackedScene" uid="uid://dp7hqrdo5nwij" path="res://scenes/items/heart/health_coins.tscn" id="10_swkpe"]
 [ext_resource type="PackedScene" uid="uid://cslvka7xb5qkp" path="res://scenes/character/npcs/SlimeThatPray.tscn" id="11_ukne5"]
 
